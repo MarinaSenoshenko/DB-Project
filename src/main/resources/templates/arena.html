@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>arena</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить арену по количеству дорожек: </b></th>
+    <th>Выберите количество дорожек: </th>
+    <label for="trackNumber"></label><select class="selathlete" id="trackNumber">
+    <option th:each="allarena: ${allarenas}"
+            th:text="${allarena.trackNumber}">
+    </option>
+  </select>
+    <button type="button" onclick="showByTrackNumber()">Применить</button>
+  </form><br>
+
+  <script>
+    function showByTrackNumber() {
+      const trackNumber = document.getElementById('trackNumber').value;
+      location.href='/main/sportsfacility/arena/' + trackNumber;
+    }
+  </script>
+
+  <button type="button" onclick="location.href='/main/sportsfacility/arena'">Cброс</button><br>
+
+  <table border="0" width="600">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Количество дорожек</p></th>
+      <th><p style="font-size: 20px;">Адрес</p></th>
+      <th><p style="font-size: 20px;">Тип покрытия</p></th>
+    </tr>
+    <tr th:each="arena, iter : ${arenas}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${arena.trackNumber}" style="text-align:center"></td>
+      <td th:text="${arena.sportsFacility.address}" style="text-align:center"></td>
+      <td th:text="${arena.sportsFacility.type.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>
+

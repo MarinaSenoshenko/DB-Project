@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>athleteranking</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <table border="0" width="1000">
+    <colgroup>
+      <col span="6" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Фамилия</p></th>
+      <th><p style="font-size: 20px;">Имя</p></th>
+      <th><p style="font-size: 20px;">Отчество</p></th>
+      <th><p style="font-size: 20px;">Hазвание клуба</p></th>
+      <th><p style="font-size: 20px;">Вид спорта</p></th>
+      <th><p style="font-size: 20px;">Разряд</p></th>
+    </tr>
+    <tr th:each="athleteranking, iter : ${athleterankings}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${athleteranking.athlete.lastName}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athlete.firstName}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athlete.patronymic}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athlete.club.title}" style="text-align:center"></td>
+      <td th:text="${athleteranking.sport.value}" style="text-align:center"></td>
+      <td th:text="${athleteranking.rank.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

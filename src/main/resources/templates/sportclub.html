@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>sportclub</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить спортивные клубы за период: </b></th>
+    <th>Введите дату начала: </th>
+    <label for="start_date"></label><input type="date" name="day"
+                                           id="start_date" size="60"
+                                           class="login-form-field"
+                                           placeholder="day of week">
+    <th>Введите дату конца: </th>
+    <label for="end_date"></label><input type="date" name="day"
+                                         id="end_date" size="60"
+                                         class="login-form-field"
+                                         placeholder="day of week">
+    <button type="button" onclick="showSportClubByPeriod()">Применить</button>
+  </form><br>
+
+  <script>
+    function showSportClubByPeriod() {
+      const start_date = document.getElementById('start_date').value;
+      const end_date = document.getElementById('end_date').value;
+
+      location.href='/main/sportclub/byperiod/' + start_date + '/' + end_date;
+    }
+  </script>
+
+  <table border="0" width="400">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Название клуба</p></th>
+    </tr>
+    <tr th:each="allsportclub, iter : ${allsportclubs}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${allsportclub.title}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

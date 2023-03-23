@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>court</title>
+</head>
+
+<body>
+<main id="main-holder">
+    <form class="grades-form">
+        <th><b>Получить корд по покрытию: </b></th>
+        <th>Выберите покрытие: </th>
+        <label for="surface"></label><select class="selathlete" id="surface">
+        <option th:each="allcourt: ${allcourts}"
+                th:text="${allcourt.surface.value}">
+        </option>
+    </select>
+        <button type="button" onclick="showBySurface()">Применить</button>
+    </form><br>
+
+    <script>
+        function showBySurface() {
+            const surface = document.getElementById('surface').value;
+            location.href='/main/sportsfacility/court/' + surface;
+        }
+    </script>
+
+    <button type="button" onclick="location.href='/main/sportsfacility/court'">Cброс</button><br>
+
+    <table border="0" width="600">
+        <colgroup>
+            <col span="15" style="background:blue">
+            <col style="background-color:blue">
+            <style>
+                table { margin:0 auto; }
+                body{background-color:aqua;}
+            </style>
+        </colgroup>
+        <tr>
+            <th><p style="font-size: 20px;">№</p></th>
+            <th><p style="font-size: 20px;">Тип покрытия</p></th>
+            <th><p style="font-size: 20px;">Адрес</p></th>
+            <th><p style="font-size: 20px;">Тип покрытия</p></th>
+        </tr>
+        <tr th:each="court, iter : ${courts}">
+            <td th:text="${iter.index} + 1" style="text-align:center"></td>
+            <td th:text="${court.surface.value}" style="text-align:center"></td>
+            <td th:text="${court.sportsFacility.address}" style="text-align:center"></td>
+            <td th:text="${court.sportsFacility.type.value}" style="text-align:center"></td>
+        </tr>
+    </table> <br/>
+</main>
+</body>
+</html>

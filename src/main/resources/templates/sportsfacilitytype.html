@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>sportsfacilitytype</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <table border="0" width="300">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Тип покрытия</p></th>
+    </tr>
+    <tr th:each="sportsfacilitytype, iter : ${sportsfacilitytypes}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${sportsfacilitytype.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>
+

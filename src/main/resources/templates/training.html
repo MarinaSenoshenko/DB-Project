@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>training</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <table border="0" width="1400">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th rowspan="2" style="font-size: 20px;">№</th>
+      <th colspan="3" style="font-size: 20px;">Атлет</th>
+      <th rowspan="2" style="font-size: 20px;">Клуб</th>
+      <th colspan="3" style="font-size: 20px;">Тренер</th>
+      <th rowspan="2" style="font-size: 20px;">Вид спорта</th>
+    </tr>
+    <tr>
+      <th><p style="font-size: 20px;">Фамилия</p></th>
+      <th><p style="font-size: 20px;">Имя</p></th>
+      <th><p style="font-size: 20px;">Отчество</p></th>
+      <th><p style="font-size: 20px;">Фамилия</p></th>
+      <th><p style="font-size: 20px;">Имя</p></th>
+      <th><p style="font-size: 20px;">Отчество</p></th>
+    </tr>
+    <tr th:each="training, iter : ${trainings}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${training.athlete.lastName}" style="text-align:center"></td>
+      <td th:text="${training.athlete.firstName}" style="text-align:center"></td>
+      <td th:text="${training.athlete.patronymic}" style="text-align:center"></td>
+      <td th:text="${training.athlete.club.title}" style="text-align:center"></td>
+      <td th:text="${training.trainerLicense.trainer.lastName}" style="text-align:center"></td>
+      <td th:text="${training.trainerLicense.trainer.firstName}" style="text-align:center"></td>
+      <td th:text="${training.trainerLicense.trainer.patronymic}" style="text-align:center"></td>
+      <td th:text="${training.trainerLicense.sport.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

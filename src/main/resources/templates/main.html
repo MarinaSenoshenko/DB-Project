@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>main</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <colgroup>
+    <style>
+      body{background-color: aqua;}
+    </style>
+  </colgroup>
+  <a th:href="@{/main/athlete}" style="text-align:center"><th><p style="font-size: 20px;">Cписок атлетов</p></th></a>
+  <a th:href="@{/main/athleterank}" style="text-align:center"><th><p style="font-size: 20px;">Список разрядов атлетов</p></th></a>
+  <a th:href="@{/main/athleteranking}" style="text-align:center"><th><p style="font-size: 20px;">Информация об атлетах</p></th></a>
+  <a th:href="@{/main/competition}" style="text-align:center"><th><p style="font-size: 20px;">Информация о cоревнованиях</p></th></a>
+  <a th:href="@{/main/competitionplayer}" style="text-align:center"><th><p style="font-size: 20px;">Информация об учасниках cоревнований</p></th></a>
+  <a th:href="@{/main/courtsurface}" style="text-align:center"><th><p style="font-size: 20px;">Список спортивных площадок</p></th></a>
+  <a th:href="@{/main/sponsor}" style="text-align:center"><th><p style="font-size: 20px;">Информация о спонсорах</p></th></a>
+  <a th:href="@{/main/sport}" style="text-align:center"><th><p style="font-size: 20px;">Список видов спорта</p></th></a>
+  <a th:href="@{/main/sportclub}" style="text-align:center"><th><p style="font-size: 20px;">Список спортивных клубов</p></th></a>
+  <a th:href="@{/main/sportsfacility}" style="text-align:center"><th><p style="font-size: 20px;">Информация о спортивных площадках</p></th></a>
+  <a th:href="@{/main/sportsfacilitytype}" style="text-align:center"><th><p style="font-size: 20px;">Cписок типов покрытия</p></th></a>
+  <a th:href="@{/main/trainer}" style="text-align:center"><th><p style="font-size: 20px;">Информация о тренерах</p></th></a>
+  <a th:href="@{/main/trainerlicense}" style="text-align:center"><th><p style="font-size: 20px;">Список лицензий по тренерам</p></th></a>
+  <a th:href="@{/main/training}" style="text-align:center"><th><p style="font-size: 20px;">Информация о тренировках</p></th></a>
+</main>
+</body>
+</html>

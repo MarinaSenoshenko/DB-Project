@@ -1,0 +1,90 @@
+package db.controllers;
+import db.repository.sports.*;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.*;
+
+@Controller
+@RequestMapping("/main/sportsfacility")
+@AllArgsConstructor
+public class SportsFacilityController {
+    private SportsFacilityRepository sportsFacilityRepository;
+    private CourtRepository courtRepository;
+    private GymRepository gymRepository;
+    private StadiumRepository stadiumRepository;
+    private ArenaRepository arenaRepository;
+
+    @GetMapping("")
+    public String getAll(Model model) {
+        model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
+        return "sportsfacility";
+    }
+
+    @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")
+    public String getSportsFacilityByCompetitionPeriod(@PathVariable("startdate") String startDate,
+                                                       @PathVariable("enddate") String endDate, Model model) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        model.addAttribute("sportsfacilitys", sportsFacilityRepository
+                .getSportsFacilityByCompetitionPeriod(dateFormat.parse(startDate), dateFormat.parse(endDate)));
+        return "sportsfacility";
+    }
+
+    @GetMapping("/court")
+    public String getAllCourts(Model model) {
+        model.addAttribute("courts", courtRepository.findAll());
+        model.addAttribute("allcourts", courtRepository.findAll());
+        return "court";
+    }
+
+    @GetMapping("/court/{surface}")
+    public String getCourtsBySurface(@PathVariable("surface") String surface, Model model) {
+        model.addAttribute("courts", courtRepository.getCourtWithSurface(surface));
+        model.addAttribute("allcourts", courtRepository.findAll());
+        return "court";
+    }
+
+    @GetMapping("/gym")
+    public String getAllGyms(Model model) {
+        model.addAttribute("gyms", gymRepository.findAll());
+        model.addAttribute("allgyms", gymRepository.findAll());
+        return "gym";
+    }
+
+    @GetMapping("/gym/{floorArea}")
+    public String getGymByFloorArea(@PathVariable("floorArea") Double floorArea, Model model) {
+        model.addAttribute("gyms", gymRepository.getGymByFloorArea(floorArea));
+        model.addAttribute("allgyms", gymRepository.findAll());
+        return "gym";
+    }
+
+    @GetMapping("/stadium")
+    public String getAllStadiums(Model model) {
+        model.addAttribute("stadiums", stadiumRepository.findAll());
+        model.addAttribute("allstadiums", stadiumRepository.findAll());
+        return "stadium";
+    }
+
+    @GetMapping("/stadium/{capacity}")
+    public String getStadiumByCapacity(@PathVariable("capacity") Long capacity, Model model) {
+        model.addAttribute("stadiums", stadiumRepository.getStadiumByCapacity(capacity));
+        model.addAttribute("allstadiums", stadiumRepository.findAll());
+        return "stadium";
+    }
+
+    @GetMapping("/arena")
+    public String getAllArenas(Model model) {
+        model.addAttribute("arenas", arenaRepository.findAll());
+        model.addAttribute("allarenas", arenaRepository.findAll());
+        return "arena";
+    }
+
+    @GetMapping("/arena/{trackNumber}")
+    public String getArenaByTrackNumber(@PathVariable("trackNumber") Long trackNumber, Model model) {
+        model.addAttribute("arenas", arenaRepository.getArenaByTrackNumber(trackNumber));
+        model.addAttribute("allarenas", arenaRepository.findAll());
+        return "arena";
+    }
+}

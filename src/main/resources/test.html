@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>add_grades</title>
+  <style>
+    body{background-color:deepskyblue;}
+  </style>
+</head>
+
+<body onload="reqGroupMembers()">
+<main class="main-holder">
+  <h1 class="grades-header" align="center">Add Grades</h1>
+  <h1 th:text="${name}" id="auth-name"></h1>
+
+  <form class="grades-form" align="center">
+    <th>Choose the group: </th>
+    <select class="selgroup" id="group" onclick="reqGroupMembers()">
+      <option th:each="group: ${groups}"
+              th:text="${group.name}"
+      ></option>
+    </select></br><br/>
+
+    <th>Choose student: </th>
+    <select class="selgroup" id="student">
+
+    </select>
+    <br/><br/>
+
+    <th>subject: </th>
+    <select class="selgroup" id="subject">
+      <option th:each="subject: ${subjects}"
+              th:text="${subject.name}">
+      </option>
+    </select>
+    <br/><br/>
+
+    <th>grade: </th>
+    <select class="selgroup" id="grade">
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    <br/><br/>
+
+    <button type="button" onclick="addGrade()">Add</button>
+  </form>
+  <script>
+    function reqGroupMembers() {
+      var req = new XMLHttpRequest();
+
+      var groupName = document.getElementById('group').value;
+
+      req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById('student').innerHTML = '';
+
+          var groupMembers = JSON.parse(req.responseText)
+          for (var i = 0; i < groupMembers.length; i++) {
+            var option = document.createElement("option");
+            option.text = groupMembers[i].name;
+            document.getElementById('student').add(option);
+          }
+        }
+      }
+
+      req.open('GET', 'api/group/' + groupName + '/list');
+      req.send();
+    }
+
+    function addGrade() {
+      var req = new XMLHttpRequest();
+
+      var studentName = document.getElementById('student').value;
+      var teacherName = document.getElementById('auth-name').innerHTML;
+      var subject = document.getElementById('subject').value;
+      var grade = document.getElementById('grade').value;
+
+      const params = new URLSearchParams({
+        student: studentName,
+        teacher: teacherName,
+        subject: subject,
+        grade: grade
+      });
+
+      req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          //some visual changes here
+        }
+      }
+
+      req.open('POST', 'api/grade?' + params.toString());
+      req.setRequestHeader("Content-Type", "application/json");
+      req.send();
+    }
+  </script>
+</main>
+</body>
+</html>

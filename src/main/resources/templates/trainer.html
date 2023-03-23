@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>trainer</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить тренера по номеру атлета: </b></th>
+    <th>Выберите номер атлета: </th>
+    <select class="selathlete" id="id">
+      <option th:each="athlete: ${athletes}"
+              th:text="${athlete.id}">
+      </option>
+    </select>
+    <button type="button" onclick="showById()">Применить</button>
+  </form>
+    <script>
+      function showById() {
+        var id = document.getElementById('id').value;
+
+        location.href='/main/trainer/byathlete/' + id;
+      }
+    </script><br>
+
+    <form class="grades-form">
+      <th><b>Получить тренера по виду спорта: </b></th>
+      <th>Выберите вид спорта: </th>
+      <select class="selathlete" id="sport">
+        <option th:each="sport: ${sports}"
+                th:text="${sport.value}">
+        </option>
+      </select>
+      <button type="button" onclick="showBySport()">Применить</button>
+    </form><br>
+      <script>
+        function showBySport() {
+          var sport = document.getElementById('sport').value;
+
+          location.href='/main/trainer/bysport/' + sport;
+        }
+      </script>
+
+  <button type="button" onclick="location.href='/main/trainer'">Cброс</button><br>
+
+  <table border="0" width="800">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Фамилия</p></th>
+      <th><p style="font-size: 20px;">Имя</p></th>
+      <th><p style="font-size: 20px;">Отчество</p></th>
+    </tr>
+    <tr th:each="trainer, iter : ${trainers}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${trainer.lastName}" style="text-align:center"></td>
+      <td th:text="${trainer.firstName}" style="text-align:center"></td>
+      <td th:text="${trainer.patronymic}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

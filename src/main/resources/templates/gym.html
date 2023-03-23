@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>gym</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить зал по площади: </b></th>
+    <th>Выберите площадь: </th>
+    <label for="floor"></label><select class="selathlete" id="floor">
+    <option th:each="allgym: ${allgyms}"
+            th:text="${allgym.floorArea}">
+    </option>
+  </select>
+    <button type="button" onclick="showByFloor()">Применить</button>
+  </form><br>
+
+  <script>
+    function showByFloor() {
+      const floor = document.getElementById('floor').value;
+      location.href='/main/sportsfacility/gym/' + floor;
+    }
+  </script>
+
+  <button type="button" onclick="location.href='/main/sportsfacility/gym'">Cброс</button><br>
+
+  <table border="0" width="600">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Общая площадь</p></th>
+      <th><p style="font-size: 20px;">Адрес</p></th>
+      <th><p style="font-size: 20px;">Тип покрытия</p></th>
+    </tr>
+    <tr th:each="gym, iter : ${gyms}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${gym.floorArea}" style="text-align:center"></td>
+      <td th:text="${gym.sportsFacility.address}" style="text-align:center"></td>
+      <td th:text="${gym.sportsFacility.type.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

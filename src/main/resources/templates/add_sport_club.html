@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>add_sport_club</title>
+  <style>
+    body{background-color:aqua;}
+  </style>
+</head>
+
+<body>
+<main class="main-holder">
+  <h1 class="grades-header" align="center">Добавить спорт клуб</h1>
+  <h1 th:text="${name}" id="auth-name"></h1>
+
+  <form class="grades-form" align="center">
+
+    <th>Название клуба: </th>
+    <label for="sport"></label>
+    <input type="text"
+           name="homework"
+           id="sport"
+           size="40"
+           class="login-form-field"
+           placeholder="спортклуб">
+    <br/><br/>
+
+    <button type="button" onclick="addSportClub()">Добавить</button>
+  </form>
+  <script>
+    function addSportClub() {
+      const req = new XMLHttpRequest();
+      const sport = document.getElementById('sport').value;
+
+      const params = new URLSearchParams({
+        sport: sport,
+      });
+
+      req.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          //some visual changes here
+        }
+      }
+
+      req.open('POST', '/addsportclub?' + params.toString());
+      req.setRequestHeader("Content-Type", "application/json");
+      req.send(params.toString());
+    }
+  </script>
+</main>
+</body>
+</html>

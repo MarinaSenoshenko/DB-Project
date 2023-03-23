@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>stadium</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить стадион по вместимости: </b></th>
+    <th>Выберите вместимость: </th>
+    <label for="capacity"></label><select class="selathlete" id="capacity">
+    <option th:each="allstadium: ${allstadiums}"
+            th:text="${allstadium.capacity}">
+    </option>
+  </select>
+    <button type="button" onclick="showByCapacity()">Применить</button>
+  </form><br>
+
+  <script>
+    function showByCapacity() {
+      const capacity = document.getElementById('capacity').value;
+      location.href='/main/sportsfacility/stadium/' + capacity;
+    }
+  </script>
+
+  <button type="button" onclick="location.href='/main/sportsfacility/stadium'">Cброс</button><br>
+
+  <table border="0" width="600">
+    <colgroup>
+      <col span="15" style="background:blue">
+      <col style="background-color:blue">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Вместимость</p></th>
+      <th><p style="font-size: 20px;">Адрес</p></th>
+      <th><p style="font-size: 20px;">Тип покрытия</p></th>
+    </tr>
+    <tr th:each="stadium, iter : ${stadiums}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${stadium.capacity}" style="text-align:center"></td>
+      <td th:text="${stadium.sportsFacility.address}" style="text-align:center"></td>
+      <td th:text="${stadium.sportsFacility.type.value}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>
+

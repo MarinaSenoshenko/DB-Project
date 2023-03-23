@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>athlete</title>
+</head>
+
+<body>
+<main id="main-holder">
+  <form class="grades-form">
+    <th><b>Получить список атлетов, которые занимаются не 1 видом спорта: </b></th>
+    <button type="button" onclick="showById()">Применить</button>
+  </form><br>
+
+  <form class="grades-form">
+    <th><b>Получить список атлетов, выигравших соревнования: </b></th>
+    <th>Выберите номер соревнований: </th>
+    <label for="id"></label><select class="selathlete" id="id">
+      <option th:each="competition: ${competitions}"
+              th:text="${competition.id}">
+      </option>
+    </select>
+    <button type="button" onclick="showById()">Применить</button>
+  </form><br>
+
+  <form class="grades-form">
+    <th><b>Получить список атлетов определенного разряда и вида спорта: </b></th>
+  <th>Выберите разряд: </th>
+    <label for="rank1"></label><select class="selathlete" id="rank1">
+    <option th:each="athleterank: ${athleteranks}"
+            th:text="${athleterank.value}">
+    </option>
+  </select>
+
+  <th>Выберите вид спорта: </th>
+    <label for="sport"></label><select class="selathlete" id="sport">
+    <option th:each="sport: ${sports}"
+            th:text="${sport.value}">
+    </option>
+  </select>
+  <button type="button" onclick="showByRankAndSport()">Применить</button>
+  </form><br>
+
+  <form class="grades-form">
+    <th><b>Получить список атлетов определенного разряда и лицензии тренера: </b></th>
+    <th>Выберите разряд: </th>
+    <label for="rank2"></label><select class="selathlete" id="rank2">
+      <option th:each="athleterank: ${athleteranks}"
+              th:text="${athleterank.value}">
+      </option>
+    </select>
+
+    <th>Выберите лицензию тренера: </th>
+    <label for="trainerlicenseid"></label><select class="selathlete" id="trainerlicenseid">
+      <option th:each="trainerlicense: ${trainerlicenses}"
+              th:text="${trainerlicense.id}">
+      </option>
+    </select>
+    <button type="button" onclick="showByTrainerLicenseAndRank()">Применить</button>
+  </form><br>
+  <form class="grades-form">
+    <th><b>Получить список атлетов, которые не участвовали в соревнованиях в определенный период: </b></th>
+    <th>Введите дату начала: </th>
+    <label for="start_date"></label><input type="date" name="day"
+                                          id="start_date" size="60"
+                                          class="login-form-field"
+                                          placeholder="day of week">
+
+    <th>Введите дату конца: </th>
+    <label for="end_date"></label><input type="date" name="day"
+                                          id="end_date" size="60"
+                                          class="login-form-field"
+                                          placeholder="day of week">
+    <button type="button" onclick="showNotInCompetition()">Применить</button>
+  </form><br>
+
+  <script>
+    function showNotInCompetition() {
+      const start_date = document.getElementById('start_date').value;
+      const end_date = document.getElementById('end_date').value;
+
+      location.href='/main/athlete/notincompetitionbyperiod/' + start_date + '/' + end_date;
+    }
+
+    function showById() {
+      const id = document.getElementById('id').value;
+
+      location.href='/main/athlete/bycompetition/' + id;
+    }
+
+    function showByRankAndSport() {
+      const sport = document.getElementById('sport').value;
+      const rank = document.getElementById('rank1').value;
+
+      location.href='/main/athlete/bysport/' + sport + '/' + rank;
+    }
+
+    function showByTrainerLicenseAndRank() {
+      const trainerlicenseid = document.getElementById('trainerlicenseid').value;
+      const athleterank = document.getElementById('rank2').value;
+
+      location.href='/main/athlete/bytrainerlicense/' + trainerlicenseid + '/' + athleterank;
+    }
+  </script>
+
+  <button type="button" onclick="location.href='/main/athlete'">Cброс</button><br>
+
+  <table border="0" width="600">
+    <colgroup>
+      <col span="5" style="background:blue">
+      <col style="background-color:darkcyan">
+      <style>
+        table { margin:0 auto; }
+        body{background-color:aqua;}
+      </style>
+    </colgroup>
+    <tr>
+      <th><p style="font-size: 20px;">№</p></th>
+      <th><p style="font-size: 20px;">Фамилия</p></th>
+      <th><p style="font-size: 20px;">Имя</p></th>
+      <th><p style="font-size: 20px;">Отчество</p></th>
+      <th><p style="font-size: 20px;">Hазвание клуба</p></th>
+    </tr>
+    <tr th:each="athlete, iter : ${athletes}">
+      <td th:text="${iter.index} + 1" style="text-align:center"></td>
+      <td th:text="${athlete.lastName}" style="text-align:center"></td>
+      <td th:text="${athlete.firstName}" style="text-align:center"></td>
+      <td th:text="${athlete.patronymic}" style="text-align:center"></td>
+      <td th:text="${athlete.club.title}" style="text-align:center"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>
