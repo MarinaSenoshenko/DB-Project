@@ -19,8 +19,8 @@
 
     <th>Клуб: </th>
     <label for="club"></label><select class="selathlete" id="club">
-    <option th:each="athlete: ${athletes}"
-            th:text="${athlete.club.title}">
+    <option th:each="sportclub: ${sportclubs}"
+            th:text="${sportclub.title}">
     </option>
   </select><br/><br/>
 

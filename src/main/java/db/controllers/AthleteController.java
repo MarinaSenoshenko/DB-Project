@@ -16,18 +16,17 @@ public class AthleteController {
     private final TrainerLicenseRepository trainerLicenseRepository;
     private final CompetitionRepository competitionRepository;
     private final SportRepository sportRepository;
+    private final SportClubRepository sportClubRepository;
 
     @GetMapping("")
     public String getAll(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
         addAttributesToModel(model);
         return "athlete";
     }
 
     @GetMapping("/add")
     public String addAthlete(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
-        addAttributesToModel(model);
+        model.addAttribute("sportclubs", sportClubRepository.findAll());
         return "add_athlete";
     }
 

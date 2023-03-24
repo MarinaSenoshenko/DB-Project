@@ -20,11 +20,11 @@ public class AddSportsFacilityController {
         this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
     }
 
+    //TODO inset new facility to both tables (post to sports_facility and to arena/stadium/court/gym)
     @PostMapping("")
     public SportsFacility addSportsFacility(@RequestParam("address") String address,
                                             @RequestParam("type") String value) {
         SportsFacilityType type = sportsFacilityTypeRepository.getSportsFacilityByValue(value);
-        System.out.println(type);
         return sportsFacilityService.addSportsFacility(address, type);
     }
 }
