@@ -31,6 +31,26 @@ public class SportsFacilityController {
         return "add_sports_facility";
     }
 
+    @GetMapping("/add/add_arena")
+    public String addArenaParam() {
+        return "add_arena";
+    }
+
+    @GetMapping("/add/add_court")
+    public String addCourtParam() {
+        return "add_court";
+    }
+
+    @GetMapping("/add/add_gym")
+    public String addGymParam() {
+        return "add_gym";
+    }
+
+    @GetMapping("/add/add_stadium")
+    public String addStadiumParam() {
+        return "add_stadium";
+    }
+
 
     @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")
     public String getSportsFacilityByCompetitionPeriod(@PathVariable("startdate") String startDate,

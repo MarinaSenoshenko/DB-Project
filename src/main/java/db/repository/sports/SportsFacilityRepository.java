@@ -9,4 +9,10 @@ import java.util.Date;
 public interface SportsFacilityRepository extends CrudRepository<SportsFacility, Long> {
     @Query(name = "getSportsFacilityByCompetitionPeriod", nativeQuery = true)
     Iterable<SportsFacility> getSportsFacilityByCompetitionPeriod(Date startDate, Date endDate);
+
+    @Query(name = "getMaxFacilityId", nativeQuery = true)
+    Long getMaxFacilityId(String value);
+
+    @Query(name = "getSportsFacilityById", nativeQuery = true)
+    SportsFacility getSportsFacilityById(Long id);
 }
