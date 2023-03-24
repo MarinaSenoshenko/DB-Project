@@ -17,7 +17,6 @@ public class AthleteController {
     private final CompetitionRepository competitionRepository;
     private final SportRepository sportRepository;
 
-
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());

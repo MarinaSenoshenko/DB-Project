@@ -1,4 +1,5 @@
 package db.controllers;
+import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import java.text.*;
 @AllArgsConstructor
 public class SportsFacilityController {
     private SportsFacilityRepository sportsFacilityRepository;
+    private SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private CourtRepository courtRepository;
     private GymRepository gymRepository;
     private StadiumRepository stadiumRepository;
@@ -22,6 +24,13 @@ public class SportsFacilityController {
         model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
         return "sportsfacility";
     }
+
+    @GetMapping("/add")
+    public String addAthlete(Model model) {
+        model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
+        return "add_sports_facility";
+    }
+
 
     @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")
     public String getSportsFacilityByCompetitionPeriod(@PathVariable("startdate") String startDate,

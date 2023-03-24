@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class AthleteRankController {
     private AthleteRankRepository athleteRankRepository;
-
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         return "athleterank";
     }
-
-
     @GetMapping("/add")
     public String addRank(Model model) {
         model.addAttribute("athleteranks", athleteRankRepository.findAll());

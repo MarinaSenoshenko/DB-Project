@@ -16,7 +16,7 @@ public class AddSportsFacilityTypeController {
     }
 
     @PostMapping("")
-    public SportsFacilityType addRank(@RequestParam("sport_facility_type") String value) {
+    public SportsFacilityType addSportsFacilityType(@RequestParam("sport_facility_type") String value) {
         return sportsFacilityTypeService.addSportsFacilityType(value);
     }
 }
