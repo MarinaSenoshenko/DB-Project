@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_athlete</title>
+    <style>
+        body{background-color:aqua;}
+    </style>
+</head>
+
+<body>
+<main class="main-holder">
+    <h1 class="grades-header" align="center">Добавить информацию об атлете</h1>
+    <h1 th:text="${name}" id="auth-name"></h1>
+
+    <form class="grades-form" align="center">
+
+        <th>Разряд: </th>
+        <label for="rank"></label><select class="selathlete" id="rank">
+        <option th:each="athleterank: ${athleteranks}"
+                th:text="${athleterank.value}">
+        </option>
+    </select><br/><br/>
+
+        <th>Вид спорта: </th>
+        <label for="sport"></label><select class="selathlete" id="sport">
+        <option th:each="sport: ${sports}"
+                th:text="${sport.value}">
+        </option>
+    </select><br/><br/>
+
+        <button type="button" onclick="add()">Добавить</button>
+    </form>
+    <script>
+        function add() {
+            const req = new XMLHttpRequest();
+            const sport = document.getElementById('sport').value;
+            const rank = document.getElementById('rank').value;
+
+            const params = new URLSearchParams({
+                sport: sport,
+                rank: rank,
+            });
+
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //some visual changes here
+                }
+            }
+
+            req.open('POST', '/addathlete/addinfo?' + params.toString());
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send(params.toString());
+        }
+    </script>
+</main>
+</body>
+</html>

@@ -20,14 +20,22 @@ public class AthleteController {
 
     @GetMapping("")
     public String getAll(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll());
         addAttributesToModel(model);
         return "athlete";
     }
 
     @GetMapping("/add")
     public String addAthlete(Model model) {
+        addAttributesToModel(model);
         model.addAttribute("sportclubs", sportClubRepository.findAll());
         return "add_athlete";
+    }
+
+    @GetMapping("/add/addranking")
+    public String addAthleteRanking(Model model) {
+        addAttributesToModel(model);
+        return "add_ranking";
     }
 
     @GetMapping("/bysport/{sport}/{athleterank}")

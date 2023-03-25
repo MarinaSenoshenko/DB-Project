@@ -1,12 +1,14 @@
 package db.entities;
 
 import db.entities.models.keys.AthleteKey;
-import lombok.Data;
-
+import lombok.*;
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @IdClass(AthleteKey.class)
 public class AthleteRanking {
     @Id

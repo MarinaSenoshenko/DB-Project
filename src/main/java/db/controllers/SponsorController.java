@@ -22,7 +22,7 @@ public class SponsorController {
 
     @GetMapping("/add")
     public String addSponsor() {
-        return "add_sponsor";
+        return "/resources/templates/add_sponsor.html";
     }
 
     //TODO вернуть count sponsor, придумать как это нормально показывать
