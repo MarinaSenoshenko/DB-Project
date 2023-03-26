@@ -17,4 +17,6 @@ function addRanking() {
     req.open('POST', '/addathlete/addinfo?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
+
+    location.href='/main/athlete';
 }

@@ -10,6 +10,7 @@
 <body>
 <main id="main-holder">
   <link rel="stylesheet" href=/css/menu_buttons.css>
+  <link rel="stylesheet" href=/css/table.css>
   <script type="text/javascript" src="/js/src/athlete.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/athlete'">Cброс</a>
@@ -82,28 +83,24 @@
     <button type="button" onclick="showNotInCompetition()">Применить</button>
   </form><br>
 
-  <table border="0" width="600">
+  <table border="1" width="800">
     <colgroup>
       <col span="5" style="background:blue">
       <col style="background-color:darkcyan">
-      <style>
-        table { margin:0 auto; }
-        body{background-color:aqua;}
-      </style>
     </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
-      <th><p style="font-size: 20px;">Hазвание клуба</p></th>
+      <th><p>№</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>Hазвание клуба</p></th>
     </tr>
     <tr th:each="athlete, iter : ${athletes}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${athlete.lastName}" style="text-align:center"></td>
-      <td th:text="${athlete.firstName}" style="text-align:center"></td>
-      <td th:text="${athlete.patronymic}" style="text-align:center"></td>
-      <td th:text="${athlete.club.title}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${athlete.lastName}"></td>
+      <td th:text="${athlete.firstName}"></td>
+      <td th:text="${athlete.patronymic}"></td>
+      <td th:text="${athlete.club.title}"></td>
     </tr>
   </table> <br/>
 </main>

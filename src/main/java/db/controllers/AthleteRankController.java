@@ -16,10 +16,4 @@ public class AthleteRankController {
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         return "athleterank";
     }
-
-    @GetMapping("/add")
-    public String addRank(Model model) {
-        model.addAttribute("athleteranks", athleteRankRepository.findAll());
-        return "add_rank";
-    }
 }

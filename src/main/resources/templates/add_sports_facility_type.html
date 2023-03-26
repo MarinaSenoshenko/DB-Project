@@ -5,30 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>add_sports_facility_type</title>
-  <style>
-    body{background-color:aqua;}
-  </style>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-  <h1 class="grades-header" align="center">Добавить площадку</h1>
+  <h1 class="grades-header" align="center">Добавить тип покрытия</h1>
   <h1 th:text="${name}" id="auth-name"></h1>
 
   <form class="grades-form" align="center">
 
-    <th>Название площадки: </th>
-    <label for="sport_facility_type"></label>
+    <th>Название типа покрытия: </th>
+    <label for="surface"></label>
     <input type="text"
            name="homework"
-           id="sport_facility_type"
+           id="surface"
            size="40"
            class="login-form-field"
            placeholder="площадка">
     <br/><br/>
 
-    <button type="button" onclick="addFacilityType()">Добавить</button>
+    <button type="button" onclick="addCourtSurface()">Добавить</button>
   </form>
 </main>
 </body>

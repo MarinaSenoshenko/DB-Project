@@ -22,4 +22,6 @@ function addSportClub() {
     req.open('POST', '/addsportclub?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
+
+    location.href='/main/sportclub';
 }

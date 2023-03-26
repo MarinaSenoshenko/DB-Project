@@ -23,4 +23,6 @@ function addCompany() {
     req.open('POST', '/addsponsor?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
+
+    location.href='/main/sponsor';
 }

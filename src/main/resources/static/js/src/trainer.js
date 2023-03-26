@@ -27,4 +27,6 @@ function addTrainer() {
     req.open('POST', '/addtrainer?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
+
+    location.href='/main/trainer';
 }
