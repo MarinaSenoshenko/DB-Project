@@ -1,4 +1,6 @@
 package db.controllers;
+import db.entities.CourtSurface;
+import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ public class SportsFacilityController {
     private GymRepository gymRepository;
     private StadiumRepository stadiumRepository;
     private ArenaRepository arenaRepository;
+    private CourtSurfaceRepository courtSurfaceRepository;
 
     @GetMapping("")
     public String getAll(Model model) {
@@ -37,7 +40,8 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/add/add_court")
-    public String addCourtParam() {
+    public String addCourtParam(Model model) {
+        model.addAttribute("surfaces", courtSurfaceRepository.findAll());
         return "add_court";
     }
 

@@ -1,5 +1,6 @@
 package db.api.service;
 
+import db.entities.CourtSurface;
 import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.entities.models.surface.SportsFacility;
@@ -41,8 +42,8 @@ public class SportsFacilityService {
         return arena;
     }
 
-    public Court addCourtParam(String param, SportsFacility sportsFacility) {
-        Court court = new Court(param, sportsFacility);
+    public Court addCourtParam(CourtSurface surface, SportsFacility sportsFacility) {
+        Court court = new Court(surface, sportsFacility);
         courtRepository.save(court);
         return court;
     }

@@ -27,8 +27,8 @@ public class Court {
     @JoinColumn(name = "sports_facility_id", referencedColumnName = "id")
     private SportsFacility sportsFacility;
 
-    public Court(String param, SportsFacility sportsFacility) {
+    public Court(CourtSurface surface, SportsFacility sportsFacility) {
         this.sportsFacility = sportsFacility;
-//        this.surface = Long.valueOf(param);
+        this.surface = surface;
     }
 }

@@ -1,8 +1,10 @@
 package db.api.rest_controllers;
 
 import db.api.service.SportsFacilityService;
+import db.entities.CourtSurface;
 import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
+import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.SportsFacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,17 @@ public class AddSportsFacilityController {
     private final SportsFacilityService sportsFacilityService;
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
+    private final CourtSurfaceRepository courtSurfaceRepository;
 
     @Autowired
     public AddSportsFacilityController(SportsFacilityService sportsFacilityService,
                                        SportsFacilityTypeRepository sportsFacilityTypeRepository,
-                                       SportsFacilityRepository sportsFacilityRepository) {
+                                       SportsFacilityRepository sportsFacilityRepository,
+                                       CourtSurfaceRepository courtSurfaceRepository) {
         this.sportsFacilityService = sportsFacilityService;
         this.sportsFacilityRepository = sportsFacilityRepository;
         this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
+        this.courtSurfaceRepository = courtSurfaceRepository;
     }
 
     @PostMapping("")
@@ -38,12 +43,12 @@ public class AddSportsFacilityController {
         return sportsFacilityService.addArenaParam(param, sportsFacility);
     }
 
-    //TODO fix inner entity
     @PostMapping("/addcourt")
     public Court addCourt(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
-        return sportsFacilityService.addCourtParam(param, sportsFacility);
+        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
+        return sportsFacilityService.addCourtParam(surface, sportsFacility);
     }
 
     @PostMapping("/addgym")

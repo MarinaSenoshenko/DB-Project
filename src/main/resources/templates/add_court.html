@@ -18,14 +18,11 @@
     <form class="grades-form" align="center">
 
         <th>Поверхность: </th>
-        <label for="param"></label>
-        <input type="text"
-               name="homework"
-               id="param"
-               size="40"
-               class="login-form-field"
-               placeholder="поверхность">
-        <br/><br/>
+        <label for="param"></label><select class="selathlete" id="param">
+        <option th:each="surface: ${surfaces}"
+                th:text="${surface.value}">
+        </option>
+    </select><br/><br/>
 
         <button type="button" onclick="add()">Добавить</button>
     </form>
