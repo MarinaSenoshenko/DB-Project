@@ -12,6 +12,7 @@
 
 <body>
 <main class="main-holder">
+    <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
     <h1 class="grades-header" align="center">Добавить количество дорожек</h1>
     <h1 th:text="${name}" id="auth-name"></h1>
 
@@ -27,28 +28,8 @@
                placeholder="количество">
         <br/><br/>
 
-        <button type="button" onclick="add()">Добавить</button>
+        <button type="button" onclick="addArena()">Добавить</button>
     </form>
-    <script>
-        function add() {
-            const req = new XMLHttpRequest();
-            const param = document.getElementById('param').value;
-
-            const params = new URLSearchParams({
-                param: param,
-            });
-
-            req.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    //some visual changes here
-                }
-            }
-
-            req.open('POST', '/addsportsfacility/addarena?' + params.toString());
-            req.setRequestHeader("Content-Type", "application/json");
-            req.send(params.toString());
-        }
-    </script>
 </main>
 </body>
 </html>

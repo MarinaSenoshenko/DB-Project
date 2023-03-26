@@ -9,6 +9,12 @@
 
 <body>
 <main id="main-holder">
+  <link rel="stylesheet" href=/css/menu_buttons.css>
+  <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
+  <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/sportsfacility'">Cброс</a>
+  <a class="buttons" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
+
   <form class="grades-form">
     <th><b>Выберите любую спортивную площадку: </b></th>
     <button type="button" onclick="location.href='/main/sportsfacility/court';">Корд</button>
@@ -31,15 +37,6 @@
                                          placeholder="day of week">
     <button type="button" onclick="showByPeriod()">Применить</button>
   </form><br>
-
-  <script>
-    function showByPeriod() {
-      const start_date = document.getElementById('start_date').value;
-      const end_date = document.getElementById('end_date').value;
-
-      location.href='/main/sportsfacility/bycompetitionperiod/' + start_date + '/' + end_date;
-    }
-  </script>
 
   <table border="0" width="600">
     <colgroup>

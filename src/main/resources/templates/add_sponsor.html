@@ -12,6 +12,7 @@
 
 <body>
 <main class="main-holder">
+  <script type="text/javascript" src="/js/src/sponsor.js"></script>
   <h1 class="grades-header" align="center">Добавить спонсора</h1>
   <h1 th:text="${name}" id="auth-name"></h1>
 
@@ -39,27 +40,6 @@
 
     <button type="button" onclick="addCompany()">Добавить</button>
   </form>
-  <script>
-    function addCompany() {
-      const req = new XMLHttpRequest();
-      const name = document.getElementById('name').value;
-      const company = document.getElementById('company').value;
-
-      const params = new URLSearchParams({
-        name: name, company: company,
-      });
-
-      req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          //some visual changes here
-        }
-      }
-
-      req.open('POST', '/addsponsor?' + params.toString());
-      req.setRequestHeader("Content-Type", "application/json");
-      req.send(params.toString());
-    }
-  </script>
 </main>
 </body>
 </html>

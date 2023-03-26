@@ -9,6 +9,11 @@
 
 <body>
 <main id="main-holder">
+  <link rel="stylesheet" href=/css/menu_buttons.css>
+  <script type="text/javascript" src="/js/src/trainer.js"></script>
+  <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/trainer'">Cброс</a>
+  <a class="buttons" onclick="location.href='/main/trainer/add'">Добавить</a>
   <form class="grades-form">
     <th><b>Получить тренера по номеру атлета: </b></th>
     <th>Выберите номер атлета: </th>
@@ -37,16 +42,6 @@
       </select>
       <button type="button" onclick="showBySport()">Применить</button>
     </form><br>
-      <script>
-        function showBySport() {
-          var sport = document.getElementById('sport').value;
-
-          location.href='/main/trainer/bysport/' + sport;
-        }
-      </script>
-
-  <button type="button" onclick="location.href='/main/trainer'">Cброс</button><br>
-
   <table border="0" width="800">
     <colgroup>
       <col span="15" style="background:blue">

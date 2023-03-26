@@ -12,6 +12,7 @@
 
 <body>
 <main class="main-holder">
+  <script type="text/javascript" src="/js/src/athlete.js"></script>
   <h1 class="grades-header" align="center">Добавить атлета</h1>
   <h1 th:text="${name}" id="auth-name"></h1>
 
@@ -56,36 +57,6 @@
 
     <button type="button" onclick="addAthlete()">Добавить</button>
   </form>
-  <script>
-    function addAthlete() {
-      const req = new XMLHttpRequest();
-
-      const club = document.getElementById('club').value;
-      const fistName = document.getElementById('first_name').value;
-      const lastName = document.getElementById('last_name').value;
-      const patronymic = document.getElementById('patronymic').value;
-
-
-      const params = new URLSearchParams({
-        firstName: fistName,
-        patronymic: patronymic,
-        lastName: lastName,
-        club: club
-      });
-
-      req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          //some visual changes here
-        }
-      }
-
-      req.open('POST', '/addathlete?' + params.toString());
-      req.setRequestHeader("Content-Type", "application/json");
-      req.send(params.toString());
-
-      location.href='/main/athlete/add/addranking';
-    }
-  </script>
 </main>
 </body>
 </html>

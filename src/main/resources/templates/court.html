@@ -9,6 +9,10 @@
 
 <body>
 <main id="main-holder">
+    <link rel="stylesheet" href=/css/menu_buttons.css>
+    <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
+    <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+    <a class="buttons" onclick="location.href='/main/sportsfacility/court'">Cброс</a>
     <form class="grades-form">
         <th><b>Получить корд по покрытию: </b></th>
         <th>Выберите покрытие: </th>
@@ -19,15 +23,6 @@
     </select>
         <button type="button" onclick="showBySurface()">Применить</button>
     </form><br>
-
-    <script>
-        function showBySurface() {
-            const surface = document.getElementById('surface').value;
-            location.href='/main/sportsfacility/court/' + surface;
-        }
-    </script>
-
-    <button type="button" onclick="location.href='/main/sportsfacility/court'">Cброс</button><br>
 
     <table border="0" width="600">
         <colgroup>

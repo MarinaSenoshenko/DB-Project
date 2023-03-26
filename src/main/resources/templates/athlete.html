@@ -9,6 +9,12 @@
 
 <body>
 <main id="main-holder">
+  <link rel="stylesheet" href=/css/menu_buttons.css>
+  <script type="text/javascript" src="/js/src/athlete.js"></script>
+  <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/athlete'">Cброс</a>
+  <a class="buttons" onclick="location.href='/main/athlete/add'">Добавить</a>
+
   <form class="grades-form">
     <th><b>Получить список атлетов, которые занимаются не 1 видом спорта: </b></th>
     <button type="button" onclick="showById()">Применить</button>
@@ -75,37 +81,6 @@
                                           placeholder="day of week">
     <button type="button" onclick="showNotInCompetition()">Применить</button>
   </form><br>
-
-  <script>
-    function showNotInCompetition() {
-      const start_date = document.getElementById('start_date').value;
-      const end_date = document.getElementById('end_date').value;
-
-      location.href='/main/athlete/notincompetitionbyperiod/' + start_date + '/' + end_date;
-    }
-
-    function showById() {
-      const id = document.getElementById('id').value;
-
-      location.href='/main/athlete/bycompetition/' + id;
-    }
-
-    function showByRankAndSport() {
-      const sport = document.getElementById('sport').value;
-      const rank = document.getElementById('rank1').value;
-
-      location.href='/main/athlete/bysport/' + sport + '/' + rank;
-    }
-
-    function showByTrainerLicenseAndRank() {
-      const trainerlicenseid = document.getElementById('trainerlicenseid').value;
-      const athleterank = document.getElementById('rank2').value;
-
-      location.href='/main/athlete/bytrainerlicense/' + trainerlicenseid + '/' + athleterank;
-    }
-  </script>
-
-  <button type="button" onclick="location.href='/main/athlete'">Cброс</button><br>
 
   <table border="0" width="600">
     <colgroup>
