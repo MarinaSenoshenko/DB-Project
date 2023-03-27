@@ -16,7 +16,6 @@ public class AthleteRankingService {
 
     public AthleteRanking addAthleteRanking(Athlete athlete, Sport sport, AthleteRank athleteRank) {
         AthleteRanking athleteRanking = new AthleteRanking(athlete, sport, athleteRank);
-        System.out.println(athleteRanking);
         athleteRankingRepository.save(athleteRanking);
         return athleteRanking;
     }

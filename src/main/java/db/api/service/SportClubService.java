@@ -19,4 +19,10 @@ public class SportClubService {
         sportClubRepository.save(sportClub);
         return sportClub;
     }
+
+    public SportClub deleteSportClub(String value) {
+        SportClub sportClub = sportClubRepository.getSportClubByTitle(value);
+        sportClubRepository.delete(sportClub);
+        return sportClub;
+    }
 }

@@ -32,6 +32,12 @@ public class AthleteController {
         return "add_athlete";
     }
 
+    @GetMapping("/delete")
+    public String deleteAthlete(Model model) {
+        model.addAttribute("athletes", athleteRepository.getNotUsedInOtherTablesAthletes());
+        return "delete_athlete";
+    }
+
     @GetMapping("/add/addranking")
     public String addAthleteRanking(Model model) {
         addAttributesToModel(model);

@@ -25,7 +25,7 @@ public class CourtSurfaceController {
 
     @GetMapping("/delete")
     public String deleteCourtSurface(Model model) {
-        model.addAttribute("surfaces", courtSurfaceRepository.findAll());
+        model.addAttribute("surfaces", courtSurfaceRepository.getNotUsedInOtherTablesSurfaces());
         return "delete_court_surface";
     }
 }

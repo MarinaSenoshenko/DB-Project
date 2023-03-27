@@ -7,16 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addsponsor")
-public class AddSponsorController {
+public class EditSponsorController {
     private final SponsorService sponsorService;
 
     @Autowired
-    public AddSponsorController(SponsorService sponsorService) {
+    public EditSponsorController(SponsorService sponsorService) {
         this.sponsorService = sponsorService;
     }
 
     @PostMapping("")
-    public Sponsor addRank(@RequestParam("name") String name, @RequestParam("company") String company) {
+    public Sponsor addSponsor(@RequestParam("name") String name, @RequestParam("company") String company) {
         return sponsorService.addSponsor(name, company);
+    }
+
+    @DeleteMapping("")
+    public Sponsor deleteSponsor(@RequestParam("sponsor") Long sponsorId) {
+        return sponsorService.deleteSponsor(sponsorId);
     }
 }

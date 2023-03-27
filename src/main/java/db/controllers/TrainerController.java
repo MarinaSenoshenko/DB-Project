@@ -23,11 +23,17 @@ public class TrainerController {
     }
 
     @GetMapping("/add")
-    public String getAddGrades(Model model) {
+    public String addTrainer(Model model) {
         model.addAttribute("trainers", athleteRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
         return "add_trainer";
+    }
+
+    @GetMapping("/delete")
+    public String deleteTrainer(Model model) {
+        model.addAttribute("trainers", trainerRepository.findAll());
+        return "delete_trainer";
     }
 
     @GetMapping("/byathlete/{athleteid}")

@@ -13,9 +13,16 @@ public class AthleteService {
     public AthleteService(AthleteRepository athleteRepository) {
         this.athleteRepository = athleteRepository;
     }
+
     public Athlete addAthlete(String firstName, String patronymic, String lastName, SportClub club) {
         Athlete athlete = new Athlete(firstName, patronymic, lastName, club);
         athleteRepository.save(athlete);
+        return athlete;
+    }
+
+    public Athlete deleteAthlete(Long athleteId) {
+        Athlete athlete = athleteRepository.getAthleteById(athleteId);
+        athleteRepository.delete(athlete);
         return athlete;
     }
 }

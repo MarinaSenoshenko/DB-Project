@@ -23,3 +23,18 @@ function addTrainer() {
 
     location.href='/main/trainer';
 }
+
+function deleteTrainer() {
+    const req = new XMLHttpRequest();
+    const trainer = document.getElementById('trainer').value;
+
+    const params = new URLSearchParams({
+        trainer: trainer
+    });
+
+    req.open('DELETE', '/addtrainer?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/trainer';
+}

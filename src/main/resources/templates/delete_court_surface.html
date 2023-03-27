@@ -16,9 +16,9 @@
   <form class="grades-form" align="center">
 
     <th>Название типа покрытия: </th>
-    <label for="param"></label><select class="selathlete" id="param">
+    <label for="surface"></label><select class="selathlete" id="surface">
     <option th:each="surface: ${surfaces}"
-            th:text="${surface.value}">
+            th:text="${surface}">
     </option>
   </select><br/><br/>
     <button type="button" onclick="deleteCourtSurface()">Удалить</button>

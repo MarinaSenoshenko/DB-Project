@@ -33,7 +33,6 @@ function addAthlete() {
     const lastName = document.getElementById('last_name').value;
     const patronymic = document.getElementById('patronymic').value;
 
-
     const params = new URLSearchParams({
         firstName: fistName,
         patronymic: patronymic,
@@ -46,4 +45,19 @@ function addAthlete() {
     req.send(params.toString());
 
     location.href='/main/athlete/add/addranking';
+}
+
+function deleteAthlete() {
+    const req = new XMLHttpRequest();
+    const athlete = document.getElementById('athlete').value;
+
+    const params = new URLSearchParams({
+        athlete: athlete
+    });
+
+    req.open('DELETE', '/addathlete?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/athlete/';
 }

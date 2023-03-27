@@ -19,4 +19,10 @@ public class SportService {
         sportRepository.save(sport);
         return sport;
     }
+
+    public Sport deleteSport(String value) {
+        Sport sport = sportRepository.findByValue(value);
+        sportRepository.delete(sport);
+        return sport;
+    }
 }

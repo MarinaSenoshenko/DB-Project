@@ -36,6 +36,12 @@ public class SportsFacilityService {
         return sportsFacility;
     }
 
+    public SportsFacility deleteSportsFacility(Long facilityId) {
+        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(facilityId);
+        sportsFacilityRepository.delete(sportsFacility);
+        return sportsFacility;
+    }
+
     public Arena addArenaParam(String param, SportsFacility sportsFacility) {
         Arena arena = new Arena(param, sportsFacility);
         arenaRepository.save(arena);

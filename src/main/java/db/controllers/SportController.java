@@ -22,4 +22,10 @@ public class SportController {
     public String addRank() {
         return "add_sport";
     }
+
+    @GetMapping("/delete")
+    public String deleteSportClub(Model model) {
+        model.addAttribute("sports", sportRepository.findAll());
+        return "delete_sport";
+    }
 }

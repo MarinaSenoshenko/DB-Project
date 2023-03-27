@@ -20,8 +20,8 @@ public class CourtSurfaceService {
         return courtSurface;
     }
 
-    public CourtSurface deleteCourtSurface(String value) {
-        CourtSurface courtSurface = courtSurfaceRepository.getCourtSurfaceByValue(value);
+    public CourtSurface deleteCourtSurface(Long surfaceId) {
+        CourtSurface courtSurface = courtSurfaceRepository.getCourtSurfaceById(surfaceId);
         courtSurfaceRepository.delete(courtSurface);
         return courtSurface;
     }

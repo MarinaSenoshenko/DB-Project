@@ -20,3 +20,18 @@ function addCompany() {
 
     location.href='/main/sponsor';
 }
+
+function deleteSponsor() {
+    const req = new XMLHttpRequest();
+    const sponsor = document.getElementById('sponsor').value;
+
+    const params = new URLSearchParams({
+        sponsor: sponsor,
+    });
+
+    req.open('DELETE', '/addsponsor?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sponsor';
+}

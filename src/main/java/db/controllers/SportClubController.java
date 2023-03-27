@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.*;
 
-
 @Controller
 @RequestMapping("/main/sportclub")
 @AllArgsConstructor
@@ -24,6 +23,12 @@ public class SportClubController {
     @GetMapping("/add")
     public String addSportClub() {
         return "add_sport_club";
+    }
+
+    @GetMapping("/delete")
+    public String deleteSportClub(Model model) {
+        model.addAttribute("sportclubs", sportClubRepository.findAll());
+        return "delete_sport_club";
     }
 
     //TODO вернуть count athletes, придумать как это нормально показывать

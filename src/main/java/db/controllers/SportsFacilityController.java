@@ -1,4 +1,5 @@
 package db.controllers;
+
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;
@@ -28,9 +29,15 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/add")
-    public String addAthlete(Model model) {
+    public String addFacility(Model model) {
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
         return "add_sports_facility";
+    }
+
+    @GetMapping("/delete")
+    public String deleteFacility(Model model) {
+        model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
+        return "delete_sports_facility";
     }
 
     @GetMapping("/add/add_arena")

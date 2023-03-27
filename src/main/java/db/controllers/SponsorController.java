@@ -25,6 +25,13 @@ public class SponsorController {
         return "add_sponsor";
     }
 
+    @GetMapping("/delete")
+    public String deleteSponsor(Model model) {
+        Iterable<Long> sponsorsId = sponsorRepository.getNotUsedInOtherTablesSponsorsId();
+        model.addAttribute("sponsors", sponsorsId);
+        return "delete_sponsor";
+    }
+
     //TODO вернуть count sponsor, придумать как это нормально показывать
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getAndCountSponsorByPeriod(@PathVariable("startdate") String startDate,

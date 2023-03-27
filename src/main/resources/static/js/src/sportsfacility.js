@@ -88,6 +88,21 @@ function addFacility() {
     location.href='/main/sportsfacility/add/add_' + type;
 }
 
+function deleteFacility() {
+    const req = new XMLHttpRequest();
+    const sportsfacility = document.getElementById('sportsfacility').value;
+
+    const params = new URLSearchParams({
+        sportsfacility : sportsfacility
+    });
+
+    req.open('DELETE', '/addsportsfacility?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sportsfacility/';
+}
+
 function addStadium() {
     const req = new XMLHttpRequest();
     const param = document.getElementById('param').value;
@@ -126,7 +141,7 @@ function deleteCourtSurface() {
         surface : surface,
     });
 
-    req.open('DELETE', '/addcourtsurface/delete?' + params.toString());
+    req.open('DELETE', '/addcourtsurface?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

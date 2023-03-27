@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addsportsfacility")
-public class AddSportsFacilityController {
+public class EditSportsFacilityController {
     private final SportsFacilityService sportsFacilityService;
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
 
     @Autowired
-    public AddSportsFacilityController(SportsFacilityService sportsFacilityService,
-                                       SportsFacilityTypeRepository sportsFacilityTypeRepository,
-                                       SportsFacilityRepository sportsFacilityRepository,
-                                       CourtSurfaceRepository courtSurfaceRepository) {
+    public EditSportsFacilityController(SportsFacilityService sportsFacilityService,
+                                        SportsFacilityTypeRepository sportsFacilityTypeRepository,
+                                        SportsFacilityRepository sportsFacilityRepository,
+                                        CourtSurfaceRepository courtSurfaceRepository) {
         this.sportsFacilityService = sportsFacilityService;
         this.sportsFacilityRepository = sportsFacilityRepository;
         this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
@@ -34,6 +34,11 @@ public class AddSportsFacilityController {
                                             @RequestParam("type") String value) {
         SportsFacilityType type = sportsFacilityTypeRepository.getSportsFacilityByValue(value);
         return sportsFacilityService.addSportsFacility(address, type);
+    }
+
+    @DeleteMapping("")
+    public SportsFacility addSportsFacility(@RequestParam("sportsfacility") Long facilityId) {
+        return sportsFacilityService.deleteSportsFacility(facilityId);
     }
 
     @PostMapping("/addarena")

@@ -19,4 +19,10 @@ public class SponsorService {
         sponsorRepository.save(sponsor);
         return sponsor;
     }
+
+    public Sponsor deleteSponsor(Long sponsorId) {
+        Sponsor sponsor = sponsorRepository.getSponsorById(sponsorId);
+        sponsorRepository.delete(sponsor);
+        return sponsor;
+    }
 }

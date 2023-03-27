@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addcourtsurface")
-public class AddCourtSurfaceController {
+public class EditCourtSurfaceController {
     private final CourtSurfaceService courtSurfaceService;
 
     @Autowired
-    public AddCourtSurfaceController(CourtSurfaceService courtSurfaceService) {
+    public EditCourtSurfaceController(CourtSurfaceService courtSurfaceService) {
         this.courtSurfaceService = courtSurfaceService;
     }
 
-    @DeleteMapping("/delete")
-    public CourtSurface deleteCourtSurface(@RequestParam("surface") String value) {
-        return courtSurfaceService.deleteCourtSurface(value);
+    @DeleteMapping("")
+    public CourtSurface deleteCourtSurface(@RequestParam("surface") Long surfaceId) {
+        return courtSurfaceService.deleteCourtSurface(surfaceId);
     }
 
     @PostMapping("")

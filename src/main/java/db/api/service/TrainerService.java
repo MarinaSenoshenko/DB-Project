@@ -13,9 +13,16 @@ public class TrainerService {
     public TrainerService(TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
     }
+
     public Trainer addTrainer(String firstName, String patronymic, String lastName) {
         Trainer trainer = new Trainer(firstName, patronymic, lastName);
         trainerRepository.save(trainer);
+        return trainer;
+    }
+
+    public Trainer deleteTrainer(Long trainerId) {
+        Trainer trainer = trainerRepository.getTrainerById(trainerId);
+        trainerRepository.delete(trainer);
         return trainer;
     }
 }

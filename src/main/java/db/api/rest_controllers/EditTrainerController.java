@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addtrainer")
-public class AddTrainerController {
+public class EditTrainerController {
     private final TrainerService trainerService;
 
     @Autowired
-    public AddTrainerController(TrainerService trainerService) {
+    public EditTrainerController(TrainerService trainerService) {
         this.trainerService = trainerService;
     }
 
     @PostMapping("")
-    public Trainer addAthlete(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
+    public Trainer addTrainer(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
                               @RequestParam("lastName") String lastName) {
         return trainerService.addTrainer(firstName, patronymic, lastName);
+    }
+
+    @DeleteMapping("")
+    public Trainer deleteTrainer(@RequestParam("trainer") Long trainerId){
+        return trainerService.deleteTrainer(trainerId);
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addathlete")
-public class AddAthleteController {
+public class EditAthleteController {
     private final AthleteService athleteService;
     private final AthleteRankingService athleteRankingService;
     private final AthleteRepository athleteRepository;
@@ -21,10 +21,10 @@ public class AddAthleteController {
     private final AthleteRankRepository athleteRankRepository;
 
     @Autowired
-    public AddAthleteController(AthleteService athleteService, SportClubRepository sportClubRepository,
-                                AthleteRepository athleteRepository, SportRepository sportRepository,
-                                AthleteRankRepository athleteRankRepository,
-                                AthleteRankingService athleteRankingService) {
+    public EditAthleteController(AthleteService athleteService, SportClubRepository sportClubRepository,
+                                 AthleteRepository athleteRepository, SportRepository sportRepository,
+                                 AthleteRankRepository athleteRankRepository,
+                                 AthleteRankingService athleteRankingService) {
         this.athleteService = athleteService;
         this.athleteRankingService = athleteRankingService;
         this.sportClubRepository = sportClubRepository;
@@ -33,12 +33,16 @@ public class AddAthleteController {
         this.athleteRankRepository = athleteRankRepository;
     }
 
-
     @PostMapping("")
     public Athlete addAthlete(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
                               @RequestParam("lastName") String lastName, @RequestParam("club") String title) {
         SportClub club = sportClubRepository.getSportClubByTitle(title);
         return athleteService.addAthlete(firstName, patronymic, lastName, club);
+    }
+
+    @DeleteMapping("")
+    public Athlete deleteAthlete(@RequestParam("athlete") Long athleteId) {
+        return athleteService.deleteAthlete(athleteId);
     }
 
     @PostMapping("/addinfo")
