@@ -1,9 +1,7 @@
 package db.api.service;
 
 import db.entities.CourtSurface;
-import db.entities.Sponsor;
 import db.repository.CourtSurfaceRepository;
-import db.repository.SponsorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,12 @@ public class CourtSurfaceService {
     public CourtSurface addCourtSurface(String value) {
         CourtSurface courtSurface = new CourtSurface(value);
         courtSurfaceRepository.save(courtSurface);
+        return courtSurface;
+    }
+
+    public CourtSurface deleteCourtSurface(String value) {
+        CourtSurface courtSurface = courtSurfaceRepository.getCourtSurfaceByValue(value);
+        courtSurfaceRepository.delete(courtSurface);
         return courtSurface;
     }
 }

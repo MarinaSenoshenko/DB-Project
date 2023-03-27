@@ -34,12 +34,6 @@ function addArena() {
         param: param,
     });
 
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
-
     req.open('POST', '/addsportsfacility/addarena?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
@@ -55,12 +49,6 @@ function addCourt() {
         param: param,
     });
 
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
-
     req.open('POST', '/addsportsfacility/addcourt?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
@@ -75,12 +63,6 @@ function addGym() {
     const params = new URLSearchParams({
         param: param,
     });
-
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
 
     req.open('POST', '/addsportsfacility/addgym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
@@ -99,12 +81,6 @@ function addFacility() {
         type : type,
     });
 
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
-
     req.open('POST', '/addsportsfacility?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
@@ -119,12 +95,6 @@ function addStadium() {
     const params = new URLSearchParams({
         param: param,
     });
-
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
 
     req.open('POST', '/addsportsfacility/addstadium?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
@@ -141,13 +111,22 @@ function addCourtSurface() {
         surface : surface,
     });
 
-    req.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //some visual changes here
-        }
-    }
-
     req.open('POST', '/addcourtsurface?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/courtsurface';
+}
+
+function deleteCourtSurface() {
+    const req = new XMLHttpRequest();
+    const surface = document.getElementById('surface').value;
+
+    const params = new URLSearchParams({
+        surface : surface,
+    });
+
+    req.open('DELETE', '/addcourtsurface/delete?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

@@ -33,6 +33,7 @@ public class AddAthleteController {
         this.athleteRankRepository = athleteRankRepository;
     }
 
+
     @PostMapping("")
     public Athlete addAthlete(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
                               @RequestParam("lastName") String lastName, @RequestParam("club") String title) {
@@ -45,9 +46,6 @@ public class AddAthleteController {
         Athlete athlete = athleteRepository.getAthleteByMaxId();
         Sport sport = sportRepository.findByValue(sportValue);
         AthleteRank athleteRank = athleteRankRepository.findByValue(rank);
-        System.out.println(athlete);
-        System.out.println(sport);
-        System.out.println(athleteRank);
         return athleteRankingService.addAthleteRanking(athlete, sport, athleteRank);
     }
 }

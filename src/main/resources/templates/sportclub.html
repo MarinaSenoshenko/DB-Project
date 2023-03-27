@@ -29,7 +29,7 @@
                                          placeholder="day of week">
     <button type="button" onclick="showSportClubByPeriod()">Применить</button>
   </form><br>
-  <table border="1" width="400">
+  <table border="1" width="600">
     <colgroup>
       <col span="15" style="background:blue">
       <col style="background-color:blue">
@@ -37,10 +37,12 @@
     <tr>
       <th><p style="font-size: 20px;">№</p></th>
       <th><p style="font-size: 20px;">Название клуба</p></th>
+      <th><p style="font-size: 20px;">Количество спортсменов</p></th>
     </tr>
     <tr th:each="allsportclub, iter : ${allsportclubs}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${allsportclub.title}" style="text-align:center"></td>
+      <td th:text="${counts}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

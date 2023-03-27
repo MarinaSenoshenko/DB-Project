@@ -1,6 +1,5 @@
 package db.controllers;
 
-import db.entities.CourtSurface;
 import db.repository.CourtSurfaceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,5 +16,16 @@ public class CourtSurfaceController {
     public String getAll(Model model) {
         model.addAttribute("courtsurfaces", courtSurfaceRepository.findAll());
         return "courtsurface";
+    }
+
+    @GetMapping("/add")
+    public String addCourtSurface() {
+        return "add_court_surface";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCourtSurface(Model model) {
+        model.addAttribute("surfaces", courtSurfaceRepository.findAll());
+        return "delete_court_surface";
     }
 }

@@ -1,5 +1,4 @@
 package db.controllers;
-import db.entities.CourtSurface;
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;

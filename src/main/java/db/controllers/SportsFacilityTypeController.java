@@ -17,9 +17,4 @@ public class SportsFacilityTypeController {
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
         return "sportsfacilitytype";
     }
-
-    @GetMapping("/add")
-    public String addRank() {
-        return "add_sports_facility_type";
-    }
 }
