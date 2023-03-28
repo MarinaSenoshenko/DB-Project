@@ -26,7 +26,7 @@ public class CompetitionController {
     public String getAll(Model model) {
         model.addAttribute("competitions", competitionRepository.findAll());
         addAttributesToModel(model);
-        return "competition";
+        return "/pages/competition";
     }
 
     @GetMapping(value = {"/byperiod/{startdate}/{enddate}/{sponsorid}", "/byperiod/{startdate}/{enddate}"})
@@ -39,7 +39,7 @@ public class CompetitionController {
                         competition.getSponsor().getId().equals(aLong)).collect(Collectors.toList())).orElse(competitionsRes);
         model.addAttribute("competitions", competitionsList);
         addAttributesToModel(model);
-        return "competition";
+        return "/pages/competition";
     }
 
     @GetMapping(value = {"/byfacility/{facilityid}", "/byfacility/{facilityid}/{sport}"})
@@ -50,7 +50,7 @@ public class CompetitionController {
                         competition.getSport().getValue().equals(s)).collect(Collectors.toList())).orElse(competitionsRes);
         model.addAttribute("competitions", competitionsList);
         addAttributesToModel(model);
-        return "competition";
+        return "/pages/competition";
     }
 
     private void addAttributesToModel(Model model) {

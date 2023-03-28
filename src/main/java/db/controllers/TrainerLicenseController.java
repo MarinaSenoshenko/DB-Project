@@ -15,6 +15,6 @@ public class TrainerLicenseController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("trainerlicenses", trainerLicenseRepository.findAll());
-        return "trainerlicense";
+        return "/pages/trainerlicense";
     }
 }

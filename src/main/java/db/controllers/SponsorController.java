@@ -17,19 +17,18 @@ public class SponsorController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("allsponsors", sponsorRepository.findAll());
-        return "sponsor";
+        return "/pages/sponsor";
     }
 
     @GetMapping("/add")
     public String addSponsor() {
-        return "add_sponsor";
+        return "/post/add_sponsor";
     }
 
     @GetMapping("/delete")
     public String deleteSponsor(Model model) {
-        Iterable<Long> sponsorsId = sponsorRepository.getNotUsedInOtherTablesSponsorsId();
-        model.addAttribute("sponsors", sponsorsId);
-        return "delete_sponsor";
+        model.addAttribute("sponsors", sponsorRepository.getNotUsedInOtherTablesSponsorsId());
+        return "/delete/delete_sponsor";
     }
 
     //TODO вернуть count sponsor, придумать как это нормально показывать
@@ -39,6 +38,6 @@ public class SponsorController {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         model.addAttribute("allsponsors", sponsorRepository.getAndCountSponsorByPeriod(
                 dateFormat.parse(startDate), dateFormat.parse(endDate)));
-        return "sponsor";
+        return "/pages/sponsor";
     }
 }

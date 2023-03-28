@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/addsportsfacility")
+@RequestMapping("/sportsfacility")
 public class EditSportsFacilityController {
     private final SportsFacilityService sportsFacilityService;
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
@@ -41,14 +41,14 @@ public class EditSportsFacilityController {
         return sportsFacilityService.deleteSportsFacility(facilityId);
     }
 
-    @PostMapping("/addarena")
+    @PostMapping("/arena")
     public Arena addArena(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
         return sportsFacilityService.addArenaParam(param, sportsFacility);
     }
 
-    @PostMapping("/addcourt")
+    @PostMapping("/court")
     public Court addCourt(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
@@ -56,14 +56,14 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addCourtParam(surface, sportsFacility);
     }
 
-    @PostMapping("/addgym")
+    @PostMapping("/gym")
     public Gym addGym(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
         return sportsFacilityService.addGymParam(param, sportsFacility);
     }
 
-    @PostMapping("/addstadium")
+    @PostMapping("/stadium")
     public Stadium addStadium(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);

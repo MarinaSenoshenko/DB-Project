@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/addathlete")
+@RequestMapping("/athlete")
 public class EditAthleteController {
     private final AthleteService athleteService;
     private final AthleteRankingService athleteRankingService;

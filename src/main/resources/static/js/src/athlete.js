@@ -40,7 +40,7 @@ function addAthlete() {
         club: club
     });
 
-    req.open('POST', '/addathlete?' + params.toString());
+    req.open('POST', '/athlete?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -55,7 +55,7 @@ function deleteAthlete() {
         athlete: athlete
     });
 
-    req.open('DELETE', '/addathlete?' + params.toString());
+    req.open('DELETE', '/athlete?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

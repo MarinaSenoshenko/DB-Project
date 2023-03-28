@@ -6,7 +6,7 @@ function addSport() {
         sport: sport,
     });
 
-    req.open('POST', '/addsport?' + params.toString());
+    req.open('POST', '/sport?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -21,7 +21,7 @@ function deleteSport() {
         sport: sport,
     });
 
-    req.open('DELETE', '/addsport?' + params.toString());
+    req.open('DELETE', '/sport?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

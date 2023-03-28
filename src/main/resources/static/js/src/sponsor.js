@@ -14,7 +14,7 @@ function addCompany() {
         name: name, company: company,
     });
 
-    req.open('POST', '/addsponsor?' + params.toString());
+    req.open('POST', '/sponsor?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -29,7 +29,7 @@ function deleteSponsor() {
         sponsor: sponsor,
     });
 
-    req.open('DELETE', '/addsponsor?' + params.toString());
+    req.open('DELETE', '/sponsor?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

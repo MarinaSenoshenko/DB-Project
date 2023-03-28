@@ -15,6 +15,6 @@ public class SportsFacilityTypeController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
-        return "sportsfacilitytype";
+        return "/pages/sportsfacilitytype";
     }
 }

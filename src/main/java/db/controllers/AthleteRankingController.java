@@ -15,6 +15,6 @@ public class AthleteRankingController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("athleterankings", athleteRankingRepository.findAll());
-        return "athleteranking";
+        return "/pages/athleteranking";
     }
 }

@@ -19,7 +19,7 @@ public class TrainerController {
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "trainer";
+        return "/pages/trainer";
     }
 
     @GetMapping("/add")
@@ -27,13 +27,13 @@ public class TrainerController {
         model.addAttribute("trainers", athleteRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "add_trainer";
+        return "/post/add_trainer";
     }
 
     @GetMapping("/delete")
     public String deleteTrainer(Model model) {
-        model.addAttribute("trainers", trainerRepository.findAll());
-        return "delete_trainer";
+        model.addAttribute("trainers", trainerRepository.getNotUsedInOtherTablesTrainersId());
+        return "/delete/delete_trainer";
     }
 
     @GetMapping("/byathlete/{athleteid}")
@@ -41,7 +41,7 @@ public class TrainerController {
         model.addAttribute("trainers", trainerRepository.getTrainerByAthlete(athleteId));
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "trainer";
+        return "/pages/trainer";
     }
 
     @GetMapping("/bysport/{sportvalue}")
@@ -50,6 +50,6 @@ public class TrainerController {
                 .findByValue(sportValue).getId()));
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "trainer";
+        return "/pages/trainer";
     }
 }

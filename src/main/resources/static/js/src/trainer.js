@@ -17,7 +17,7 @@ function addTrainer() {
         lastName: lastName,
     });
 
-    req.open('POST', '/addtrainer?' + params.toString());
+    req.open('POST', '/trainer?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -32,7 +32,7 @@ function deleteTrainer() {
         trainer: trainer
     });
 
-    req.open('DELETE', '/addtrainer?' + params.toString());
+    req.open('DELETE', '/trainer?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

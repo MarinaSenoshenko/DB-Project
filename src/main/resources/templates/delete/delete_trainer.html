@@ -16,7 +16,7 @@
         <th>Выберите тренера: </th>
         <label for="trainer"></label><select class="selathlete" id="trainer">
         <option th:each="trainer: ${trainers}"
-                th:text="${trainer.id}">
+                th:text="${trainer}">
         </option>
     </select><br/><br/>
 

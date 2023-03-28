@@ -13,7 +13,7 @@ function addSportClub() {
         sport: sport,
     });
 
-    req.open('POST', '/addsportclub?' + params.toString());
+    req.open('POST', '/sportclub?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -28,7 +28,7 @@ function deleteSportClub() {
         sport: sport,
     });
 
-    req.open('DELETE', '/addsportclub?' + params.toString());
+    req.open('DELETE', '/sportclub?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

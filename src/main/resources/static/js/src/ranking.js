@@ -8,7 +8,7 @@ function addRanking() {
         rank: rank,
     });
 
-    req.open('POST', '/addathlete/addinfo?' + params.toString());
+    req.open('POST', '/athlete/addinfo?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

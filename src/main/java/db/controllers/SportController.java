@@ -15,17 +15,17 @@ public class SportController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("sports", sportRepository.findAll());
-        return "sport";
+        return "/pages/sport";
     }
 
     @GetMapping("/add")
     public String addRank() {
-        return "add_sport";
+        return "/post/add_sport";
     }
 
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
         model.addAttribute("sports", sportRepository.findAll());
-        return "delete_sport";
+        return "/delete/delete_sport";
     }
 }

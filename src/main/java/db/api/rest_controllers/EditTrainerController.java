@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/addtrainer")
+@RequestMapping("/trainer")
 public class EditTrainerController {
     private final TrainerService trainerService;
 

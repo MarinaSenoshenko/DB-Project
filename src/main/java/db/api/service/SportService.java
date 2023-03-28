@@ -20,8 +20,8 @@ public class SportService {
         return sport;
     }
 
-    public Sport deleteSport(String value) {
-        Sport sport = sportRepository.findByValue(value);
+    public Sport deleteSport(Long sportId) {
+        Sport sport = sportRepository.getSportById(sportId);
         sportRepository.delete(sport);
         return sport;
     }

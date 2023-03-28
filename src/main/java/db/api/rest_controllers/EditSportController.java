@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/addsport")
+@RequestMapping("/sport")
 public class EditSportController {
     private final SportService sportService;
 
@@ -21,7 +21,7 @@ public class EditSportController {
     }
 
     @DeleteMapping("")
-    public Sport deleetSport(@RequestParam("sport") String value) {
-        return sportService.deleteSport(value);
+    public Sport deleetSport(@RequestParam("sport") Long sportId) {
+        return sportService.deleteSport(sportId);
     }
 }

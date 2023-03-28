@@ -22,26 +22,26 @@ public class AthleteController {
     public String getAll(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());
         addAttributesToModel(model);
-        return "athlete";
+        return "/pages/athlete";
     }
 
     @GetMapping("/add")
     public String addAthlete(Model model) {
         addAttributesToModel(model);
         model.addAttribute("sportclubs", sportClubRepository.findAll());
-        return "add_athlete";
+        return "/post/add_athlete";
     }
 
     @GetMapping("/delete")
     public String deleteAthlete(Model model) {
         model.addAttribute("athletes", athleteRepository.getNotUsedInOtherTablesAthletes());
-        return "delete_athlete";
+        return "/delete/delete_athlete";
     }
 
     @GetMapping("/add/addranking")
     public String addAthleteRanking(Model model) {
         addAttributesToModel(model);
-        return "add_ranking";
+        return "/post/add_ranking";
     }
 
     @GetMapping("/bysport/{sport}/{athleterank}")
@@ -50,7 +50,7 @@ public class AthleteController {
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.getAthletesByRanking(sport,
                   athleteRankRepository.findByValue(athleteRankValue).getId()));
-        return "athlete";
+        return "/pages/athlete";
     }
 
     @GetMapping("/bytrainerlicense/{trainerlicenseid}/{athleterank}")
@@ -59,21 +59,21 @@ public class AthleteController {
         addAttributesToModel(model);
         model.addAttribute("athletes",athleteRepository.getAthletesByTrainerAndRank(trainerLicenseId,
                 athleteRankRepository.findByValue(athleteRankValue).getId()));
-        return "athlete";
+        return "/pages/athlete";
     }
 
     //TODO изменить запрос, добавить виды спорта
     @GetMapping("/morethanone")
     public String getAthletesWhoMoreThanOneSport(Model model) {
         model.addAttribute("athletes", athleteRepository.getAthletesWhoMoreThanOneSport());
-        return "athlete";
+        return "/pages/athlete";
     }
 
     @GetMapping("/bycompetition/{competitionid}")
     public String getAthletesWhoWinnerByCompetition(@PathVariable("competitionid") Long competitionId, Model model) {
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.getAthletesWhoWinnerByCompetition(competitionId));
-        return "athlete";
+        return "/pages/athlete";
     }
 
     @GetMapping("/notincompetitionbyperiod/{startdate}/{enddate}")
@@ -83,7 +83,7 @@ public class AthleteController {
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.getAthletesWhoNotInCompetitionByPeriod(
                 dateFormat.parse(startDate), dateFormat.parse(endDate)));
-        return "athlete";
+        return "/pages/athlete";
     }
 
     private void addAttributesToModel(Model model) {

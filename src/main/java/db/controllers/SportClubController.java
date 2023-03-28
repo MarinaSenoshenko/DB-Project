@@ -17,18 +17,18 @@ public class SportClubController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("allsportclubs", sportClubRepository.findAll());
-        return "sportclub";
+        return "/pages/sportclub";
     }
 
     @GetMapping("/add")
     public String addSportClub() {
-        return "add_sport_club";
+        return "/post/add_sport_club";
     }
 
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
         model.addAttribute("sportclubs", sportClubRepository.findAll());
-        return "delete_sport_club";
+        return "/delete/delete_sport_club";
     }
 
     //TODO вернуть count athletes, придумать как это нормально показывать
@@ -38,6 +38,6 @@ public class SportClubController {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         model.addAttribute("allsportclubs", sportClubRepository.getSportClubsAndCountAthletes(
                 dateFormat.parse(startDate), dateFormat.parse(endDate)));
-        return "sportclub";
+        return "/pages/sportclub";
     }
 }

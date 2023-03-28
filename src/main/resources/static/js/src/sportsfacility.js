@@ -49,7 +49,7 @@ function addCourt() {
         param: param,
     });
 
-    req.open('POST', '/addsportsfacility/addcourt?' + params.toString());
+    req.open('POST', '/sportsfacility/court?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -64,7 +64,7 @@ function addGym() {
         param: param,
     });
 
-    req.open('POST', '/addsportsfacility/addgym?' + params.toString());
+    req.open('POST', '/sportsfacility/gym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -81,7 +81,7 @@ function addFacility() {
         type : type,
     });
 
-    req.open('POST', '/addsportsfacility?' + params.toString());
+    req.open('POST', '/sportsfacility?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -96,7 +96,7 @@ function deleteFacility() {
         sportsfacility : sportsfacility
     });
 
-    req.open('DELETE', '/addsportsfacility?' + params.toString());
+    req.open('DELETE', '/sportsfacility?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -111,7 +111,7 @@ function addStadium() {
         param: param,
     });
 
-    req.open('POST', '/addsportsfacility/addstadium?' + params.toString());
+    req.open('POST', '/sportsfacility/stadium?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -126,7 +126,7 @@ function addCourtSurface() {
         surface : surface,
     });
 
-    req.open('POST', '/addcourtsurface?' + params.toString());
+    req.open('POST', '/courtsurface?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -141,7 +141,7 @@ function deleteCourtSurface() {
         surface : surface,
     });
 
-    req.open('DELETE', '/addcourtsurface?' + params.toString());
+    req.open('DELETE', '/courtsurface?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 

@@ -16,6 +16,6 @@ public class CompetitionPlayerController {
     public String getAll(Model model) {
         model.addAttribute("competitionplayers", competitionPlayerRepository.findAll());
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll());
-        return "competitionplayer";
+        return "/pages/competitionplayer";
     }
 }
