@@ -31,36 +31,59 @@ public class SportsFacilityController {
     @GetMapping("/add")
     public String addFacility(Model model) {
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
-        return "/post/add_sports_facility";
+        return "/post/facility/add_sports_facility";
     }
 
     @GetMapping("/delete")
     public String deleteFacility(Model model) {
         model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
-        return "/delete/delete_sports_facility";
+        return "/delete/facility/delete_sports_facility";
     }
 
     @GetMapping("/add/add_arena")
     public String addArenaParam() {
-        return "/post/add_arena";
+        return "/post/facility/add_arena";
+    }
+
+    @GetMapping("/delete/delete_arena")
+    public String deleteArenaParam(Model model) {
+        model.addAttribute("arenas", arenaRepository.findAll());
+        return "/delete/facility/delete_arena";
     }
 
     @GetMapping("/add/add_court")
     public String addCourtParam(Model model) {
         model.addAttribute("surfaces", courtSurfaceRepository.findAll());
-        return "/post/add_court";
+        return "/post/facility/add_court";
+    }
+
+    @GetMapping("/delete/delete_court")
+    public String deleteCourtParam(Model model) {
+        model.addAttribute("courts", courtRepository.findAll());
+        return "/delete/facility/delete_court";
     }
 
     @GetMapping("/add/add_gym")
     public String addGymParam() {
-        return "/post/add_gym";
+        return "/post/facility/add_gym";
+    }
+
+    @GetMapping("/delete/delete_gym")
+    public String deleteGymParam(Model model) {
+        model.addAttribute("gyms", gymRepository.findAll());
+        return "/delete/facility/delete_gym";
     }
 
     @GetMapping("/add/add_stadium")
     public String addStadiumParam() {
-        return "/post/add_stadium";
+        return "/post/facility/add_stadium";
     }
 
+    @GetMapping("/delete/delete_stadium")
+    public String deleteStadiumParam(Model model) {
+        model.addAttribute("stadiums", stadiumRepository.findAll());
+        return "/delete/facility/delete_stadium";
+    }
 
     @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")
     public String getSportsFacilityByCompetitionPeriod(@PathVariable("startdate") String startDate,

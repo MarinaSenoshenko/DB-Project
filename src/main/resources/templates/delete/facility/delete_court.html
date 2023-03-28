@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete_court</title>
+</head>
+
+<body>
+<main class="main-holder">
+    <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
+    <h1 class="grades-header" align="center">Удалить корд</h1>
+    <h1 th:text="${name}" id="auth-name"></h1>
+    <form class="grades-form" align="center">
+        <th>Выберите корд: </th>
+        <label for="param"></label><select class="selathlete" id="param">
+        <option th:each="court: ${courts}"
+                th:text="${court.id}">
+        </option>
+    </select><br/><br/>
+
+        <button type="button" onclick="deleteCourt()">Удалить</button>
+        <button type="button" onclick="location.href='/main/sportsfacility/arena'">Отменить</button>
+    </form>
+</main>
+</body>
+</html>

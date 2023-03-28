@@ -6,6 +6,7 @@ import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
+import db.repository.sports.ArenaRepository;
 import db.repository.sports.SportsFacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +18,19 @@ public class EditSportsFacilityController {
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
+    private final ArenaRepository arenaRepository;
 
     @Autowired
     public EditSportsFacilityController(SportsFacilityService sportsFacilityService,
                                         SportsFacilityTypeRepository sportsFacilityTypeRepository,
                                         SportsFacilityRepository sportsFacilityRepository,
-                                        CourtSurfaceRepository courtSurfaceRepository) {
+                                        CourtSurfaceRepository courtSurfaceRepository,
+                                        ArenaRepository arenaRepository) {
         this.sportsFacilityService = sportsFacilityService;
         this.sportsFacilityRepository = sportsFacilityRepository;
         this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
         this.courtSurfaceRepository = courtSurfaceRepository;
+        this.arenaRepository = arenaRepository;
     }
 
     @PostMapping("")
@@ -48,12 +52,22 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addArenaParam(param, sportsFacility);
     }
 
+    @DeleteMapping("/arena")
+    public Arena deleteArena(@RequestParam("param") Long arenaId) {
+        return sportsFacilityService.deleteArenaParam(arenaId);
+    }
+
     @PostMapping("/court")
     public Court addCourt(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
         CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
         return sportsFacilityService.addCourtParam(surface, sportsFacility);
+    }
+
+    @DeleteMapping("/court")
+    public Court deleteCourt(@RequestParam("param") Long courtId) {
+        return sportsFacilityService.deleteCourtParam(courtId);
     }
 
     @PostMapping("/gym")
@@ -63,10 +77,21 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addGymParam(param, sportsFacility);
     }
 
+    @DeleteMapping("/gym")
+    public Gym deleteGym(@RequestParam("param") Long gymId) {
+        return sportsFacilityService.deleteGymParam(gymId);
+    }
+
     @PostMapping("/stadium")
     public Stadium addStadium(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
         return sportsFacilityService.addStadiumParam(param, sportsFacility);
     }
+
+    @DeleteMapping("/stadium")
+    public Stadium deleteStadium(@RequestParam("param") Long stadiumId) {
+        return sportsFacilityService.deleteStadiumParam(stadiumId);
+    }
+
 }

@@ -34,7 +34,22 @@ function addArena() {
         param: param,
     });
 
-    req.open('POST', '/addsportsfacility/addarena?' + params.toString());
+    req.open('POST', '/sportsfacility/arena?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sportsfacility/arena';
+}
+
+function deleteArena() {
+    const req = new XMLHttpRequest();
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        param: param,
+    });
+
+    req.open('DELETE', '/sportsfacility/arena?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -56,6 +71,21 @@ function addCourt() {
     location.href='/main/sportsfacility/court';
 }
 
+function deleteCourt() {
+    const req = new XMLHttpRequest();
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        param: param,
+    });
+
+    req.open('DELETE', '/sportsfacility/court?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sportsfacility/court';
+}
+
 function addGym() {
     const req = new XMLHttpRequest();
     const param = document.getElementById('param').value;
@@ -65,6 +95,21 @@ function addGym() {
     });
 
     req.open('POST', '/sportsfacility/gym?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sportsfacility/gym';
+}
+
+function deleteGym() {
+    const req = new XMLHttpRequest();
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        param: param,
+    });
+
+    req.open('DELETE', '/sportsfacility/gym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
@@ -112,6 +157,21 @@ function addStadium() {
     });
 
     req.open('POST', '/sportsfacility/stadium?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(params.toString());
+
+    location.href='/main/sportsfacility/stadium';
+}
+
+function deleteStadium() {
+    const req = new XMLHttpRequest();
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        param: param,
+    });
+
+    req.open('DELETE', '/sportsfacility/stadium?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
