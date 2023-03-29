@@ -54,12 +54,14 @@
       <th><p style="font-size: 20px;">Фамилия</p></th>
       <th><p style="font-size: 20px;">Имя</p></th>
       <th><p style="font-size: 20px;">Отчество</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="trainer, iter : ${trainers}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${trainer.lastName}" style="text-align:center"></td>
       <td th:text="${trainer.firstName}" style="text-align:center"></td>
       <td th:text="${trainer.patronymic}" style="text-align:center"></td>
+      <td th:text="${trainer.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

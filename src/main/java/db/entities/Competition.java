@@ -1,7 +1,10 @@
 package db.entities;
 
 import db.entities.models.surface.SportsFacility;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,9 +12,15 @@ import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "competition")
 public class Competition {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "incrementDomain")
+    @GenericGenerator(name = "incrementDomain", strategy = "increment")
     private Long id;
     @NotNull
     private String title;
@@ -26,4 +35,12 @@ public class Competition {
     @ManyToOne
     @JoinColumn(name = "location", referencedColumnName = "id")
     private SportsFacility sportsFacility;
+
+    public Competition(String title, Date period, Sponsor sponsor, Sport sport, SportsFacility sportsFacility) {
+        this.period = period;
+        this.title = title;
+        this.sponsor = sponsor;
+        this.sport = sport;
+        this.sportsFacility = sportsFacility;
+    }
 }

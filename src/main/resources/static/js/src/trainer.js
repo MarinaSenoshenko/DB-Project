@@ -19,9 +19,7 @@ function addTrainer() {
 
     req.open('POST', '/trainer?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/trainer';
+    changeState(req, params, '/main/trainer')
 }
 
 function deleteTrainer() {
@@ -34,7 +32,48 @@ function deleteTrainer() {
 
     req.open('DELETE', '/trainer?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
+    changeState(req, params, '/main/trainer')
+}
 
-    location.href='/main/trainer';
+function addTrainerLicense() {
+    const req = new XMLHttpRequest();
+    const trainer = document.getElementById('trainer').value;
+    const sport = document.getElementById('sport').value;
+
+    const params = new URLSearchParams({
+        trainer: trainer, sport: sport,
+    });
+
+    req.open('POST', '/trainerlicense?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/trainerlicense')
+}
+
+function deleteTrainerLicense() {
+    const req = new XMLHttpRequest();
+    const trainerlicense = document.getElementById('trainerlicense').value;
+
+    const params = new URLSearchParams({
+        trainerlicense: trainerlicense
+    });
+
+    req.open('DELETE', '/trainerlicense?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/trainerlicense')
+}
+
+function changeState(req, params, ref) {
+    return new Promise((resolve, reject) => {
+        req.onreadystatechange = () => {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    location.href=ref;
+                } else {
+                    reject();
+                }
+            }
+        };
+
+        req.send(params.toString());
+    });
 }

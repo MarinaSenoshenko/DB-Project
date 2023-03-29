@@ -21,7 +21,7 @@ public class TrainerService {
     }
 
     public Trainer deleteTrainer(Long trainerId) {
-        Trainer trainer = trainerRepository.getTrainerById(trainerId);
+        Trainer trainer = trainerRepository.findById(trainerId).orElseThrow();
         trainerRepository.delete(trainer);
         return trainer;
     }

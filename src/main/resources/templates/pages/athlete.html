@@ -86,7 +86,7 @@
 
   <table border="1" width="800">
     <colgroup>
-      <col span="5" style="background:blue">
+      <col span="6" style="background:blue">
       <col style="background-color:darkcyan">
     </colgroup>
     <tr>
@@ -95,6 +95,7 @@
       <th><p>Имя</p></th>
       <th><p>Отчество</p></th>
       <th><p>Hазвание клуба</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="athlete, iter : ${athletes}">
       <td th:text="${iter.index} + 1"></td>
@@ -102,6 +103,7 @@
       <td th:text="${athlete.firstName}"></td>
       <td th:text="${athlete.patronymic}"></td>
       <td th:text="${athlete.club.title}"></td>
+      <td th:text="${athlete.id}"></td>
     </tr>
   </table> <br/>
 </main>

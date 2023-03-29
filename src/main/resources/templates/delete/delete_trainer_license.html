@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete_trainer_license</title>
+</head>
+
+<body>
+<main class="main-holder">
+    <script type="text/javascript" src="/js/src/trainer.js"></script>
+    <h1 class="grades-header" align="center">Удалить лицензию тренера</h1>
+    <h1 th:text="${name}" id="auth-name"></h1>
+    <form class="grades-form" align="center">
+        <th>Выберите лицензию: </th>
+        <label for="trainerlicense"></label><select class="selathlete" id="trainerlicense">
+        <option th:each="trainerlicense: ${trainerlicenses}"
+                th:text="${trainerlicense.id}">
+        </option>
+    </select><br/><br/>
+
+        <button type="button" onclick="deleteTrainerLicense()">Удалить</button>
+        <button type="button" onclick="location.href='/main/trainerlicense'">Отменить</button>
+    </form>
+</main>
+</body>
+</html>

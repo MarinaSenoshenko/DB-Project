@@ -11,14 +11,13 @@ function addCompany() {
     const company = document.getElementById('company').value;
 
     const params = new URLSearchParams({
-        name: name, company: company,
+        name: name,
+        company: company,
     });
 
     req.open('POST', '/sponsor?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sponsor';
+    changeState(req, params, '/main/sponsor')
 }
 
 function deleteSponsor() {
@@ -31,7 +30,21 @@ function deleteSponsor() {
 
     req.open('DELETE', '/sponsor?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
+    changeState(req, params, '/main/sponsor')
+}
 
-    location.href='/main/sponsor';
+function changeState(req, params, ref) {
+    return new Promise((resolve, reject) => {
+        req.onreadystatechange = () => {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    location.href=ref;
+                } else {
+                    reject();
+                }
+            }
+        };
+
+        req.send(params.toString());
+    });
 }

@@ -1,17 +1,18 @@
 package db.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "sport")
 public class Sport {
     @Id
     @Column(unique = true)
@@ -25,4 +26,5 @@ public class Sport {
     public Sport(String value) {
         this.value = value;
     }
+
 }

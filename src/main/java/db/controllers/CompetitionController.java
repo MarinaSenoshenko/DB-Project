@@ -5,6 +5,7 @@ import db.repository.CompetitionRepository;
 import db.repository.SponsorRepository;
 import db.repository.SportRepository;
 import db.repository.SportsFacilityTypeRepository;
+import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ public class CompetitionController {
     private CompetitionRepository competitionRepository;
     private SponsorRepository sponsorRepository;
     private SportRepository sportRepository;
+    private SportsFacilityRepository sportsFacilityRepository;
     private SportsFacilityTypeRepository sportsFacilityTypeRepository;
 
     @GetMapping("")
@@ -27,6 +29,21 @@ public class CompetitionController {
         model.addAttribute("competitions", competitionRepository.findAll());
         addAttributesToModel(model);
         return "/pages/competition";
+    }
+
+    @GetMapping("/add")
+    public String addCompetition(Model model) {
+        addAttributesToModel(model);
+        model.addAttribute("sponsors", sponsorRepository.findAll());
+        model.addAttribute("sports", sportRepository.findAll());
+        model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
+        return "/post/add_competition";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCompetition(Model model) {
+        model.addAttribute("competitions", competitionRepository.getNotUsedInOtherTableCompetitionsId());
+        return "/delete/delete_competition";
     }
 
     @GetMapping(value = {"/byperiod/{startdate}/{enddate}/{sponsorid}", "/byperiod/{startdate}/{enddate}"})

@@ -10,6 +10,4 @@ import java.util.List;
 public interface CourtRepository extends JpaRepository<Court, Long> {
     @Query(name = "getCourtWithSurface", nativeQuery = true)
     List<Court> getCourtWithSurface(String surface);
-    @Query(name = "getCourtById", nativeQuery = true)
-    Court getCourtById(Long id);
 }

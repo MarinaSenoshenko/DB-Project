@@ -8,6 +8,4 @@ import org.springframework.data.repository.CrudRepository;
 public interface ArenaRepository extends CrudRepository<Arena, Long> {
     @Query(name = "getArenaByTrackNumber", nativeQuery = true)
     Iterable<Arena> getArenaByTrackNumber(Long trackNumber);
-    @Query(name = "getArenaById", nativeQuery = true)
-    Arena getArenaById(Long id);
 }

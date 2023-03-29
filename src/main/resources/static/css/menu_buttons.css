@@ -2,18 +2,18 @@ a.buttons {
     width: 300px;
     height: 35px;
     text-decoration: none;
-    padding-top: 6px;
+    padding-top: 3px;
     color: cyan;
     text-align: center;
     line-height: 2px;
     display:inline-block;
     margin: 20px auto;
-    font: normal 25px arial;
+    font: normal 28px arial;
 }
 
 a.buttons:not(.active) {
     box-shadow: inset 0 1px 1px rgba(11, 55, 125, 0.8);
-    border: 2px solid white;
+    border: 1px solid blue;
     background-image: linear-gradient(cornflowerblue, cornflowerblue);
     text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
 }

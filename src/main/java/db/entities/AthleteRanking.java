@@ -3,23 +3,26 @@ package db.entities;
 import db.entities.models.keys.AthleteKey;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @IdClass(AthleteKey.class)
 public class AthleteRanking {
     @Id
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "athlete_id", referencedColumnName = "id")
-    private Athlete athlete;
+    public Athlete athlete;
     @Id
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sport", referencedColumnName = "id")
-    private Sport sport;
+    public Sport sport;
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "rank", referencedColumnName = "id")
-    private AthleteRank rank;
+    public AthleteRank rank;
 }

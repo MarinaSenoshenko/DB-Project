@@ -25,7 +25,7 @@ public class SportController {
 
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
-        model.addAttribute("sports", sportRepository.findAll());
+        model.addAttribute("sports", sportRepository.getNotUsedInOtherTablesSports());
         return "/delete/delete_sport";
     }
 }

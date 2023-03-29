@@ -21,8 +21,4 @@ public class SportsFacilityType {
     @NotNull
     @Column(unique = true)
     private String value;
-
-    public SportsFacilityType(String value) {
-        this.value = value;
-    }
 }

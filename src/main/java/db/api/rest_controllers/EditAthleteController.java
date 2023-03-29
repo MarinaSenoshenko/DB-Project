@@ -50,6 +50,9 @@ public class EditAthleteController {
         Athlete athlete = athleteRepository.getAthleteByMaxId();
         Sport sport = sportRepository.findByValue(sportValue);
         AthleteRank athleteRank = athleteRankRepository.findByValue(rank);
+        System.out.println(athlete);
+        System.out.println(sport);
+        System.out.println(athleteRank);
         return athleteRankingService.addAthleteRanking(athlete, sport, athleteRank);
     }
 }

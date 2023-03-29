@@ -15,9 +15,7 @@ function addSportClub() {
 
     req.open('POST', '/sportclub?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportclub';
+    changeState(req, params, '/main/sportclub')
 }
 
 function deleteSportClub() {
@@ -30,7 +28,21 @@ function deleteSportClub() {
 
     req.open('DELETE', '/sportclub?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
+    changeState(req, params, '/main/sportclub')
+}
 
-    location.href='/main/sportclub';
+function changeState(req, params, ref) {
+    return new Promise((resolve, reject) => {
+        req.onreadystatechange = () => {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    location.href=ref;
+                } else {
+                    reject();
+                }
+            }
+        };
+
+        req.send(params.toString());
+    });
 }

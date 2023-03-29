@@ -16,7 +16,7 @@
     <th>Выберите спортивный клуб: </th>
     <label for="sport"></label><select class="selathlete" id="sport">
     <option th:each="sportclub: ${sportclubs}"
-            th:text="${sportclub.title}">
+            th:text="${sportclub}">
     </option>
   </select><br/><br/>
 

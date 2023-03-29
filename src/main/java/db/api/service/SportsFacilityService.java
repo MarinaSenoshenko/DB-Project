@@ -37,7 +37,7 @@ public class SportsFacilityService {
     }
 
     public SportsFacility deleteSportsFacility(Long facilityId) {
-        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(facilityId);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(facilityId).orElseThrow();
         sportsFacilityRepository.delete(sportsFacility);
         return sportsFacility;
     }
@@ -49,7 +49,7 @@ public class SportsFacilityService {
     }
 
     public Arena deleteArenaParam(Long arenaId) {
-        Arena arena = arenaRepository.getArenaById(arenaId);
+        Arena arena = arenaRepository.findById(arenaId).orElseThrow();
         arenaRepository.delete(arena);
         return arena;
     }
@@ -61,7 +61,7 @@ public class SportsFacilityService {
     }
 
     public Court deleteCourtParam(Long courtId) {
-        Court court = courtRepository.getCourtById(courtId);
+        Court court = courtRepository.findById(courtId).orElseThrow();
         courtRepository.delete(court);
         return court;
     }
@@ -73,7 +73,7 @@ public class SportsFacilityService {
     }
 
     public Gym deleteGymParam(Long gymId) {
-        Gym gym = gymRepository.getGymById(gymId);
+        Gym gym = gymRepository.findById(gymId).orElseThrow();
         gymRepository.delete(gym);
         return gym;
     }
@@ -85,7 +85,7 @@ public class SportsFacilityService {
     }
 
     public Stadium deleteStadiumParam(Long stadiumId) {
-        Stadium stadium = stadiumRepository.getStadiumById(stadiumId);
+        Stadium stadium = stadiumRepository.findById(stadiumId).orElseThrow();
         stadiumRepository.delete(stadium);
         return stadium;
     }

@@ -8,6 +8,4 @@ import org.springframework.data.repository.CrudRepository;
 public interface GymRepository extends CrudRepository<Gym, Long> {
     @Query(name = "getGymByFloorArea", nativeQuery = true)
     Iterable<Gym> getGymByFloorArea(Double floorArea);
-    @Query(name = "getGymById", nativeQuery = true)
-    Gym getGymById(Long id);
 }

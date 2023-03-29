@@ -21,7 +21,7 @@ public class SportService {
     }
 
     public Sport deleteSport(Long sportId) {
-        Sport sport = sportRepository.getSportById(sportId);
+        Sport sport = sportRepository.findById(sportId).orElseThrow();
         sportRepository.delete(sport);
         return sport;
     }

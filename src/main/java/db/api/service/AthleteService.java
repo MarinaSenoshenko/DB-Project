@@ -21,7 +21,7 @@ public class AthleteService {
     }
 
     public Athlete deleteAthlete(Long athleteId) {
-        Athlete athlete = athleteRepository.getAthleteById(athleteId);
+        Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
         athleteRepository.delete(athlete);
         return athlete;
     }

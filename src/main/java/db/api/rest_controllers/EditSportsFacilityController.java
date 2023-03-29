@@ -6,7 +6,6 @@ import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
-import db.repository.sports.ArenaRepository;
 import db.repository.sports.SportsFacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +17,16 @@ public class EditSportsFacilityController {
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
-    private final ArenaRepository arenaRepository;
 
     @Autowired
     public EditSportsFacilityController(SportsFacilityService sportsFacilityService,
                                         SportsFacilityTypeRepository sportsFacilityTypeRepository,
                                         SportsFacilityRepository sportsFacilityRepository,
-                                        CourtSurfaceRepository courtSurfaceRepository,
-                                        ArenaRepository arenaRepository) {
+                                        CourtSurfaceRepository courtSurfaceRepository) {
         this.sportsFacilityService = sportsFacilityService;
         this.sportsFacilityRepository = sportsFacilityRepository;
         this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
         this.courtSurfaceRepository = courtSurfaceRepository;
-        this.arenaRepository = arenaRepository;
     }
 
     @PostMapping("")
@@ -41,14 +37,14 @@ public class EditSportsFacilityController {
     }
 
     @DeleteMapping("")
-    public SportsFacility addSportsFacility(@RequestParam("sportsfacility") Long facilityId) {
+    public SportsFacility deleteSportsFacility(@RequestParam("sportsfacility") Long facilityId) {
         return sportsFacilityService.deleteSportsFacility(facilityId);
     }
 
     @PostMapping("/arena")
     public Arena addArena(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         return sportsFacilityService.addArenaParam(param, sportsFacility);
     }
 
@@ -60,7 +56,7 @@ public class EditSportsFacilityController {
     @PostMapping("/court")
     public Court addCourt(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
         return sportsFacilityService.addCourtParam(surface, sportsFacility);
     }
@@ -73,7 +69,7 @@ public class EditSportsFacilityController {
     @PostMapping("/gym")
     public Gym addGym(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         return sportsFacilityService.addGymParam(param, sportsFacility);
     }
 
@@ -85,7 +81,7 @@ public class EditSportsFacilityController {
     @PostMapping("/stadium")
     public Stadium addStadium(@RequestParam("param") String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.getSportsFacilityById(id);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         return sportsFacilityService.addStadiumParam(param, sportsFacility);
     }
 
@@ -93,5 +89,4 @@ public class EditSportsFacilityController {
     public Stadium deleteStadium(@RequestParam("param") Long stadiumId) {
         return sportsFacilityService.deleteStadiumParam(stadiumId);
     }
-
 }

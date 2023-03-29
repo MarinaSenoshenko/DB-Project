@@ -36,7 +36,7 @@ public class SportsFacilityController {
 
     @GetMapping("/delete")
     public String deleteFacility(Model model) {
-        model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
+        model.addAttribute("sportsfacilitys", sportsFacilityRepository.getNotUsedInArenaSportsFacilityId());
         return "/delete/facility/delete_sports_facility";
     }
 

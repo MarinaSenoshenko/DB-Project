@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class Sponsor {
     @Id
     @NotNull

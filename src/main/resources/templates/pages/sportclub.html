@@ -39,11 +39,13 @@
       <th><p style="font-size: 20px;">№</p></th>
       <th><p style="font-size: 20px;">Название клуба</p></th>
       <th><p style="font-size: 20px;">Количество спортсменов</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="allsportclub, iter : ${allsportclubs}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${allsportclub.title}" style="text-align:center"></td>
       <td th:text="${counts}" style="text-align:center"></td>
+      <td th:text="${id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

@@ -22,10 +22,12 @@
     <tr>
       <th><p style="font-size: 20px;">№</p></th>
       <th><p style="font-size: 20px;">Вид спорта</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="sport, iter : ${sports}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${sport.value}" style="text-align:center"></td>
+      <td th:text="${sport.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

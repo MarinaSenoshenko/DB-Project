@@ -14,6 +14,8 @@
   <script type="text/javascript" src="/js/src/competition.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/competition'">Cброс</a>
+  <a class="buttons" onclick="location.href='/main/competition/add'">Добавить</a>
+  <a class="buttons" onclick="location.href='/main/competition/delete'">Удалить</a>
   <form class="grades-form">
     <th><b>Получить список соревнований за период с определенным спонсором:</b></th>
     <th>Выберите номер спонсора: </th>
@@ -69,6 +71,7 @@
       <th><p style="font-size: 20px;">Вид спорта</p></th>
       <th><p style="font-size: 20px;">Спортивный комплекс</p></th>
       <th><p style="font-size: 20px;">Адрес</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="competition, iter : ${competitions}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
@@ -79,6 +82,7 @@
       <td th:text="${competition.sport.value}" style="text-align:center"></td>
       <td th:text="${competition.sportsFacility.type.value}" style="text-align:center"></td>
       <td th:text="${competition.sportsFacility.address}" style="text-align:center"></td>
+      <td th:text="${competition.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

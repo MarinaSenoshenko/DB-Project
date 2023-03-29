@@ -21,7 +21,7 @@ public class CourtSurfaceService {
     }
 
     public CourtSurface deleteCourtSurface(Long surfaceId) {
-        CourtSurface courtSurface = courtSurfaceRepository.getCourtSurfaceById(surfaceId);
+        CourtSurface courtSurface = courtSurfaceRepository.findById(surfaceId).orElseThrow();
         courtSurfaceRepository.delete(courtSurface);
         return courtSurface;
     }

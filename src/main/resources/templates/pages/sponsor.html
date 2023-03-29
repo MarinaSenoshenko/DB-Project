@@ -41,11 +41,13 @@
       <th><p style="font-size: 20px;">№</p></th>
       <th><p style="font-size: 20px;">ФИО</p></th>
       <th><p style="font-size: 20px;">Название компании</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="allsponsor, iter : ${allsponsors}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${allsponsor.name}" style="text-align:center"></td>
       <td th:text="${allsponsor.company}" style="text-align:center"></td>
+      <td th:text="${allsponsor.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

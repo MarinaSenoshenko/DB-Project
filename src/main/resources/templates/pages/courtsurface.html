@@ -22,11 +22,13 @@
     <tr>
       <th><p style="font-size: 20px;">№</p></th>
       <th><p style="font-size: 20px;">Тип покрытия</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     </tr>
     <tr th:each="courtsurface, iter : ${courtsurfaces}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${courtsurface.value}" style="text-align:center"></td>
+      <td th:text="${courtsurface.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

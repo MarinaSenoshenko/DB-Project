@@ -9,6 +9,4 @@ public interface CourtSurfaceRepository extends CrudRepository<CourtSurface, Lon
     CourtSurface getCourtSurfaceByValue(String value);
     @Query(name = "getNotUsedInOtherTablesSurfaces", nativeQuery = true)
     Iterable<Long> getNotUsedInOtherTablesSurfaces();
-    @Query(name = "getCourtSurfaceById", nativeQuery = true)
-    CourtSurface getCourtSurfaceById(Long id);
 }

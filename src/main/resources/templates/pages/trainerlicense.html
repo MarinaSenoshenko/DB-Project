@@ -12,6 +12,8 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/trainerlicense/add'">Добавить</a>
+  <a class="buttons" onclick="location.href='/main/trainerlicense/delete'">Удалить</a>
   <table border="1" width="1000">
     <colgroup>
       <col span="15" style="background:blue">
@@ -23,13 +25,15 @@
       <th><p style="font-size: 20px;">Имя</p></th>
       <th><p style="font-size: 20px;">Отчество</p></th>
       <th><p style="font-size: 20px;">Вид спорта</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="trainerlicense, iter : ${trainerlicenses}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${trainerlicense.trainer.lastName}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.trainer.firstName}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.trainer.patronymic}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.sport.value}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.lastName}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.firstName}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.patronymic}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.licenseKey.sport.value}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

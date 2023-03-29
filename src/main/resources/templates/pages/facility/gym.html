@@ -37,12 +37,14 @@
       <th><p style="font-size: 20px;">Общая площадь</p></th>
       <th><p style="font-size: 20px;">Адрес</p></th>
       <th><p style="font-size: 20px;">Тип покрытия</p></th>
+      <th><p style="font-size: 20px;">id</p></th>
     </tr>
     <tr th:each="gym, iter : ${gyms}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${gym.floorArea}" style="text-align:center"></td>
       <td th:text="${gym.sportsFacility.address}" style="text-align:center"></td>
       <td th:text="${gym.sportsFacility.type.value}" style="text-align:center"></td>
+      <td th:text="${gym.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

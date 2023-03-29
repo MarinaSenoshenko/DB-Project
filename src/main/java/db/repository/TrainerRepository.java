@@ -11,6 +11,4 @@ public interface TrainerRepository extends CrudRepository<Trainer, Long> {
     Iterable<Trainer> getTrainersBySport(Long sportId);
     @Query(name = "getNotUsedInOtherTablesTrainersId", nativeQuery = true)
     Iterable<Long> getNotUsedInOtherTablesTrainersId();
-    @Query(name = "getTrainerById", nativeQuery = true)
-    Trainer getTrainerById(Long id);
 }

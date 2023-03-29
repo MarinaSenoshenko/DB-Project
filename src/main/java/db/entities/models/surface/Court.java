@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class Court {
     @Id
     @Column(unique = true)

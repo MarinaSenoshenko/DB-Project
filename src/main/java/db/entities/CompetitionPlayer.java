@@ -1,25 +1,27 @@
 package db.entities;
 
 import db.entities.models.keys.CompetitionKey;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@IdClass(CompetitionKey.class)
+@NoArgsConstructor
 public class CompetitionPlayer {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "athlete_id", referencedColumnName = "id")
-    private Athlete athlete;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "competition_id", referencedColumnName = "id")
-    private Competition competition;
+    @EmbeddedId
+    private CompetitionKey competitionKey;
     @NotNull
     private boolean wasAwarding;
     @NotNull
     private Long result;
+
+    public CompetitionPlayer(CompetitionKey competitionKey, boolean wasawarding, Long result) {
+        this.competitionKey = competitionKey;
+        this.wasAwarding = wasawarding;
+        this.result = result;
+    }
 }

@@ -12,4 +12,6 @@ public interface CompetitionRepository extends JpaRepository<Competition, Long> 
     List<Competition> getCompetitionByPeriod(Date startDate, Date endDate);
     @Query(name = "getCompetitionByFacility", nativeQuery = true)
     List<Competition> getCompetitionByFacility(Long sportsFacilityId);
+    @Query(name = "getNotUsedInOtherTablesCompetitionsId", nativeQuery = true)
+    Iterable<Long> getNotUsedInOtherTableCompetitionsId();
 }

@@ -21,7 +21,7 @@ public class SponsorService {
     }
 
     public Sponsor deleteSponsor(Long sponsorId) {
-        Sponsor sponsor = sponsorRepository.getSponsorById(sponsorId);
+        Sponsor sponsor = sponsorRepository.findById(sponsorId).orElseThrow();
         sponsorRepository.delete(sponsor);
         return sponsor;
     }

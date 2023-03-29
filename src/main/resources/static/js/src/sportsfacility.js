@@ -36,9 +36,7 @@ function addArena() {
 
     req.open('POST', '/sportsfacility/arena?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/arena';
+    changeState(req, params, '/main/sportsfacility/arena');
 }
 
 function deleteArena() {
@@ -51,9 +49,7 @@ function deleteArena() {
 
     req.open('DELETE', '/sportsfacility/arena?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/arena';
+    changeState(req, params, '/main/sportsfacility/arena');
 }
 
 function addCourt() {
@@ -66,9 +62,7 @@ function addCourt() {
 
     req.open('POST', '/sportsfacility/court?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/court';
+    changeState(req, params, '/main/sportsfacility/court');
 }
 
 function deleteCourt() {
@@ -81,9 +75,7 @@ function deleteCourt() {
 
     req.open('DELETE', '/sportsfacility/court?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/court';
+    changeState(req, params, '/main/sportsfacility/court');
 }
 
 function addGym() {
@@ -96,9 +88,7 @@ function addGym() {
 
     req.open('POST', '/sportsfacility/gym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/gym';
+    changeState(req, params, '/main/sportsfacility/gym');
 }
 
 function deleteGym() {
@@ -111,9 +101,7 @@ function deleteGym() {
 
     req.open('DELETE', '/sportsfacility/gym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/gym';
+    changeState(req, params, '/main/sportsfacility/gym');
 }
 
 function addFacility() {
@@ -128,9 +116,7 @@ function addFacility() {
 
     req.open('POST', '/sportsfacility?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/add/add_' + type;
+    changeState(req, params, '/main/sportsfacility/add/add_' + type);
 }
 
 function deleteFacility() {
@@ -143,9 +129,7 @@ function deleteFacility() {
 
     req.open('DELETE', '/sportsfacility?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/';
+    changeState(req, params, '/main/sportsfacility/');
 }
 
 function addStadium() {
@@ -158,9 +142,7 @@ function addStadium() {
 
     req.open('POST', '/sportsfacility/stadium?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/sportsfacility/stadium';
+    changeState(req, params, '/main/sportsfacility/stadium');
 }
 
 function deleteStadium() {
@@ -175,7 +157,7 @@ function deleteStadium() {
     req.setRequestHeader("Content-Type", "application/json");
     req.send(params.toString());
 
-    location.href='/main/sportsfacility/stadium';
+    changeState(req, params, '/main/sportsfacility/stadium');
 }
 
 function addCourtSurface() {
@@ -188,9 +170,7 @@ function addCourtSurface() {
 
     req.open('POST', '/courtsurface?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
-
-    location.href='/main/courtsurface';
+    changeState(req, params, '/main/courtsurface');
 }
 
 function deleteCourtSurface() {
@@ -203,7 +183,21 @@ function deleteCourtSurface() {
 
     req.open('DELETE', '/courtsurface?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(params.toString());
+    changeState(req, params, '/main/courtsurface');
+}
 
-    location.href='/main/courtsurface';
+function changeState(req, params, ref) {
+    new Promise((resolve, reject) => {
+        req.onreadystatechange = () => {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    location.href=ref;
+                } else {
+                    reject();
+                }
+            }
+        };
+
+        req.send(params.toString());
+    });
 }

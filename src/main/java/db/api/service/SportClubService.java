@@ -20,8 +20,8 @@ public class SportClubService {
         return sportClub;
     }
 
-    public SportClub deleteSportClub(String value) {
-        SportClub sportClub = sportClubRepository.getSportClubByTitle(value);
+    public SportClub deleteSportClub(Long sportClubId) {
+        SportClub sportClub = sportClubRepository.findById(sportClubId).orElseThrow();
         sportClubRepository.delete(sportClub);
         return sportClub;
     }
