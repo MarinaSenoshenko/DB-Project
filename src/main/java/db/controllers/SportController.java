@@ -28,4 +28,10 @@ public class SportController {
         model.addAttribute("sports", sportRepository.getNotUsedInOtherTablesSports());
         return "/delete/delete_sport";
     }
+
+    @GetMapping("/update")
+    public String updateSportClub(Model model) {
+        model.addAttribute("sports", sportRepository.findAll());
+        return "/update/update_sport";
+    }
 }

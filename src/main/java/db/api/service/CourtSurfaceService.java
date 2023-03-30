@@ -25,4 +25,11 @@ public class CourtSurfaceService {
         courtSurfaceRepository.delete(courtSurface);
         return courtSurface;
     }
+
+    public CourtSurface updateCourtSurface(Long id, String value) {
+        CourtSurface courtSurface = courtSurfaceRepository.findById(id).orElseThrow();
+        courtSurface.setValue(value);
+        courtSurfaceRepository.save(courtSurface);
+        return courtSurface;
+    }
 }

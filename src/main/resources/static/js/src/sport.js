@@ -11,6 +11,20 @@ function addSport() {
     changeState(req, params, '/main/sport');
 }
 
+function updateSport() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const sport = document.getElementById('sport').value;
+
+    const params = new URLSearchParams({
+        id: id, sport: sport,
+    });
+
+    req.open('PUT', '/sport?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sport');
+}
+
 function deleteSport() {
     const req = new XMLHttpRequest();
     const sport = document.getElementById('sport').value;

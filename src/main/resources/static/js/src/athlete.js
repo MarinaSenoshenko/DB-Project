@@ -42,7 +42,28 @@ function addAthlete() {
 
     req.open('POST', '/athlete?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
-    changeState(req, params, '/main/athlete/add/addranking')
+    changeState(req, params, '/main/athlete/')
+}
+
+function updateAthlete() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const club = document.getElementById('club').value;
+    const fistName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const patronymic = document.getElementById('patronymic').value;
+
+    const params = new URLSearchParams({
+        id: id,
+        firstName: fistName,
+        patronymic: patronymic,
+        lastName: lastName,
+        club: club
+    });
+
+    req.open('PUT', '/athlete?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/athlete/')
 }
 
 function deleteAthlete() {

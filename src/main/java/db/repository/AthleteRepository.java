@@ -19,6 +19,4 @@ public interface AthleteRepository extends CrudRepository<Athlete, Long> {
     Iterable<Athlete> getAthletesWhoNotInCompetitionByPeriod(Date startDate, Date endDate);
     @Query(name = "getNotUsedInOtherTablesAthletes", nativeQuery = true)
     Iterable<Long> getNotUsedInOtherTablesAthletes();
-    @Query(name = "getAthleteByMaxId", nativeQuery = true)
-    Athlete getAthleteByMaxId();
 }

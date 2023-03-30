@@ -1,6 +1,5 @@
 package db.repository.sports;
 
-import db.entities.models.surface.Arena;
 import db.entities.models.surface.Court;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

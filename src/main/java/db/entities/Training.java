@@ -1,20 +1,17 @@
 package db.entities;
 
 import db.entities.models.keys.TrainingKey;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-@IdClass(TrainingKey.class)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Training {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "athlete_id", referencedColumnName = "id")
-    private Athlete athlete;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "trainer_license_id", referencedColumnName = "id")
-    private TrainerLicense trainerLicense;
+    @EmbeddedId
+    TrainingKey trainingKey;
 }

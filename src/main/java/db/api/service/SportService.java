@@ -25,4 +25,11 @@ public class SportService {
         sportRepository.delete(sport);
         return sport;
     }
+
+    public Sport updateSport(Long id, String value) {
+        Sport sport = sportRepository.findById(id).orElseThrow();
+        sport.setValue(value);
+        sportRepository.save(sport);
+        return sport;
+    }
 }

@@ -28,4 +28,10 @@ public class CourtSurfaceController {
         model.addAttribute("surfaces", courtSurfaceRepository.getNotUsedInOtherTablesSurfaces());
         return "/delete/delete_court_surface";
     }
+
+    @GetMapping("/update")
+    public String updateCourtSurface(Model model) {
+        model.addAttribute("courtsurfaces", courtSurfaceRepository.findAll());
+        return "/update/update_court_surface";
+    }
 }

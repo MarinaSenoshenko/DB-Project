@@ -21,7 +21,12 @@ public class EditSportController {
     }
 
     @DeleteMapping("")
-    public Sport deleetSport(@RequestParam("sport") Long sportId) {
+    public Sport deleteSport(@RequestParam("sport") Long sportId) {
         return sportService.deleteSport(sportId);
+    }
+
+    @PutMapping("")
+    public Sport updateSport(@RequestParam("id") Long id, @RequestParam("sport") String sport) {
+        return sportService.updateSport(id, sport);
     }
 }

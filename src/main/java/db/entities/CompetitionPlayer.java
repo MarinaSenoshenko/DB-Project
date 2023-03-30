@@ -1,7 +1,6 @@
 package db.entities;
 
 import db.entities.models.keys.CompetitionKey;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,6 @@ public class CompetitionPlayer {
     private CompetitionKey competitionKey;
     @NotNull
     private boolean wasAwarding;
-    @NotNull
     private Long result;
 
     public CompetitionPlayer(CompetitionKey competitionKey, boolean wasawarding, Long result) {

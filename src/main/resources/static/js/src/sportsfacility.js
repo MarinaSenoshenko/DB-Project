@@ -173,6 +173,20 @@ function addCourtSurface() {
     changeState(req, params, '/main/courtsurface');
 }
 
+function updateCourtSurface() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const surface = document.getElementById('surface').value;
+
+    const params = new URLSearchParams({
+        id: id, surface : surface,
+    });
+
+    req.open('PUT', '/courtsurface?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/courtsurface');
+}
+
 function deleteCourtSurface() {
     const req = new XMLHttpRequest();
     const surface = document.getElementById('surface').value;

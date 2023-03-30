@@ -24,4 +24,9 @@ public class EditCourtSurfaceController {
     public CourtSurface addCourtSurface(@RequestParam("surface") String value) {
         return courtSurfaceService.addCourtSurface(value);
     }
+
+    @PutMapping("")
+    public CourtSurface updateCourtSurface(@RequestParam("id") Long id, @RequestParam("surface") String value) {
+        return courtSurfaceService.updateCourtSurface(id, value);
+    }
 }

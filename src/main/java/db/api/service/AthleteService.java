@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import db.entities.Athlete;
 
+import java.util.Objects;
+
 @Service
 public class AthleteService {
     private final AthleteRepository athleteRepository;
@@ -23,6 +25,22 @@ public class AthleteService {
     public Athlete deleteAthlete(Long athleteId) {
         Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
         athleteRepository.delete(athlete);
+        return athlete;
+    }
+
+    public Athlete updateAthlete(Long id, String firstName, String patronymic, String lastName, SportClub club) {
+        Athlete athlete = athleteRepository.findById(id).orElseThrow();
+        if (!Objects.equals(patronymic, "")) {
+            athlete.setPatronymic(patronymic);
+        }
+        if (!Objects.equals(firstName, "")) {
+            athlete.setFirstName(firstName);
+        }
+        if (!Objects.equals(lastName, "")) {
+            athlete.setLastName(lastName);
+        }
+        athlete.setClub(club);
+        athleteRepository.save(athlete);
         return athlete;
     }
 }

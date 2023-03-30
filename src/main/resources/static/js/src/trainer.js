@@ -35,6 +35,34 @@ function deleteTrainer() {
     changeState(req, params, '/main/trainer')
 }
 
+function addTraining() {
+    const req = new XMLHttpRequest();
+    const trainer = document.getElementById('trainer').value;
+    const athlete = document.getElementById('athlete').value;
+
+    const params = new URLSearchParams({
+        trainer: trainer, athlete: athlete,
+    });
+
+    req.open('POST', '/training?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/training')
+}
+
+function deleteTraining() {
+    const req = new XMLHttpRequest();
+    const trainer = document.getElementById('trainer').value;
+    const athlete = document.getElementById('athlete').value;
+
+    const params = new URLSearchParams({
+        trainer: trainer, athlete: athlete,
+    });
+
+    req.open('DELETE', '/training?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/training')
+}
+
 function addTrainerLicense() {
     const req = new XMLHttpRequest();
     const trainer = document.getElementById('trainer').value;

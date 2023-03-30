@@ -12,6 +12,8 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/training/add'">Добавить</a>
+  <a class="buttons" onclick="location.href='/main/training/delete'">Удалить</a>
   <table border="1" width="1400">
     <colgroup>
       <col span="15" style="background:blue">
@@ -34,14 +36,14 @@
     </tr>
     <tr th:each="training, iter : ${trainings}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${training.athlete.lastName}" style="text-align:center"></td>
-      <td th:text="${training.athlete.firstName}" style="text-align:center"></td>
-      <td th:text="${training.athlete.patronymic}" style="text-align:center"></td>
-      <td th:text="${training.athlete.club.title}" style="text-align:center"></td>
-      <td th:text="${training.trainerLicense.licenseKey.trainer.lastName}" style="text-align:center"></td>
-      <td th:text="${training.trainerLicense.licenseKey.trainer.firstName}" style="text-align:center"></td>
-      <td th:text="${training.trainerLicense.licenseKey.trainer.patronymic}" style="text-align:center"></td>
-      <td th:text="${training.trainerLicense.licenseKey.sport.value}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.athlete.lastName}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.athlete.firstName}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.athlete.patronymic}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.athlete.club.title}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.lastName}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.firstName}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.patronymic}" style="text-align:center"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.sport.value}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

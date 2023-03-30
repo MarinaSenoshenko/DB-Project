@@ -12,6 +12,8 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" onclick="location.href='/main/athleteranking/add'">Добавить</a>
+  <a class="buttons" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
   <table border="1" width="1000">
     <colgroup>
       <col span="6" style="background:blue">
@@ -28,11 +30,11 @@
     </tr>
     <tr th:each="athleteranking, iter : ${athleterankings}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${athleteranking.athlete.lastName}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athlete.firstName}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athlete.patronymic}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athlete.club.title}" style="text-align:center"></td>
-      <td th:text="${athleteranking.sport.value}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.lastName}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.firstName}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.patronymic}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.club.title}" style="text-align:center"></td>
+      <td th:text="${athleteranking.athleteKey.sport.value}" style="text-align:center"></td>
       <td th:text="${athleteranking.rank.value}" style="text-align:center"></td>
     </tr>
   </table> <br/>

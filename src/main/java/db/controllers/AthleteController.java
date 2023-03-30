@@ -32,17 +32,20 @@ public class AthleteController {
         return "/post/add_athlete";
     }
 
+    @GetMapping("/update")
+    public String updateAthlete(Model model) {
+        addAttributesToModel(model);
+        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("sportclubs", sportClubRepository.findAll());
+        return "/update/update_athlete";
+    }
+
     @GetMapping("/delete")
     public String deleteAthlete(Model model) {
         model.addAttribute("athletes", athleteRepository.getNotUsedInOtherTablesAthletes());
         return "/delete/delete_athlete";
     }
 
-    @GetMapping("/add/addranking")
-    public String addAthleteRanking(Model model) {
-        addAttributesToModel(model);
-        return "/post/add_ranking";
-    }
 
     @GetMapping("/bysport/{sport}/{athleterank}")
     public String getAthletesByRanking(@PathVariable("sport") String sport, @PathVariable("athleterank")

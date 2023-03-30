@@ -14,15 +14,21 @@
     <h1 th:text="${name}" id="auth-name"></h1>
 
     <form class="grades-form" align="center">
+        <th>Выберите id: </th>
+        <label for="id"></label><select class="selathlete" id="id">
+        <option th:each="athlete: ${athletes}"
+                th:text="${athlete.id}">
+        </option>
+    </select><br/><br/>
 
-        <th>Разряд: </th>
+        <th>Выберите разряд: </th>
         <label for="rank"></label><select class="selathlete" id="rank">
         <option th:each="athleterank: ${athleteranks}"
                 th:text="${athleterank.value}">
         </option>
     </select><br/><br/>
 
-        <th>Вид спорта: </th>
+        <th>Выберите вид спорта: </th>
         <label for="sport"></label><select class="selathlete" id="sport">
         <option th:each="sport: ${sports}"
                 th:text="${sport.value}">
@@ -30,7 +36,7 @@
     </select><br/><br/>
 
         <button type="button" onclick="addRanking()">Добавить</button>
-        <button type="button" onclick="location.href='/main/athlete'">Отменить</button>
+        <button type="button" onclick="location.href='/main/athleteranking'">Отменить</button>
     </form>
 </main>
 </body>

@@ -1,6 +1,5 @@
 package db.repository.sports;
 
-import db.entities.models.surface.Arena;
 import db.entities.models.surface.Gym;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
