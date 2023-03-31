@@ -36,6 +36,11 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addSportsFacility(address, type);
     }
 
+    @PutMapping("")
+    public SportsFacility updateSportsFacility(@RequestParam("id") Long id, @RequestParam("address") String address) {
+        return sportsFacilityService.updateSportsFacility(id, address);
+    }
+
     @DeleteMapping("")
     public SportsFacility deleteSportsFacility(@RequestParam("sportsfacility") Long facilityId) {
         return sportsFacilityService.deleteSportsFacility(facilityId);
@@ -46,6 +51,11 @@ public class EditSportsFacilityController {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         return sportsFacilityService.addArenaParam(param, sportsFacility);
+    }
+
+    @PutMapping("/arena")
+    public Arena updateArena(@RequestParam("id") Long id, @RequestParam("param") String param) {
+        return sportsFacilityService.updateArenaParam(id, param);
     }
 
     @DeleteMapping("/arena")
@@ -61,6 +71,11 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addCourtParam(surface, sportsFacility);
     }
 
+    @PutMapping("/court")
+    public Court updateCourt(@RequestParam("id") Long id, @RequestParam("param") String param) {
+        return sportsFacilityService.updateCourtParam(id, param);
+    }
+
     @DeleteMapping("/court")
     public Court deleteCourt(@RequestParam("param") Long courtId) {
         return sportsFacilityService.deleteCourtParam(courtId);
@@ -73,6 +88,11 @@ public class EditSportsFacilityController {
         return sportsFacilityService.addGymParam(param, sportsFacility);
     }
 
+    @PutMapping("/gym")
+    public Gym updateGym(@RequestParam("id") Long id, @RequestParam("param") String param) {
+        return sportsFacilityService.updateGymParam(id, param);
+    }
+
     @DeleteMapping("/gym")
     public Gym deleteGym(@RequestParam("param") Long gymId) {
         return sportsFacilityService.deleteGymParam(gymId);
@@ -83,6 +103,11 @@ public class EditSportsFacilityController {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         return sportsFacilityService.addStadiumParam(param, sportsFacility);
+    }
+
+    @PutMapping("/stadium")
+    public Stadium updateStadium(@RequestParam("id") Long id, @RequestParam("param") String param) {
+        return sportsFacilityService.updateStadiumParam(id, param);
     }
 
     @DeleteMapping("/stadium")

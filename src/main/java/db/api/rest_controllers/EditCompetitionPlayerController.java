@@ -35,6 +35,14 @@ public class EditCompetitionPlayerController {
         return competitionPlayerService.addCompetitionPlayer(athlete, competition, wasawarding, result);
     }
 
+    @PutMapping("")
+    public CompetitionPlayer updateCompetitionPlayer(@RequestParam("athlete") Long athleteId,
+                                                  @RequestParam("competition") Long competitionId,
+                                                  @RequestParam("wasawarding") boolean wasawarding,
+                                                  @RequestParam("result") Long result) {
+        return competitionPlayerService.updateCompetitionPlayer(athleteId, competitionId, wasawarding, result);
+    }
+
     @DeleteMapping("")
     public CompetitionPlayer deleteCompetitionPlayer(@RequestParam("athlete") Long athleteId,
                                                      @RequestParam("competition") Long competitionId) {

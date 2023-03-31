@@ -30,6 +30,13 @@ public class CompetitionPlayerController {
         return "/post/add_competition_player";
     }
 
+    @GetMapping("/update")
+    public String updateCompetitionPlayer(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("competitions", competitionRepository.findAll());
+        return "/update/update_competition_player";
+    }
+
     @GetMapping("/delete")
     public String deleteCompetitionPlayer(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());

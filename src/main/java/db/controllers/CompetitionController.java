@@ -40,6 +40,15 @@ public class CompetitionController {
         return "/post/add_competition";
     }
 
+    @GetMapping("/update")
+    public String updateCompetition(Model model) {
+        addAttributesToModel(model);
+        model.addAttribute("sponsors", sponsorRepository.findAll());
+        model.addAttribute("sports", sportRepository.findAll());
+        model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
+        return "/update/update_competition";
+    }
+
     @GetMapping("/delete")
     public String deleteCompetition(Model model) {
         model.addAttribute("competitions", competitionRepository.getNotUsedInOtherTableCompetitionsId());

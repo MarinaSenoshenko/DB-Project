@@ -2,6 +2,7 @@ package db.api.service;
 
 import db.entities.*;
 import db.entities.models.keys.AthleteKey;
+import db.repository.AthleteRankRepository;
 import db.repository.AthleteRankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AthleteRankingService {
     private final AthleteRankingRepository athleteRankingRepository;
+    private final AthleteRankRepository athleteRankRepository;
 
     @Autowired
-    public AthleteRankingService(AthleteRankingRepository athleteRankingRepository) {
+    public AthleteRankingService(AthleteRankingRepository athleteRankingRepository,
+                                 AthleteRankRepository athleteRankRepository) {
         this.athleteRankingRepository = athleteRankingRepository;
+        this.athleteRankRepository = athleteRankRepository;
     }
 
     public AthleteRanking addAthleteRanking(Athlete athlete, Sport sport, AthleteRank athleteRank) {
@@ -24,6 +28,14 @@ public class AthleteRankingService {
     public AthleteRanking deleteAthleteRanking(Long athleteId, Long sportId) {
         AthleteRanking athleteRanking = athleteRankingRepository.getAthleteRankingByAthleteAndSport(athleteId, sportId);
         athleteRankingRepository.delete(athleteRanking);
+        return athleteRanking;
+    }
+
+    public AthleteRanking updateAthleteRanking(Long athleteId, Long sportId, String rank) {
+        AthleteRanking athleteRanking = athleteRankingRepository.getAthleteRankingByAthleteAndSport(athleteId, sportId);
+        AthleteRank athleteRank = athleteRankRepository.findByValue(rank);
+        athleteRanking.setRank(athleteRank);
+        athleteRankingRepository.save(athleteRanking);
         return athleteRanking;
     }
 }

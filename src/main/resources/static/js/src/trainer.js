@@ -22,6 +22,27 @@ function addTrainer() {
     changeState(req, params, '/main/trainer')
 }
 
+function updateTrainer() {
+    const req = new XMLHttpRequest();
+
+    const id = document.getElementById('id').value;
+    const fistName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const patronymic = document.getElementById('patronymic').value;
+
+    const params = new URLSearchParams({
+        id: id,
+        firstName: fistName,
+        patronymic: patronymic,
+        lastName: lastName,
+    });
+
+    req.open('PUT', '/trainer?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/trainer')
+}
+
+
 function deleteTrainer() {
     const req = new XMLHttpRequest();
     const trainer = document.getElementById('trainer').value;

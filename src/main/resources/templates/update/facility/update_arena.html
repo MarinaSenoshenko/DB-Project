@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update_arena</title>
+</head>
+
+<body>
+<main class="main-holder">
+    <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
+    <h1 class="grades-header" align="center">Изменить количество дорожек</h1>
+    <h1 th:text="${name}" id="auth-name"></h1>
+
+    <form class="grades-form" align="center">
+        <th>Выберите id: </th>
+        <label for="id"></label><select class="selathlete" id="id">
+        <option th:each="arena: ${arenas}"
+                th:text="${arena.id}">
+        </option>
+    </select><br/><br/>
+
+        <th>Количество дорожек: </th>
+        <label for="param"></label>
+        <input type="text"
+               name="homework"
+               id="param"
+               size="40"
+               class="login-form-field"
+               placeholder="количество">
+        <br/><br/>
+
+        <button type="button" onclick="updateArena()">Изменить</button>
+        <button type="button" onclick="location.href='/main/sportsfacility/arena'">Отменить</button>
+    </form>
+</main>
+</body>
+</html>

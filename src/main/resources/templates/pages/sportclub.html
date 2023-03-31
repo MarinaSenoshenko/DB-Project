@@ -16,6 +16,7 @@
   <a class="buttons"onclick="location.href='/main/sportclub'">Cброс</a>
   <a class="buttons" onclick="location.href='/main/sportclub/add'">Добавить</a>
   <a class="buttons"onclick="location.href='/main/sportclub/delete'">Удалить</a>
+  <a class="buttons"onclick="location.href='/main/sportclub/update'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить спортивные клубы за период: </b></th>
     <th>Введите дату начала: </th>
@@ -45,7 +46,7 @@
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
       <td th:text="${allsportclub.title}" style="text-align:center"></td>
       <td th:text="${counts}" style="text-align:center"></td>
-      <td th:text="${id}" style="text-align:center"></td>
+      <td th:text="${allsportclub.id}" style="text-align:center"></td>
     </tr>
   </table> <br/>
 </main>

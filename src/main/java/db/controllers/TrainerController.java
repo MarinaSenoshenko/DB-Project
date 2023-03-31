@@ -30,6 +30,14 @@ public class TrainerController {
         return "/post/add_trainer";
     }
 
+    @GetMapping("/update")
+    public String updateTrainer(Model model) {
+        model.addAttribute("trainers", trainerRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("sports", sportRepository.findAll());
+        return "/update/update_trainer";
+    }
+
     @GetMapping("/delete")
     public String deleteTrainer(Model model) {
         model.addAttribute("trainers", trainerRepository.getNotUsedInOtherTablesTrainersId());

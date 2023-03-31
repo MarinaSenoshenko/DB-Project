@@ -25,4 +25,11 @@ public class SportClubService {
         sportClubRepository.delete(sportClub);
         return sportClub;
     }
+
+    public SportClub updateSportClub(Long id, String value) {
+        SportClub sportClub = sportClubRepository.findById(id).orElseThrow();
+        sportClub.setTitle(value);
+        sportClubRepository.save(sportClub);
+        return sportClub;
+    }
 }

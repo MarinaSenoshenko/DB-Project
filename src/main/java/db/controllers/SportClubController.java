@@ -25,6 +25,12 @@ public class SportClubController {
         return "/post/add_sport_club";
     }
 
+    @GetMapping("/update")
+    public String updateSportClub(Model model) {
+        model.addAttribute("sportclubs", sportClubRepository.findAll());
+        return "/update/update_sport_club";
+    }
+
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
         model.addAttribute("sportclubs", sportClubRepository.getNotUsedInOtherTablesSportClubsId());

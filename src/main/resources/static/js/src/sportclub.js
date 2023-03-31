@@ -18,6 +18,20 @@ function addSportClub() {
     changeState(req, params, '/main/sportclub')
 }
 
+function updateSportClub() {
+    const req = new XMLHttpRequest();
+    const sport = document.getElementById('sport').value;
+    const id = document.getElementById('id').value;
+
+    const params = new URLSearchParams({
+        id: id, sport: sport
+    });
+
+    req.open('PUT', '/sportclub?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportclub')
+}
+
 function deleteSportClub() {
     const req = new XMLHttpRequest();
     const sport = document.getElementById('sport').value;

@@ -33,6 +33,15 @@ public class AthleteRankingController {
         return "/post/add_ranking";
     }
 
+    @GetMapping("/update")
+    public String updateAthleteRanking(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("athleterankings", athleteRankingRepository.findAll());
+        model.addAttribute("athleteranks", athleteRankRepository.findAll());
+        model.addAttribute("sports", sportRepository.findAll());
+        return "/update/update_ranking";
+    }
+
     @GetMapping("/delete")
     public String deleteAthleteRanking(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());

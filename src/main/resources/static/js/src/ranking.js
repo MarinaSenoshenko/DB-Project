@@ -15,6 +15,23 @@ function addRanking() {
     changeState(req, params, '/main/athleteranking');
 }
 
+function updateRanking() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const sport = document.getElementById('sport').value;
+    const rank = document.getElementById('rank').value;
+
+    const params = new URLSearchParams({
+        id: id,
+        sport: sport,
+        rank: rank,
+    });
+
+    req.open('PUT', '/athleteranking?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/athleteranking');
+}
+
 function deleteRanking() {
     const req = new XMLHttpRequest();
     const sport = document.getElementById('sport').value;

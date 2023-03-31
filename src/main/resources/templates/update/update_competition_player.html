@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>update_competition_player</title>
+</head>
+
+<body>
+<main class="main-holder">
+  <script type="text/javascript" src="/js/src/competition.js"></script>
+  <h1 class="grades-header" align="center">Изменить участника соревнований</h1>
+  <h1 th:text="${name}" id="auth-name"></h1>
+
+  <form class="grades-form" align="center">
+
+    <th>Выберите id атлета: </th>
+    <label for="athlete"></label><select class="selathlete" id="athlete">
+    <option th:each="athlete: ${athletes}"
+            th:text="${athlete.id}">
+    </option>
+  </select><br/><br/>
+
+    <th>Выберите id соревнования: </th>
+    <label for="competition"></label><select class="selathlete" id="competition">
+    <option th:each="competition: ${competitions}"
+            th:text="${competition.id}">
+    </option>
+  </select><br/><br/>
+
+    <th>Был награжден?(true, false): </th>
+    <label for="wasawarding"></label>
+    <input type="text"
+           name="homework"
+           id="wasawarding"
+           size="40"
+           class="login-form-field"
+           placeholder="фамилия">
+    <br/><br/>
+
+    <th>Результат: </th>
+    <label for="result"></label>
+    <input type="text"
+           name="homework"
+           id="result"
+           size="40"
+           class="first-name-field"
+           placeholder="имя">
+    <br/><br/>
+
+    <button type="button" onclick="updateCompetitionPlayer()">Изменить</button>
+    <button type="button" onclick="location.href='/main/competitionplayer'">Отменить</button>
+  </form>
+</main>
+</body>
+</html>

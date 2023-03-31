@@ -42,6 +42,14 @@ public class EditCompetitionController {
         return competitionService.addCompetition(title, dateFormat.parse(period), sponsor, sport, sportsFacility);
     }
 
+    @PutMapping("")
+    public Competition updateCompetition(@RequestParam("id") Long id, @RequestParam("title") String title,
+                                         @RequestParam("period") String period, @RequestParam("sponsor") Long sponsorId,
+                                         @RequestParam("sport") Long sportId,
+                                         @RequestParam("sportsfacility") Long sportsfacilityId) throws ParseException {
+        return competitionService.updateCompetition(id, title, period, sponsorId, sportId, sportsfacilityId);
+    }
+
     @DeleteMapping("")
     public Competition deleteCompetition(@RequestParam("competition") Long competitionId) {
         return competitionService.deleteCompetition(competitionId);

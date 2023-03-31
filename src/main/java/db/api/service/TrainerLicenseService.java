@@ -10,8 +10,6 @@ import db.repository.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
 @Service
 public class TrainerLicenseService {
     private final TrainerLicenseRepository trainerLicenseRepository;
@@ -31,6 +29,8 @@ public class TrainerLicenseService {
         Sport sport = sportRepository.getSportByValue(value);
         Trainer trainer = trainerRepository.findById(trainerId).orElseThrow();
         TrainerLicense trainerLicense = new TrainerLicense(new LicenseKey(trainer, sport));
+        System.out.println(trainerLicense);
+
         trainerLicenseRepository.save(trainerLicense);
         return trainerLicense;
     }

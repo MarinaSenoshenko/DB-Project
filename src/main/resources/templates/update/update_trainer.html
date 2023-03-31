@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>update_trainer</title>
+</head>
+
+<body>
+<main class="main-holder">
+  <script type="text/javascript" src="/js/src/trainer.js"></script>
+  <h1 class="grades-header" align="center">Изменить тренера</h1>
+  <h1 th:text="${name}" id="auth-name"></h1>
+
+  <form class="grades-form" align="center">
+    <th>Выберите id: </th>
+    <label for="id"></label><select class="selathlete" id="id">
+    <option th:each="trainer: ${trainers}"
+            th:text="${trainer.id}">
+    </option>
+  </select><br/><br/>
+
+    <th>Фамилия: </th>
+    <label for="last_name"></label>
+    <input type="text"
+           name="homework"
+           id="last_name"
+           size="40"
+           class="login-form-field"
+           placeholder="фамилия">
+    <br/><br/>
+
+    <th>Имя: </th>
+    <label for="first_name"></label>
+    <input type="text"
+           name="homework"
+           id="first_name"
+           size="40"
+           class="first-name-field"
+           placeholder="имя">
+    <br/><br/>
+
+    <th>Отчество: </th>
+    <label for="patronymic"></label>
+    <input type="text"
+           name="homework"
+           id="patronymic"
+           size="40"
+           class="first-name-field"
+           placeholder="отчество">
+    <br/><br/>
+
+    <button type="button" onclick="updateTrainer()">Изменить</button>
+    <button type="button" onclick="location.href='/main/trainer'">Отменить</button>
+  </form>
+</main>
+</body>
+</html>

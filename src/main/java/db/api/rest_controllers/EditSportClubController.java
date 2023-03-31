@@ -24,4 +24,9 @@ public class EditSportClubController {
     public SportClub deleteSportClub(@RequestParam("sport") Long sportClubId) {
         return sportClubService.deleteSportClub(sportClubId);
     }
+
+    @PutMapping("")
+    public SportClub updateSportClub(@RequestParam("id") Long id, @RequestParam("sport") String value) {
+        return sportClubService.updateSportClub(id, value);
+    }
 }

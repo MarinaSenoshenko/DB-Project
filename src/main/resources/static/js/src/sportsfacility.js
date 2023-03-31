@@ -39,6 +39,21 @@ function addArena() {
     changeState(req, params, '/main/sportsfacility/arena');
 }
 
+function updateArena() {
+    const req = new XMLHttpRequest();
+    const param = document.getElementById('param').value;
+    const id = document.getElementById('id').value;
+
+    const params = new URLSearchParams({
+        id: id,
+        param: param,
+    });
+
+    req.open('PUT', '/sportsfacility/arena?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportsfacility/arena');
+}
+
 function deleteArena() {
     const req = new XMLHttpRequest();
     const param = document.getElementById('param').value;
@@ -65,6 +80,21 @@ function addCourt() {
     changeState(req, params, '/main/sportsfacility/court');
 }
 
+function updateCourt() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        id: id,
+        param: param,
+    });
+
+    req.open('PUT', '/sportsfacility/court?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportsfacility/court');
+}
+
 function deleteCourt() {
     const req = new XMLHttpRequest();
     const param = document.getElementById('param').value;
@@ -87,6 +117,20 @@ function addGym() {
     });
 
     req.open('POST', '/sportsfacility/gym?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportsfacility/gym');
+}
+
+function updateGym() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        id: id, param: param,
+    });
+
+    req.open('PUT', '/sportsfacility/gym?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     changeState(req, params, '/main/sportsfacility/gym');
 }
@@ -119,6 +163,20 @@ function addFacility() {
     changeState(req, params, '/main/sportsfacility/add/add_' + type);
 }
 
+function updateFacility() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const address = document.getElementById('address').value;
+
+    const params = new URLSearchParams({
+        id: id, address : address,
+    });
+
+    req.open('PUT', '/sportsfacility?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportsfacility/');
+}
+
 function deleteFacility() {
     const req = new XMLHttpRequest();
     const sportsfacility = document.getElementById('sportsfacility').value;
@@ -141,6 +199,20 @@ function addStadium() {
     });
 
     req.open('POST', '/sportsfacility/stadium?' + params.toString());
+    req.setRequestHeader("Content-Type", "application/json");
+    changeState(req, params, '/main/sportsfacility/stadium');
+}
+
+function updateStadium() {
+    const req = new XMLHttpRequest();
+    const id = document.getElementById('id').value;
+    const param = document.getElementById('param').value;
+
+    const params = new URLSearchParams({
+        id: id, param: param,
+    });
+
+    req.open('PUT', '/sportsfacility/stadium?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     changeState(req, params, '/main/sportsfacility/stadium');
 }

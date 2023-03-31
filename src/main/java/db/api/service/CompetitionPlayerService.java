@@ -6,6 +6,8 @@ import db.repository.CompetitionPlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CompetitionPlayerService {
     private final CompetitionPlayerRepository competitionPlayerRepository;
@@ -24,6 +26,18 @@ public class CompetitionPlayerService {
     public CompetitionPlayer deleteCompetitionPlayer(Long athleteId, Long competitionId) {
         CompetitionPlayer competitionPlayer = competitionPlayerRepository.getCompetitionPlayerByAthleteAndCompetition(athleteId, competitionId);
         competitionPlayerRepository.delete(competitionPlayer);
+        return competitionPlayer;
+    }
+
+    public CompetitionPlayer updateCompetitionPlayer(Long athleteId, Long competitionId, boolean wasawarding, Long result) {
+        CompetitionPlayer competitionPlayer = competitionPlayerRepository.getCompetitionPlayerByAthleteAndCompetition(athleteId, competitionId);
+        if (wasawarding != competitionPlayer.isWasAwarding()) {
+            competitionPlayer.setWasAwarding(wasawarding);
+        }
+        if (!Objects.equals(result, competitionPlayer.getResult())) {
+            competitionPlayer.setResult(result);
+        }
+        competitionPlayerRepository.save(competitionPlayer);
         return competitionPlayer;
     }
 }

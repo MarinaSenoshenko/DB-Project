@@ -4,6 +4,7 @@ import db.entities.CourtSurface;
 import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.entities.models.surface.SportsFacility;
+import db.repository.CourtSurfaceRepository;
 import db.repository.sports.SportsFacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,22 +17,32 @@ public class SportsFacilityService {
     private final CourtRepository courtRepository;
     private final GymRepository gymRepository;
     private final StadiumRepository stadiumRepository;
+    private final CourtSurfaceRepository courtSurfaceRepository;
 
     @Autowired
     public SportsFacilityService(SportsFacilityRepository sportsFacilityRepository,
                                  ArenaRepository arenaRepository,
                                  CourtRepository courtRepository,
                                  StadiumRepository stadiumRepository,
-                                 GymRepository gymRepository) {
+                                 GymRepository gymRepository,
+                                 CourtSurfaceRepository courtSurfaceRepository) {
         this.sportsFacilityRepository = sportsFacilityRepository;
         this.arenaRepository = arenaRepository;
         this.courtRepository = courtRepository;
         this.stadiumRepository = stadiumRepository;
         this.gymRepository = gymRepository;
+        this.courtSurfaceRepository = courtSurfaceRepository;
     }
 
     public SportsFacility addSportsFacility(String address, SportsFacilityType type) {
         SportsFacility sportsFacility = new SportsFacility(address, type);
+        sportsFacilityRepository.save(sportsFacility);
+        return sportsFacility;
+    }
+
+    public SportsFacility updateSportsFacility(Long id, String address) {
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
+        sportsFacility.setAddress(address);
         sportsFacilityRepository.save(sportsFacility);
         return sportsFacility;
     }
@@ -48,6 +59,13 @@ public class SportsFacilityService {
         return arena;
     }
 
+    public Arena updateArenaParam(Long id, String param) {
+        Arena arena = arenaRepository.findById(id).orElseThrow();
+        arena.setTrackNumber(Long.valueOf(param));
+        arenaRepository.save(arena);
+        return arena;
+    }
+
     public Arena deleteArenaParam(Long arenaId) {
         Arena arena = arenaRepository.findById(arenaId).orElseThrow();
         arenaRepository.delete(arena);
@@ -56,6 +74,14 @@ public class SportsFacilityService {
 
     public Court addCourtParam(CourtSurface surface, SportsFacility sportsFacility) {
         Court court = new Court(surface, sportsFacility);
+        courtRepository.save(court);
+        return court;
+    }
+
+    public Court updateCourtParam(Long id, String param) {
+        Court court = courtRepository.findById(id).orElseThrow();
+        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
+        court.setSurface(surface);
         courtRepository.save(court);
         return court;
     }
@@ -72,6 +98,13 @@ public class SportsFacilityService {
         return gym;
     }
 
+    public Gym updateGymParam(Long id, String param) {
+        Gym gym = gymRepository.findById(id).orElseThrow();
+        gym.setFloorArea(Double.valueOf(param));
+        gymRepository.save(gym);
+        return gym;
+    }
+
     public Gym deleteGymParam(Long gymId) {
         Gym gym = gymRepository.findById(gymId).orElseThrow();
         gymRepository.delete(gym);
@@ -80,6 +113,13 @@ public class SportsFacilityService {
 
     public Stadium addStadiumParam(String param, SportsFacility sportsFacility) {
         Stadium stadium = new Stadium(param, sportsFacility);
+        stadiumRepository.save(stadium);
+        return stadium;
+    }
+
+    public Stadium updateStadiumParam(Long id, String param) {
+        Stadium stadium = stadiumRepository.findById(id).orElseThrow();
+        stadium.setCapacity(Long.valueOf(param));
         stadiumRepository.save(stadium);
         return stadium;
     }
