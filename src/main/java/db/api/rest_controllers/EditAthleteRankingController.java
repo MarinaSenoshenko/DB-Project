@@ -4,25 +4,18 @@ import db.api.service.AthleteRankingService;
 import db.entities.*;
 import db.entities.Sport;
 import db.repository.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/athleteranking")
 public class EditAthleteRankingController {
     private final AthleteRankingService athleteRankingService;
     private final AthleteRepository athleteRepository;
     private final SportRepository sportRepository;
     private final AthleteRankRepository athleteRankRepository;
-
-    @Autowired
-    public EditAthleteRankingController(AthleteRepository athleteRepository, SportRepository sportRepository,
-                                 AthleteRankRepository athleteRankRepository, AthleteRankingService athleteRankingService) {
-        this.athleteRankingService = athleteRankingService;
-        this.athleteRepository = athleteRepository;
-        this.sportRepository = sportRepository;
-        this.athleteRankRepository = athleteRankRepository;
-    }
 
     @PostMapping("")
     public AthleteRanking addAthleteRankAndSport(@RequestParam("id") Long athleteId, @RequestParam("rank") String rank,

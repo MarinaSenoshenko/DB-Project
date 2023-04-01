@@ -2,17 +2,14 @@ package db.api.service;
 
 import db.entities.SportClub;
 import db.repository.SportClubRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class SportClubService {
     private final SportClubRepository sportClubRepository;
-
-    @Autowired
-    public SportClubService(SportClubRepository sportClubRepository) {
-        this.sportClubRepository = sportClubRepository;
-    }
 
     public SportClub addSportClub(String value) {
         SportClub sportClub = new SportClub(value);

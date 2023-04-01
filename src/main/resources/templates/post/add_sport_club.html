@@ -5,28 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>add_sport_club</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sportclub.js"></script>
-  <h1 class="grades-header" align="center">Добавить спорт клуб</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-
-  <form class="grades-form" align="center">
-
-    <th>Название клуба: </th>
-    <label for="sport"></label>
-    <input type="text"
-           name="homework"
-           id="sport"
-           size="40"
-           class="login-form-field"
-           placeholder="спортклуб">
-    <br/><br/>
-
-    <button type="button" onclick="addSportClub()">Добавить</button>
-    <button type="button" onclick="location.href='/main/sportclub'">Отменить</button>
+  <div class="form">
+    <div class="title">Добавить cпортивный клуб</div>
+    <div class="subtitle">Введите название спортивного клуба</div>
+    <div class="input-container ic1">
+      <input id="sport" class="input" type="text" placeholder=" " />
+      <label for="sport" class="placeholder">Ввведите название</label>
+    </div>
+    <button type="button" class="submit" onclick="addSportClub()">Добавить</button>
+    <button type="button" class="submit" onclick="location.href='/main/sportclub'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

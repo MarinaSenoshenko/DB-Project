@@ -6,24 +6,17 @@ import db.entities.*;
 import db.repository.AthleteRepository;
 import db.repository.CompetitionRepository;
 import db.entities.CompetitionPlayer;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/competitionplayer")
 public class EditCompetitionPlayerController {
     private final AthleteRepository athleteRepository;
     private final CompetitionRepository competitionRepository;
     private final CompetitionPlayerService competitionPlayerService;
-
-    @Autowired
-    public EditCompetitionPlayerController(AthleteRepository athleteRepository,
-                                           CompetitionRepository competitionRepository,
-                                           CompetitionPlayerService competitionPlayerService) {
-        this.athleteRepository = athleteRepository;
-        this.competitionRepository = competitionRepository;
-        this.competitionPlayerService = competitionPlayerService;
-    }
 
     @PostMapping("")
     public CompetitionPlayer addCompetitionPlayer(@RequestParam("athlete") Long athleteId,

@@ -5,6 +5,7 @@ import db.entities.models.surface.SportsFacility;
 import db.repository.*;
 import db.repository.SportRepository;
 import db.repository.sports.SportsFacilityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,12 @@ import java.util.Date;
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class CompetitionService {
     private final CompetitionRepository competitionRepository;
     private final SportRepository sportRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final SponsorRepository sponsorRepository;
-
-    @Autowired
-    public CompetitionService(CompetitionRepository competitionRepository, SportRepository sportRepository,
-                              SportsFacilityRepository sportsFacilityRepository, SponsorRepository sponsorRepository) {
-        this.competitionRepository = competitionRepository;
-        this.sportRepository = sportRepository;
-        this.sportsFacilityRepository = sportsFacilityRepository;
-        this.sponsorRepository = sponsorRepository;
-    }
 
     public Competition addCompetition(String title, Date period, Sponsor sponsor, Sport sport, SportsFacility sportsFacility) {
         Competition competition = new Competition(title, period, sponsor, sport, sportsFacility);

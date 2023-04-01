@@ -5,38 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>add_sponsor</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sponsor.js"></script>
-  <h1 class="grades-header" align="center">Добавить спонсора</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-
-  <form class="grades-form" align="center">
-
-    <th>Спонсор:</th>
-    <label for="name"></label>
-    <input type="text"
-           name="homework"
-           id="name"
-           size="40"
-           class="login-form-field"
-           placeholder="спонсор">
-    <br/><br/>
-
-    <th>Название компании:</th>
-    <label for="company"></label>
-    <input type="text"
-           name="homework"
-           id="company"
-           size="40"
-           class="login-form-field"
-           placeholder="компания">
-    <br/><br/>
-
-    <button type="button" onclick="addCompany()">Добавить</button>
-    <button type="button" onclick="location.href='/main/sponsor'">Отменить</button>
+  <div class="form">
+    <div class="title">Добавить атлета</div>
+    <div class="subtitle">Выберите клуб из списка</div>
+    <div class="input-container ic1">
+      <input id="name" class="input" type="text" placeholder=" " />
+      <label for="name" class="placeholder">Ввведите спонсора</label>
+    </div>
+    <div class="input-container ic2">
+      <input id="company" class="input" type="text" placeholder=" " />
+      <label for="company" class="placeholder">Введите название компании</label>
+    </div>
+    <button type="button" class="submit" onclick="addCompany()">Добавить</button>
+    <button type="button" class="submit" onclick="location.href='/main/sponsor'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

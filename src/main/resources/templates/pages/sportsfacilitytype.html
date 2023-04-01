@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
   <title>sportsfacilitytype</title>
+  <link rel='stylesheet' href='/css/background.css'>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
     </colgroup>
     <tr>
       <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Тип покрытия</p></th>
+      <th><p style="font-size: 20px;">Спортивная площадка</p></th>
     </tr>
     <tr th:each="sportsfacilitytype, iter : ${sportsfacilitytypes}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>

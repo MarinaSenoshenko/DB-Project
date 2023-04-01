@@ -17,15 +17,15 @@ public class Athlete {
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "incrementDomain")
     @GenericGenerator(name = "incrementDomain", strategy = "increment")
-    public Long id;
+    private Long id;
     @NotNull
-    public String firstName;
-    public String patronymic;
-    public String lastName;
+    private String firstName;
+    private String patronymic;
+    private String lastName;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "club", referencedColumnName = "id")
-    public SportClub club;
+    private SportClub club;
 
     public Athlete(String firstName, String patronymic, String lastName, SportClub club) {
         this.patronymic = patronymic;

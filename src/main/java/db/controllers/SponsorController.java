@@ -25,6 +25,12 @@ public class SponsorController {
         return "/post/add_sponsor";
     }
 
+    @GetMapping("/update")
+    public String updateSponsor(Model model) {
+        model.addAttribute("sponsors", sponsorRepository.findAll());
+        return "/update/update_sponsor";
+    }
+
     @GetMapping("/delete")
     public String deleteSponsor(Model model) {
         model.addAttribute("sponsors", sponsorRepository.getNotUsedInOtherTablesSponsorsId());

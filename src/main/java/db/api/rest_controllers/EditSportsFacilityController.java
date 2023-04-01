@@ -7,27 +7,18 @@ import db.entities.models.surface.*;
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.SportsFacilityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/sportsfacility")
 public class EditSportsFacilityController {
     private final SportsFacilityService sportsFacilityService;
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
-
-    @Autowired
-    public EditSportsFacilityController(SportsFacilityService sportsFacilityService,
-                                        SportsFacilityTypeRepository sportsFacilityTypeRepository,
-                                        SportsFacilityRepository sportsFacilityRepository,
-                                        CourtSurfaceRepository courtSurfaceRepository) {
-        this.sportsFacilityService = sportsFacilityService;
-        this.sportsFacilityRepository = sportsFacilityRepository;
-        this.sportsFacilityTypeRepository = sportsFacilityTypeRepository;
-        this.courtSurfaceRepository = courtSurfaceRepository;
-    }
 
     @PostMapping("")
     public SportsFacility addSportsFacility(@RequestParam("address") String address,

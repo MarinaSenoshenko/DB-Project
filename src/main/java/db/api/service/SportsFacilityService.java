@@ -6,11 +6,13 @@ import db.entities.models.surface.*;
 import db.entities.models.surface.SportsFacility;
 import db.repository.CourtSurfaceRepository;
 import db.repository.sports.SportsFacilityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import db.repository.sports.*;
 
 @Service
+@AllArgsConstructor
 public class SportsFacilityService {
     private final SportsFacilityRepository sportsFacilityRepository;
     private final ArenaRepository arenaRepository;
@@ -18,21 +20,6 @@ public class SportsFacilityService {
     private final GymRepository gymRepository;
     private final StadiumRepository stadiumRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
-
-    @Autowired
-    public SportsFacilityService(SportsFacilityRepository sportsFacilityRepository,
-                                 ArenaRepository arenaRepository,
-                                 CourtRepository courtRepository,
-                                 StadiumRepository stadiumRepository,
-                                 GymRepository gymRepository,
-                                 CourtSurfaceRepository courtSurfaceRepository) {
-        this.sportsFacilityRepository = sportsFacilityRepository;
-        this.arenaRepository = arenaRepository;
-        this.courtRepository = courtRepository;
-        this.stadiumRepository = stadiumRepository;
-        this.gymRepository = gymRepository;
-        this.courtSurfaceRepository = courtSurfaceRepository;
-    }
 
     public SportsFacility addSportsFacility(String address, SportsFacilityType type) {
         SportsFacility sportsFacility = new SportsFacility(address, type);

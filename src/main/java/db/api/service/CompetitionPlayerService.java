@@ -3,19 +3,16 @@ package db.api.service;
 import db.entities.*;
 import db.entities.models.keys.CompetitionKey;
 import db.repository.CompetitionPlayerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class CompetitionPlayerService {
     private final CompetitionPlayerRepository competitionPlayerRepository;
-
-    @Autowired
-    public CompetitionPlayerService(CompetitionPlayerRepository competitionPlayerRepository) {
-        this.competitionPlayerRepository = competitionPlayerRepository;
-    }
 
     public CompetitionPlayer addCompetitionPlayer(Athlete athlete, Competition competition, boolean wasawarding, Long result) {
         CompetitionPlayer competitionPlayer = new CompetitionPlayer(new CompetitionKey(athlete, competition), wasawarding, result);

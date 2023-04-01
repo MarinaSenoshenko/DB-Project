@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>login</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 <body>
-<div class="container">
-  <form class="form-signin" method="post" action="/login">
-    <h2 class="form-signin-heading">Login</h2>
-    <p>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
-    </p>
-    <p>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-    </p>
-    <button type="submit">Sign in</button>
-  </form>
+<div class="form">
+  <script type="text/javascript" src="/js/src/login.js"></script>
+  <div class="title">Регистрация</div>
+  <div class="subtitle">Создайте свой аккаунт</div>
+  <div class="input-container ic1">
+    <input id="firstName" class="input" type="text" placeholder=" " />
+    <label for="firstName" class="placeholder">Ввведите имя</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="lastName" class="input" type="text" placeholder=" " />
+    <label for="lastName" class="placeholder">Введите фамилию</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="patronymic" class="input" type="text" placeholder=" " />
+    <label for="patronymic" class="placeholder">Введите отчество</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="login" class="input" type="text" placeholder=" " />
+    <label for="login" class="placeholder">Введите логин</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="password" class="input" type="text" placeholder=" " />
+    <label for="password" class="placeholder">Придумайте пароль</label>
+  </div>
+  <button type="button" class="submit" onclick="add()">Войти</button>
 </div>
 </body>
 </html>

@@ -5,55 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>add_competition</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/competition.js"></script>
-  <h1 class="grades-header" align="center">Добавить соревнования</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
+  <div class="form">
+    <div class="title">Добавить соревнования</div>
+    <div class="subtitle">Выберите дату, спонсора, спорт и площадку</div>
+    <div class="input-container ic1">
+      <input id="title" class="input" type="text" placeholder=" " />
+      <label for="title" class="placeholder">Ввведите название</label>
+    </div>
 
-  <form class="grades-form" align="center">
+    <div class="input-container ic2">
+    <label for="period" class="placeholder"></label>
+      <input type="date" name="day" id="period" class="input" placeholder="day of week"></div>
 
-    <th>Название: </th>
-    <label for="title"></label>
-    <input type="text"
-           name="homework"
-           id="title"
-           size="40"
-           class="login-form-field"
-           placeholder="название">
-    <br/><br/>
+    <div class="input-container ic2">
+      <label for="sponsor" class="placeholder"></label><select class="input" id="sponsor">
+      <option th:each="sponsor: ${sponsors}"
+              th:text="${sponsor.id}">
+      </option>
+    </select><br/><br/>
+    </div>
 
-    <th>Дата: </th>
-    <label for="period"></label><input type="date" name="day"
-                                         id="period" size="60"
-                                         class="login-form-field"
-                                         placeholder="day of week"><br/><br/>
+    <div class="input-container ic2">
+      <label for="sport" class="placeholder"></label><select class="input" id="sport">
+      <option th:each="sport: ${sports}"
+              th:text="${sport.id}">
+      </option>
+    </select><br/><br/>
+    </div>
 
-    <th>Выберите спонсора: </th>
-    <label for="sponsor"></label><select class="selathlete" id="sponsor">
-    <option th:each="sponsor: ${sponsors}"
-            th:text="${sponsor.id}">
-    </option>
-  </select><br/><br/>
-
-    <th>Выберите вид спорта: </th>
-    <label for="sport"></label><select class="selathlete" id="sport">
-    <option th:each="sport: ${sports}"
-            th:text="${sport.id}">
-    </option>
-  </select><br/><br/>
-
-    <th>Выберите площадку: </th>
-    <label for="sportsfacility"></label><select class="selathlete" id="sportsfacility">
-    <option th:each="sportsfacility: ${sports_facilitys}"
-            th:text="${sportsfacility.id}">
-    </option>
-  </select><br/><br/>
-
-    <button type="button" onclick="addCompetition()">Добавить</button>
-    <button type="button" onclick="location.href='/main/competition'">Отменить</button>
+    <div class="input-container ic2">
+      <label for="sportsfacility" class="placeholder"></label><select class="input" id="sportsfacility">
+      <option th:each="sportsfacility: ${sports_facilitys}"
+              th:text="${sportsfacility.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="addCompetition()">Добавить</button>
+    <button type="button" class="submit" onclick="location.href='/main/competition'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

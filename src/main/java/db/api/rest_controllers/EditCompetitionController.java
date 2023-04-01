@@ -6,6 +6,7 @@ import db.entities.models.surface.SportsFacility;
 import db.repository.SponsorRepository;
 import db.repository.SportRepository;
 import db.repository.sports.SportsFacilityRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,21 +15,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/competition")
 public class EditCompetitionController {
     private final SportRepository sportRepository;
     private final SponsorRepository sponsorRepository;
     private final SportsFacilityRepository sportsFacilityRepository;
     private final CompetitionService competitionService;
-
-    @Autowired
-    public EditCompetitionController(SportRepository sportRepository, SponsorRepository sponsorRepository,
-                                     SportsFacilityRepository sportsFacilityRepository, CompetitionService competitionService) {
-        this.sportRepository = sportRepository;
-        this.sponsorRepository = sponsorRepository;
-        this.sportsFacilityRepository = sportsFacilityRepository;
-        this.competitionService = competitionService;
-    }
 
     @PostMapping("")
     public Competition addCompetition(@RequestParam("title") String title, @RequestParam("period") String period,

@@ -5,28 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>add_court_surface</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-  <h1 class="grades-header" align="center">Добавить тип покрытия</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-
-  <form class="grades-form" align="center">
-
-    <th>Название типа покрытия: </th>
-    <label for="surface"></label>
-    <input type="text"
-           name="homework"
-           id="surface"
-           size="40"
-           class="login-form-field"
-           placeholder="площадка">
-    <br/><br/>
-
-    <button type="button" onclick="addCourtSurface()">Добавить</button>
-    <button type="button" onclick="location.href='/main/courtsurface'">Отменить</button>
+  <div class="form">
+    <div class="title">Добавить тип покрытия</div>
+    <div class="subtitle">Введите название нового типа покрытия для добавления</div>
+    <div class="input-container ic1">
+      <input id="surface" class="input" type="text" placeholder=" " />
+      <label for="surface" class="placeholder">Ввведите тип покрытия</label>
+    </div>
+    <button type="button" class="submit" onclick="addCourtSurface()">Добавить</button>
+    <button type="button" class="submit" onclick="location.href='/main/courtsurface'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

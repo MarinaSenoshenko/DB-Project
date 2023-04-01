@@ -2,18 +2,15 @@ package db.api.rest_controllers;
 
 import db.api.service.TrainerService;
 import db.entities.Trainer;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/trainer")
 public class EditTrainerController {
     private final TrainerService trainerService;
-
-    @Autowired
-    public EditTrainerController(TrainerService trainerService) {
-        this.trainerService = trainerService;
-    }
 
     @PostMapping("")
     public Trainer addTrainer(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,

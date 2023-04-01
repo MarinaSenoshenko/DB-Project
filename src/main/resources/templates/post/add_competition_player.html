@@ -5,52 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add_competition_player</title>
+    <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
     <script type="text/javascript" src="/js/src/competition.js"></script>
-    <h1 class="grades-header" align="center">Добавить участника соревнований</h1>
-    <h1 th:text="${name}" id="auth-name"></h1>
-
-    <form class="grades-form" align="center">
-
-        <th>Выберите атлета: </th>
-        <label for="athlete"></label><select class="selathlete" id="athlete">
-        <option th:each="athlete: ${athletes}"
-                th:text="${athlete.id}">
-        </option>
-    </select><br/><br/>
-
-        <th>Выберите соревнования: </th>
-        <label for="competition"></label><select class="selathlete" id="competition">
-        <option th:each="competition: ${competitions}"
-                th:text="${competition.id}">
-        </option>
-    </select><br/><br/>
-
-        <th>Был награжден?(true, false): </th>
-        <label for="wasawarding"></label>
-        <input type="text"
-               name="homework"
-               id="wasawarding"
-               size="40"
-               class="login-form-field"
-               placeholder="фамилия">
-        <br/><br/>
-
-        <th>Результат: </th>
-        <label for="result"></label>
-        <input type="text"
-               name="homework"
-               id="result"
-               size="40"
-               class="first-name-field"
-               placeholder="имя">
-        <br/><br/>
-
-        <button type="button" onclick="addCompetitionPlayer()">Изменить</button>
-        <button type="button" onclick="location.href='/main/competitionplayer'">Отменить</button>
+    <div class="form">
+        <div class="title">Добавить участника</div>
+        <div class="subtitle">Выберите атлета и соревнования из списка</div>
+        <div class="input-container ic2">
+            <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
+            <option th:each="athlete: ${athletes}"
+                    th:text="${athlete.id}">
+            </option>
+        </select><br/><br/>
+        </div>
+        <div class="input-container ic2">
+            <label for="competition" class="placeholder"></label><select class="input" id="competition">
+            <option th:each="competition: ${competitions}"
+                    th:text="${competition.id}">
+            </option>
+        </select><br/><br/>
+        </div>
+        <div class="input-container ic2">
+            <input id="wasawarding" class="input" type="text" placeholder=" " />
+            <label for="wasawarding" class="placeholder">Был награжден?(true, false)</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="result" class="input" type="text" placeholder=" " />
+            <label for="result" class="placeholder">Результат</label>
+        </div>
+        <button type="button" class="submit" onclick="addCompetitionPlayer()">Добавить</button>
+        <button type="button" class="submit" onclick="location.href='/main/competitionplayer'">Отменить</button>
+    </div>
     </form>
 </main>
 </body>

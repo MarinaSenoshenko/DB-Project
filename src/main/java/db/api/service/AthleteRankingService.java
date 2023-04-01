@@ -4,20 +4,15 @@ import db.entities.*;
 import db.entities.models.keys.AthleteKey;
 import db.repository.AthleteRankRepository;
 import db.repository.AthleteRankingRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class AthleteRankingService {
     private final AthleteRankingRepository athleteRankingRepository;
     private final AthleteRankRepository athleteRankRepository;
-
-    @Autowired
-    public AthleteRankingService(AthleteRankingRepository athleteRankingRepository,
-                                 AthleteRankRepository athleteRankRepository) {
-        this.athleteRankingRepository = athleteRankingRepository;
-        this.athleteRankRepository = athleteRankRepository;
-    }
 
     public AthleteRanking addAthleteRanking(Athlete athlete, Sport sport, AthleteRank athleteRank) {
         AthleteRanking athleteRanking = new AthleteRanking(new AthleteKey(athlete, sport), athleteRank);

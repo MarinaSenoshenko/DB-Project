@@ -5,28 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add_gym</title>
+    <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
     <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-    <h1 class="grades-header" align="center">Добавить площадь</h1>
-    <h1 th:text="${name}" id="auth-name"></h1>
+    <div class="form">
+        <div class="title">Добавить площадь</div>
+        <div class="subtitle">Введите площадь тренажерного зала</div>
+        <div class="input-container ic1">
+            <input id="param" class="input" type="text" placeholder=" " />
+            <label for="param" class="placeholder">Ввведите площадь</label>
+        </div>
+<!--    <h1 class="grades-header" align="center">Добавить площадь</h1>-->
+<!--    <h1 th:text="${name}" id="auth-name"></h1>-->
 
-    <form class="grades-form" align="center">
+<!--    <form class="grades-form" align="center">-->
 
-        <th>Площадь: </th>
-        <label for="param"></label>
-        <input type="text"
-               name="homework"
-               id="param"
-               size="40"
-               class="login-form-field"
-               placeholder="площадь">
-        <br/><br/>
+<!--        <th>Площадь: </th>-->
+<!--        <label for="param"></label>-->
+<!--        <input type="text"-->
+<!--               name="homework"-->
+<!--               id="param"-->
+<!--               size="40"-->
+<!--               class="login-form-field"-->
+<!--               placeholder="площадь">-->
+<!--        <br/><br/>-->
 
-        <button type="button" onclick="addGym()">Добавить</button>
-        <button type="button" onclick="location.href='/main/sportsfacility/gym'">Отменить</button>
+        <button type="button" class="submit" onclick="addGym()">Добавить</button>
+        <button type="button" class="submit" onclick="location.href='/main/sportsfacility/gym'">Отменить</button>
+    </div>
     </form>
 </main>
 </body>

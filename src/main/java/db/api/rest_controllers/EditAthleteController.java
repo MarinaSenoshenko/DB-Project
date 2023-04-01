@@ -3,20 +3,16 @@ package db.api.rest_controllers;
 import db.entities.*;
 import db.repository.SportClubRepository;
 import db.api.service.AthleteService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/athlete")
 public class EditAthleteController {
     private final AthleteService athleteService;
     private final SportClubRepository sportClubRepository;
-
-    @Autowired
-    public EditAthleteController(AthleteService athleteService, SportClubRepository sportClubRepository) {
-        this.athleteService = athleteService;
-        this.sportClubRepository = sportClubRepository;
-    }
 
     @PostMapping("")
     public Athlete addAthlete(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
