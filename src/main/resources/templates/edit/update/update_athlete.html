@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>update_athlete</title>
+  <link rel='stylesheet' href='/css/login.css'>
+</head>
+
+<body>
+<main class="main-holder">
+  <script type="text/javascript" src="/js/src/athlete.js"></script>
+  <div class="form">
+    <div class="title">Изменить атлета</div>
+    <div class="subtitle">Выберите id и клуб из списка</div>
+    <div class="input-container ic2">
+      <label for="id" class="placeholder"></label><select class="input" id="id">
+      <option th:each="athlete: ${athletes}"
+              th:text="${athlete.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <div class="input-container ic2">
+      <label for="club" class="placeholder"></label><select class="input" id="club">
+      <option th:each="sportclub: ${sportclubs}"
+              th:text="${sportclub.title}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <div class="input-container ic1">
+      <input id="first_name" class="input" type="text" placeholder=" " />
+      <label for="first_name" class="placeholder">Ввведите имя</label>
+    </div>
+    <div class="input-container ic2">
+      <input id="last_name" class="input" type="text" placeholder=" " />
+      <label for="last_name" class="placeholder">Введите фамилию</label>
+    </div>
+    <div class="input-container ic2">
+      <input id="patronymic" class="input" type="text" placeholder=" " />
+      <label for="patronymic" class="placeholder">Введите отчество</label>
+    </div>
+    <button type="button" class="submit"  onclick="updateAthlete()">Изменить</button>
+    <button type="button" class="submit"  onclick="location.href='/main/athlete'">Отменить</button>
+  </div>
+  </form>
+</main>
+</body>
+</html>
