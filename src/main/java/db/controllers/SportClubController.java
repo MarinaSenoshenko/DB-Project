@@ -22,19 +22,19 @@ public class SportClubController {
 
     @GetMapping("/add")
     public String addSportClub() {
-        return "/post/add_sport_club";
+        return "/edit/post/add_sport_club";
     }
 
     @GetMapping("/update")
     public String updateSportClub(Model model) {
         model.addAttribute("sportclubs", sportClubRepository.findAll());
-        return "/update/update_sport_club";
+        return "/edit/update/update_sport_club";
     }
 
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
         model.addAttribute("sportclubs", sportClubRepository.getNotUsedInOtherTablesSportClubsId());
-        return "/delete/delete_sport_club";
+        return "/edit/delete/delete_sport_club";
     }
 
     //TODO вернуть count athletes, придумать как это нормально показывать

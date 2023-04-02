@@ -29,7 +29,7 @@ public class AthleteController {
     public String addAthlete(Model model) {
         addAttributesToModel(model);
         model.addAttribute("sportclubs", sportClubRepository.findAll());
-        return "/post/add_athlete";
+        return "/edit/post/add_athlete";
     }
 
     @GetMapping("/update")
@@ -37,13 +37,13 @@ public class AthleteController {
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sportclubs", sportClubRepository.findAll());
-        return "/update/update_athlete";
+        return "/edit/update/update_athlete";
     }
 
     @GetMapping("/delete")
     public String deleteAthlete(Model model) {
         model.addAttribute("athletes", athleteRepository.getNotUsedInOtherTablesAthletes());
-        return "/delete/delete_athlete";
+        return "/edit/delete/delete_athlete";
     }
 
 

@@ -8,7 +8,6 @@ import db.repository.SportRepository;
 import db.repository.TrainerLicenseRepository;
 import db.repository.TrainerRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

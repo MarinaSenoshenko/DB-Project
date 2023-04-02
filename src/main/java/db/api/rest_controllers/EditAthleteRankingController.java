@@ -5,7 +5,6 @@ import db.entities.*;
 import db.entities.Sport;
 import db.repository.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

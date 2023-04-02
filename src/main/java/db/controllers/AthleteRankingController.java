@@ -30,7 +30,7 @@ public class AthleteRankingController {
         model.addAttribute("athleterankings", athleteRankingRepository.findAll());
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/post/add_ranking";
+        return "/edit/post/add_ranking";
     }
 
     @GetMapping("/update")
@@ -39,13 +39,13 @@ public class AthleteRankingController {
         model.addAttribute("athleterankings", athleteRankingRepository.findAll());
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/update/update_ranking";
+        return "/edit/update/update_ranking";
     }
 
     @GetMapping("/delete")
     public String deleteAthleteRanking(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/delete/delete_ranking";
+        return "/edit/delete/delete_ranking";
     }
 }

@@ -1,13 +1,12 @@
 package db.api.rest_controllers;
 
 import db.api.service.CompetitionPlayerService;
+import db.entities.Athlete;
 import db.entities.Competition;
-import db.entities.*;
+import db.entities.CompetitionPlayer;
 import db.repository.AthleteRepository;
 import db.repository.CompetitionRepository;
-import db.entities.CompetitionPlayer;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

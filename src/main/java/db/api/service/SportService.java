@@ -3,7 +3,6 @@ package db.api.service;
 import db.entities.Sport;
 import db.repository.SportRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

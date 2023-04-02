@@ -3,7 +3,6 @@ package db.api.service;
 import db.entities.Trainer;
 import db.repository.TrainerRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

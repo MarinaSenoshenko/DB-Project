@@ -1,12 +1,14 @@
 package db.api.service;
 
-import db.entities.*;
+import db.entities.Competition;
+import db.entities.Sponsor;
+import db.entities.Sport;
 import db.entities.models.surface.SportsFacility;
-import db.repository.*;
+import db.repository.CompetitionRepository;
+import db.repository.SponsorRepository;
 import db.repository.SportRepository;
 import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;

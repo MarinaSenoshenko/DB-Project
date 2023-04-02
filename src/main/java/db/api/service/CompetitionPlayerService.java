@@ -1,10 +1,11 @@
 package db.api.service;
 
-import db.entities.*;
+import db.entities.Athlete;
+import db.entities.Competition;
+import db.entities.CompetitionPlayer;
 import db.entities.models.keys.CompetitionKey;
 import db.repository.CompetitionPlayerRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

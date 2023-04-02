@@ -31,90 +31,90 @@ public class SportsFacilityController {
     @GetMapping("/add")
     public String addFacility(Model model) {
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
-        return "/post/facility/add_sports_facility";
+        return "/edit/post/facility/add_sports_facility";
     }
 
     @GetMapping("/update")
     public String updateFacility(Model model) {
         model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
         model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
-        return "/update/facility/update_sports_facility";
+        return "/edit/update/facility/update_sports_facility";
     }
 
     @GetMapping("/delete")
     public String deleteFacility(Model model) {
         model.addAttribute("sportsfacilitys", sportsFacilityRepository.getNotUsedInArenaSportsFacilityId());
-        return "/delete/facility/delete_sports_facility";
+        return "/edit/delete/facility/delete_sports_facility";
     }
 
     @GetMapping("/add/add_arena")
     public String addArenaParam() {
-        return "/post/facility/add_arena";
+        return "/edit/post/facility/add_arena";
     }
 
     @GetMapping("/update/update_arena")
     public String updateArenaParam(Model model) {
         model.addAttribute("arenas", arenaRepository.findAll());
-        return "/update/facility/update_arena";
+        return "/edit/update/facility/update_arena";
     }
 
     @GetMapping("/delete/delete_arena")
     public String deleteArenaParam(Model model) {
         model.addAttribute("arenas", arenaRepository.findAll());
-        return "/delete/facility/delete_arena";
+        return "/edit/delete/facility/delete_arena";
     }
 
     @GetMapping("/add/add_court")
     public String addCourtParam(Model model) {
         model.addAttribute("surfaces", courtSurfaceRepository.findAll());
-        return "/post/facility/add_court";
+        return "/edit/post/facility/add_court";
     }
 
     @GetMapping("/update/update_court")
     public String updateCourtParam(Model model) {
         model.addAttribute("courts", courtRepository.findAll());
         model.addAttribute("surfaces", courtSurfaceRepository.findAll());
-        return "/update/facility/update_court";
+        return "/edit/update/facility/update_court";
     }
 
     @GetMapping("/delete/delete_court")
     public String deleteCourtParam(Model model) {
         model.addAttribute("courts", courtRepository.findAll());
-        return "/delete/facility/delete_court";
+        return "/edit/delete/facility/delete_court";
     }
 
     @GetMapping("/add/add_gym")
     public String addGymParam() {
-        return "/post/facility/add_gym";
+        return "/edit/post/facility/add_gym";
     }
 
     @GetMapping("/update/update_gym")
     public String updateGymParam(Model model) {
         model.addAttribute("gyms", gymRepository.findAll());
-        return "/update/facility/update_gym";
+        return "/edit/update/facility/update_gym";
     }
 
     @GetMapping("/delete/delete_gym")
     public String deleteGymParam(Model model) {
         model.addAttribute("gyms", gymRepository.findAll());
-        return "/delete/facility/delete_gym";
+        return "/edit/delete/facility/delete_gym";
     }
 
     @GetMapping("/add/add_stadium")
     public String addStadiumParam() {
-        return "/post/facility/add_stadium";
+        return "/edit/post/facility/add_stadium";
     }
 
     @GetMapping("/update/update_stadium")
     public String updateStadiumParam(Model model) {
         model.addAttribute("stadiums", stadiumRepository.findAll());
-        return "/update/facility/update_stadium";
+        return "/edit/update/facility/update_stadium";
     }
 
     @GetMapping("/delete/delete_stadium")
     public String deleteStadiumParam(Model model) {
         model.addAttribute("stadiums", stadiumRepository.findAll());
-        return "/delete/facility/delete_stadium";
+        return "/edit/delete/facility/delete_stadium";
     }
 
     @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")

@@ -27,7 +27,7 @@ public class TrainingController {
         model.addAttribute("trainings", trainingRepository.findAll());
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
-        return "/post/add_training";
+        return "/edit/post/add_training";
     }
 
     @GetMapping("/delete")
@@ -35,6 +35,6 @@ public class TrainingController {
         model.addAttribute("trainings", trainingRepository.findAll());
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
-        return "/delete/delete_training";
+        return "/edit/delete/delete_training";
     }
 }

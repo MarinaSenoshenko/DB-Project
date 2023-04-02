@@ -7,7 +7,6 @@ import db.repository.SponsorRepository;
 import db.repository.SportRepository;
 import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;

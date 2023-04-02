@@ -1,10 +1,10 @@
 package db.api.service;
+
+import db.entities.Athlete;
 import db.entities.SportClub;
 import db.repository.AthleteRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import db.entities.Athlete;
 
 import java.util.Objects;
 

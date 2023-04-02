@@ -26,12 +26,12 @@ public class TrainerLicenseController {
     public String addTrainerLicense(Model model) {
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/post/add_trainer_license";
+        return "/edit/post/add_trainer_license";
     }
 
     @GetMapping("/delete")
     public String deleteTrainerLicense(Model model) {
         model.addAttribute("trainerlicenses", trainerLicenseRepository.findAll());
-        return "/delete/delete_trainer_license";
+        return "/edit/delete/delete_trainer_license";
     }
 }

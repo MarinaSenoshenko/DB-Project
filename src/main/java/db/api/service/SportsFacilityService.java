@@ -3,13 +3,10 @@ package db.api.service;
 import db.entities.CourtSurface;
 import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
-import db.entities.models.surface.SportsFacility;
 import db.repository.CourtSurfaceRepository;
-import db.repository.sports.SportsFacilityRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import db.repository.sports.*;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor

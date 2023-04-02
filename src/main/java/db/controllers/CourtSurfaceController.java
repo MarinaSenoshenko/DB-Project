@@ -20,18 +20,18 @@ public class CourtSurfaceController {
 
     @GetMapping("/add")
     public String addCourtSurface() {
-        return "/post/add_court_surface";
+        return "/edit/post/add_court_surface";
     }
 
     @GetMapping("/delete")
     public String deleteCourtSurface(Model model) {
         model.addAttribute("surfaces", courtSurfaceRepository.getNotUsedInOtherTablesSurfaces());
-        return "/delete/delete_court_surface";
+        return "/edit/delete/delete_court_surface";
     }
 
     @GetMapping("/update")
     public String updateCourtSurface(Model model) {
         model.addAttribute("courtsurfaces", courtSurfaceRepository.findAll());
-        return "/update/update_court_surface";
+        return "/edit/update/update_court_surface";
     }
 }

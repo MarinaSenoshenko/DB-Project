@@ -1,11 +1,13 @@
 package db.api.service;
 
-import db.entities.*;
+import db.entities.Athlete;
+import db.entities.AthleteRank;
+import db.entities.AthleteRanking;
+import db.entities.Sport;
 import db.entities.models.keys.AthleteKey;
 import db.repository.AthleteRankRepository;
 import db.repository.AthleteRankingRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

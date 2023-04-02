@@ -22,19 +22,19 @@ public class SponsorController {
 
     @GetMapping("/add")
     public String addSponsor() {
-        return "/post/add_sponsor";
+        return "/edit/post/add_sponsor";
     }
 
     @GetMapping("/update")
     public String updateSponsor(Model model) {
         model.addAttribute("sponsors", sponsorRepository.findAll());
-        return "/update/update_sponsor";
+        return "/edit/update/update_sponsor";
     }
 
     @GetMapping("/delete")
     public String deleteSponsor(Model model) {
         model.addAttribute("sponsors", sponsorRepository.getNotUsedInOtherTablesSponsorsId());
-        return "/delete/delete_sponsor";
+        return "/edit/delete/delete_sponsor";
     }
 
     //TODO вернуть count sponsor, придумать как это нормально показывать

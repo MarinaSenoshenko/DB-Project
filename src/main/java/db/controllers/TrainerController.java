@@ -27,7 +27,7 @@ public class TrainerController {
         model.addAttribute("trainers", athleteRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/post/add_trainer";
+        return "/edit/post/add_trainer";
     }
 
     @GetMapping("/update")
@@ -35,13 +35,13 @@ public class TrainerController {
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
-        return "/update/update_trainer";
+        return "/edit/update/update_trainer";
     }
 
     @GetMapping("/delete")
     public String deleteTrainer(Model model) {
         model.addAttribute("trainers", trainerRepository.getNotUsedInOtherTablesTrainersId());
-        return "/delete/delete_trainer";
+        return "/edit/delete/delete_trainer";
     }
 
     @GetMapping("/byathlete/{athleteid}")

@@ -20,18 +20,18 @@ public class SportController {
 
     @GetMapping("/add")
     public String addRank() {
-        return "/post/add_sport";
+        return "/edit/post/add_sport";
     }
 
     @GetMapping("/delete")
     public String deleteSportClub(Model model) {
         model.addAttribute("sports", sportRepository.getNotUsedInOtherTablesSports());
-        return "/delete/delete_sport";
+        return "/edit/delete/delete_sport";
     }
 
     @GetMapping("/update")
     public String updateSportClub(Model model) {
         model.addAttribute("sports", sportRepository.findAll());
-        return "/update/update_sport";
+        return "/edit/update/update_sport";
     }
 }

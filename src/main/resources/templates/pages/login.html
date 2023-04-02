@@ -10,6 +10,10 @@
   <script type="text/javascript" src="/js/src/login.js"></script>
   <div class="title">Регистрация</div>
   <div class="subtitle">Создайте свой аккаунт</div>
+  <div class="input-container ic2">
+    <input id="id" class="input" type="text" placeholder=" " />
+    <label for="id" class="placeholder">Введите выданный идентификатор</label>
+  </div>
   <div class="input-container ic1">
     <input id="firstName" class="input" type="text" placeholder=" " />
     <label for="firstName" class="placeholder">Ввведите имя</label>
@@ -29,6 +33,13 @@
   <div class="input-container ic2">
     <input id="password" class="input" type="text" placeholder=" " />
     <label for="password" class="placeholder">Придумайте пароль</label>
+  </div>
+  <div class="input-container ic2">
+    <label for="user" class="placeholder"></label><select class="input" id="user">
+    <option>athlete</option>
+    <option>trainer</option>
+    <option>administrator</option>
+  </select><br/><br/>
   </div>
   <button type="button" class="submit" onclick="add()">Войти</button>
 </div>

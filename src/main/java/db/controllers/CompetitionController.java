@@ -37,7 +37,7 @@ public class CompetitionController {
         model.addAttribute("sponsors", sponsorRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
         model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
-        return "/post/add_competition";
+        return "/edit/post/add_competition";
     }
 
     @GetMapping("/update")
@@ -46,13 +46,13 @@ public class CompetitionController {
         model.addAttribute("sponsors", sponsorRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
         model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
-        return "/update/update_competition";
+        return "/edit/update/update_competition";
     }
 
     @GetMapping("/delete")
     public String deleteCompetition(Model model) {
         model.addAttribute("competitions", competitionRepository.getNotUsedInOtherTableCompetitionsId());
-        return "/delete/delete_competition";
+        return "/edit/delete/delete_competition";
     }
 
     @GetMapping(value = {"/byperiod/{startdate}/{enddate}/{sponsorid}", "/byperiod/{startdate}/{enddate}"})

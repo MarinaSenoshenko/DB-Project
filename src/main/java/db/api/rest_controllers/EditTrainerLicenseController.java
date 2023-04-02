@@ -3,7 +3,6 @@ package db.api.rest_controllers;
 import db.api.service.TrainerLicenseService;
 import db.entities.TrainerLicense;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
