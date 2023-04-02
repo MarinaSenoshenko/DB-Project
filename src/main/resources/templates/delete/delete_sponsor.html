@@ -5,23 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>delete_sponsor</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sponsor.js"></script>
-  <h1 class="grades-header" align="center">Удалить спонсора</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-  <form class="grades-form" align="center">
-    <th>Выберите спонсора: </th>
-    <label for="sponsor"></label><select class="selathlete" id="sponsor">
-    <option th:each="sponsor: ${sponsors}"
-            th:text="${sponsor}">
-    </option>
-  </select><br/><br/>
+  <div class="form">
+    <div class="title">Удалить спонсора</div>
+    <div class="subtitle">Выберите id из списка</div>
 
-    <button type="button" onclick="deleteSponsor()">Удалить</button>
-    <button type="button" onclick="location.href='/main/sponsor'">Отменить</button>
+    <div class="input-container ic2">
+      <label for="sponsor" class="placeholder"></label><select class="input" id="sponsor">
+      <option th:each="sponsor: ${sponsors}"
+              th:text="${sponsor}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="deleteSponsor()">Удалить</button>
+    <button type="button" class="submit" onclick="location.href='/main/sponsor'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

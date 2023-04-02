@@ -5,24 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>delete_court_surface</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-  <h1 class="grades-header" align="center">Удалить тип покрытия</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-
-  <form class="grades-form" align="center">
-
-    <th>Название типа покрытия: </th>
-    <label for="surface"></label><select class="selathlete" id="surface">
-    <option th:each="surface: ${surfaces}"
-            th:text="${surface}">
-    </option>
-  </select><br/><br/>
-    <button type="button" onclick="deleteCourtSurface()">Удалить</button>
-    <button type="button" onclick="location.href='/main/courtsurface'">Отменить</button>
+  <div class="form">
+    <div class="title">Удалить тип покрытия</div>
+    <div class="subtitle">Введите название нового типа покрытия для добавления</div>
+    <div class="input-container ic2">
+      <label for="surface" class="placeholder"></label><select class="input" id="surface">
+      <option th:each="surface: ${surfaces}"
+              th:text="${surface}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="deleteCourtSurface()">Удалить</button>
+    <button type="button" class="submit" onclick="location.href='/main/courtsurface'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

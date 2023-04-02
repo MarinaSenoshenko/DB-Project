@@ -4,31 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>delete_ranking</title>
+  <title>update_ranking</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/ranking.js"></script>
-  <h1 class="grades-header" align="center">Удалить информацию об атлете</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-  <form class="grades-form" align="center">
-    <th>Выберите id атлета: </th>
-    <label for="athlete"></label><select class="selathlete" id="athlete">
-    <option th:each="athlete: ${athletes}"
-            th:text="${athlete.id}">
-    </option>
-  </select><br/><br/>
-
-    <th>Выберите id вида спорта: </th>
-    <label for="sport"></label><select class="selathlete" id="sport">
-    <option th:each="sport: ${sports}"
-            th:text="${sport.id}">
-    </option>
-  </select><br/><br/>
-
-    <button type="button" onclick="deleteRanking()">Удалить</button>
-    <button type="button" onclick="location.href='/main/athleteranking'">Отменить</button>
+  <div class="form">
+    <div class="title">Изменить информацию об атлете</div>
+    <div class="subtitle">Выберите id атлета, разряд и спорт</div>
+    <div class="input-container ic2">
+      <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
+      <option th:each="athlete: ${athletes}"
+              th:text="${athlete.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <div class="input-container ic2">
+      <label for="sport" class="placeholder"></label><select class="input" id="sport">
+      <option th:each="sport: ${sports}"
+              th:text="${sport.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="deleteRanking()">Удалить</button>
+    <button type="button" class="submit" onclick="location.href='/main/athleteranking'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

@@ -1,3 +1,40 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
+
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>delete_competition_player</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<main class="main-holder">-->
+<!--  <script type="text/javascript" src="/js/src/competition.js"></script>-->
+<!--  <h1 class="grades-header" align="center">Удалить участниика соревнований</h1>-->
+<!--  <h1 th:text="${name}" id="auth-name"></h1>-->
+<!--  <form class="grades-form" align="center">-->
+<!--    <th>Выберите соревнования: </th>-->
+<!--    <label for="competition"></label><select class="selathlete" id="competition">-->
+<!--    <option th:each="competition: ${competitions}"-->
+<!--            th:text="${competition.id}">-->
+<!--    </option>-->
+<!--  </select><br/><br/>-->
+
+<!--    <th>Выберите атлета: </th>-->
+<!--    <label for="athlete"></label><select class="selathlete" id="athlete">-->
+<!--    <option th:each="athlete: ${athletes}"-->
+<!--            th:text="${athlete.id}">-->
+<!--    </option>-->
+<!--  </select><br/><br/>-->
+
+<!--    <button type="button" onclick="deleteCompetitionPlayer()">Удалить</button>-->
+<!--    <button type="button" onclick="location.href='/main/competitionplayer'">Отменить</button>-->
+<!--  </form>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
@@ -5,31 +42,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>delete_competition_player</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/competition.js"></script>
-  <h1 class="grades-header" align="center">Удалить участниика соревнований</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-  <form class="grades-form" align="center">
-    <th>Выберите соревнования: </th>
-    <label for="competition"></label><select class="selathlete" id="competition">
-    <option th:each="competition: ${competitions}"
-            th:text="${competition.id}">
-    </option>
-  </select><br/><br/>
-
-    <th>Выберите атлета: </th>
-    <label for="athlete"></label><select class="selathlete" id="athlete">
-    <option th:each="athlete: ${athletes}"
-            th:text="${athlete.id}">
-    </option>
-  </select><br/><br/>
-
-    <button type="button" onclick="deleteCompetitionPlayer()">Удалить</button>
-    <button type="button" onclick="location.href='/main/competitionplayer'">Отменить</button>
+  <div class="form">
+    <div class="title">Изменить участника</div>
+    <div class="subtitle">Выберите атлета и соревнования из списка</div>
+    <div class="input-container ic2">
+      <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
+      <option th:each="athlete: ${athletes}"
+              th:text="${athlete.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <div class="input-container ic2">
+      <label for="competition" class="placeholder"></label><select class="input" id="competition">
+      <option th:each="competition: ${competitions}"
+              th:text="${competition.id}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="deleteCompetitionPlayer()">Удалить</button>
+    <button type="button" class="submit" onclick="location.href='/main/competitionplayer'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>
 </html>
+

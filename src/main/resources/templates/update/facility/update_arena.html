@@ -5,34 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>update_arena</title>
+    <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
     <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-    <h1 class="grades-header" align="center">Изменить количество дорожек</h1>
-    <h1 th:text="${name}" id="auth-name"></h1>
+    <div class="form">
+        <div class="title">Добавить количество дорожек</div>
+        <div class="subtitle">Введите число дорожек</div>
 
-    <form class="grades-form" align="center">
-        <th>Выберите id: </th>
-        <label for="id"></label><select class="selathlete" id="id">
-        <option th:each="arena: ${arenas}"
-                th:text="${arena.id}">
-        </option>
-    </select><br/><br/>
+        <div class="input-container ic2">
+            <label for="id" class="placeholder"></label><select class="input" id="id">
+            <option th:each="arena: ${arenas}"
+                    th:text="${arena.id}">
+            </option>
+        </select><br/><br/>
+        </div>
 
-        <th>Количество дорожек: </th>
-        <label for="param"></label>
-        <input type="text"
-               name="homework"
-               id="param"
-               size="40"
-               class="login-form-field"
-               placeholder="количество">
-        <br/><br/>
-
-        <button type="button" onclick="updateArena()">Изменить</button>
-        <button type="button" onclick="location.href='/main/sportsfacility/arena'">Отменить</button>
+        <div class="input-container ic1">
+            <input id="param" class="input" type="text" placeholder=" " />
+            <label for="param" class="placeholder">Количество дорожек</label>
+        </div>
+        <button type="button" class="submit" onclick="updateArena()">Изменить</button>
+        <button type="button" class="submit" onclick="location.href='/main/sportsfacility/arena'">Отменить</button>
+    </div>
     </form>
 </main>
 </body>

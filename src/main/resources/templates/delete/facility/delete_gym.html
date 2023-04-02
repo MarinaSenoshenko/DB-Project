@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>delete_gym</title>
+    <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
     <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-    <h1 class="grades-header" align="center">Удалить тренажерный зал</h1>
-    <h1 th:text="${name}" id="auth-name"></h1>
-    <form class="grades-form" align="center">
-        <th>Выберите зал: </th>
-        <label for="param"></label><select class="selathlete" id="param">
-        <option th:each="gym: ${gyms}"
-                th:text="${gym.id}">
-        </option>
-    </select><br/><br/>
+    <div class="form">
+        <div class="title">Удалить тренажерный зал</div>
+        <div class="subtitle">Выберите id</div>
 
-        <button type="button" onclick="deleteGym()">Удалить</button>
-        <button type="button" onclick="location.href='/main/sportsfacility/gym'">Отменить</button>
+        <div class="input-container ic2">
+            <label for="param" class="placeholder"></label><select class="input" id="param">
+            <option th:each="gym: ${gyms}"
+                    th:text="${gym.id}">
+            </option>
+        </select><br/><br/>
+        </div>
+        <button type="button" class="submit" onclick="deleteGym()">Удалить</button>
+        <button type="button" class="submit" onclick="location.href='/main/sportsfacility/gym'">Отменить</button>
+    </div>
     </form>
 </main>
 </body>

@@ -5,23 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>delete_athlete</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/athlete.js"></script>
-  <h1 class="grades-header" align="center">Удалить атлета</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
-  <form class="grades-form" align="center">
-    <th>Выберите атлета: </th>
-    <label for="athlete"></label><select class="selathlete" id="athlete">
-    <option th:each="athlete: ${athletes}"
-            th:text="${athlete}">
-    </option>
-  </select><br/><br/>
+  <div class="form">
+    <div class="title">Удалить атлета</div>
+    <div class="subtitle">Выберите id атлета</div>
 
-    <button type="button" onclick="deleteAthlete()">Удалить</button>
-    <button type="button" onclick="location.href='/main/athlete'">Отменить</button>
+    <div class="input-container ic2">
+      <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
+      <option th:each="athlete: ${athletes}"
+              th:text="${athlete}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit"  onclick="deleteAthlete()">Удалить</button>
+    <button type="button" class="submit"  onclick="location.href='/main/athlete'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

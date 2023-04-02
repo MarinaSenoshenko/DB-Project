@@ -5,35 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>update_sport</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sport.js"></script>
-  <h1 class="grades-header" align="center">Изменить вид спорта</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
+  <div class="form">
+    <div class="title">Изменить вид спорта</div>
+    <div class="subtitle">Выберите id</div>
 
-  <form class="grades-form" align="center">
+    <div class="input-container ic2">
+      <label for="id" class="placeholder"></label><select class="input" id="id">
+      <option th:each="sport: ${sports}"
+              th:text="${sport.id}">
+      </option>
+    </select><br/><br/>
+    </div>
 
-    <th>Выберите id вида спорта: </th>
-    <label for="id"></label><select class="selathlete" id="id">
-    <option th:each="sport: ${sports}"
-            th:text="${sport.id}">
-    </option>
-  </select><br><br>
+    <div class="input-container ic1">
+      <input id="sport" class="input" type="text" placeholder=" " />
+      <label for="sport" class="placeholder">Ввведите спорт</label>
+    </div>
 
-    <th>Название спорта: </th>
-    <label for="sport"></label>
-    <input type="text"
-           name="homework"
-           id="sport"
-           size="40"
-           class="login-form-field"
-           placeholder="спорт">
-    <br/><br/>
-
-    <button type="button" onclick="updateSport()">Изменить</button>
-    <button type="button" onclick="location.href='/main/sport'">Отменить</button>
+    <button type="button" class="submit" onclick="updateSport()">Изменить</button>
+    <button type="button" class="submit" onclick="location.href='/main/sport'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>

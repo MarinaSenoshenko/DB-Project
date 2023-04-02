@@ -4,38 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>update_sports_facility_type</title>
+  <title>update_sports_facility</title>
+  <link rel='stylesheet' href='/css/login.css'>
 </head>
 
 <body>
 <main class="main-holder">
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
-  <h1 class="grades-header" align="center">Изменить адрес площадки</h1>
-  <h1 th:text="${name}" id="auth-name"></h1>
+  <div class="form">
+    <div class="title">Изменить адрес площадки</div>
+    <div class="subtitle">Выберите id площадки</div>
 
-  <form class="grades-form" align="center">
-    <th>Выберите id: </th>
-    <label for="id"></label><select class="selathlete" id="id">
-    <option th:each="sportsfacility: ${sportsfacilitys}"
-            th:text="${sportsfacility.id}">
-    </option>
-  </select><br/><br/>
+    <div class="input-container ic2">
+      <label for="id" class="placeholder"></label><select class="input" id="id">
+      <option th:each="sportsfacility: ${sportsfacilitys}"
+              th:text="${sportsfacility.id}">
+      </option>
+    </select><br/><br/>
+    </div>
 
-    <th>Адрес: </th>
-    <label for="address"></label>
-    <input type="text"
-           name="homework"
-           id="address"
-           size="40"
-           class="login-form-field"
-           placeholder="адрес">
-    <br/><br/>
+    <div class="input-container ic1">
+      <input id="address" class="input" type="text" placeholder=" " />
+      <label for="address" class="placeholder">Ввведите адрес</label>
+    </div>
 
-    <button type="button" onclick="updateFacility()">Изменить</button>
-    <button type="button" onclick="location.href='/main/sportsfacility'">Отменить</button>
+    <div class="input-container ic2">
+      <label for="type" class="placeholder"></label><select class="input" id="type">
+      <option th:each="sportsfacilitytype: ${sportsfacilitytypes}"
+              th:text="${sportsfacilitytype.value}">
+      </option>
+    </select><br/><br/>
+    </div>
+    <button type="button" class="submit" onclick="updateFacility()">Изменить</button>
+    <button type="button" class="submit" onclick="location.href='/main/sportsfacility'">Отменить</button>
+  </div>
   </form>
 </main>
 </body>
 </html>
+
 
 
