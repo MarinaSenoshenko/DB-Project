@@ -1,9 +1,7 @@
 package db.api.rest_controllers;
 
 import db.api.service.AthleteRankingService;
-import db.entities.*;
-import db.entities.Sport;
-import db.repository.*;
+import db.entities.AthleteRanking;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/athleteranking")
 public class EditAthleteRankingController {
     private final AthleteRankingService athleteRankingService;
-    private final AthleteRepository athleteRepository;
-    private final SportRepository sportRepository;
-    private final AthleteRankRepository athleteRankRepository;
 
     @PostMapping("")
     public AthleteRanking addAthleteRankAndSport(@RequestParam("id") Long athleteId, @RequestParam("rank") String rank,
                                                  @RequestParam("sport") String value) {
-        Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
-        Sport sport = sportRepository.findByValue(value);
-        AthleteRank athleteRank = athleteRankRepository.findByValue(rank);
-        return athleteRankingService.addAthleteRanking(athlete, sport, athleteRank);
+        return athleteRankingService.addAthleteRanking(athleteId, rank, value);
     }
 
     @PutMapping("")

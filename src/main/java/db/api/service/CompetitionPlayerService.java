@@ -4,7 +4,9 @@ import db.entities.Athlete;
 import db.entities.Competition;
 import db.entities.CompetitionPlayer;
 import db.entities.models.keys.CompetitionKey;
+import db.repository.AthleteRepository;
 import db.repository.CompetitionPlayerRepository;
+import db.repository.CompetitionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,12 @@ import java.util.Objects;
 @AllArgsConstructor
 public class CompetitionPlayerService {
     private final CompetitionPlayerRepository competitionPlayerRepository;
+    private final AthleteRepository athleteRepository;
+    private final CompetitionRepository competitionRepository;
 
-    public CompetitionPlayer addCompetitionPlayer(Athlete athlete, Competition competition, boolean wasawarding, Long result) {
+    public CompetitionPlayer addCompetitionPlayer(Long athleteId, Long competitionId, boolean wasawarding, Long result) {
+        Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
+        Competition competition = competitionRepository.findById(competitionId).orElseThrow();
         CompetitionPlayer competitionPlayer = new CompetitionPlayer(new CompetitionKey(athlete, competition), wasawarding, result);
         competitionPlayerRepository.save(competitionPlayer);
         return competitionPlayer;
@@ -39,4 +45,3 @@ public class CompetitionPlayerService {
         return competitionPlayer;
     }
 }
-

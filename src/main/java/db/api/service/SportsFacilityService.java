@@ -4,6 +4,7 @@ import db.entities.CourtSurface;
 import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.repository.CourtSurfaceRepository;
+import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,10 @@ public class SportsFacilityService {
     private final GymRepository gymRepository;
     private final StadiumRepository stadiumRepository;
     private final CourtSurfaceRepository courtSurfaceRepository;
+    private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
 
-    public SportsFacility addSportsFacility(String address, SportsFacilityType type) {
+    public SportsFacility addSportsFacility(String address, String value) {
+        SportsFacilityType type = sportsFacilityTypeRepository.getSportsFacilityByValue(value);
         SportsFacility sportsFacility = new SportsFacility(address, type);
         sportsFacilityRepository.save(sportsFacility);
         return sportsFacility;
@@ -37,7 +40,9 @@ public class SportsFacilityService {
         return sportsFacility;
     }
 
-    public Arena addArenaParam(String param, SportsFacility sportsFacility) {
+    public Arena addArenaParam(String param) {
+        Long id = sportsFacilityRepository.getMaxFacilityId(param);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         Arena arena = new Arena(param, sportsFacility);
         arenaRepository.save(arena);
         return arena;
@@ -56,7 +61,10 @@ public class SportsFacilityService {
         return arena;
     }
 
-    public Court addCourtParam(CourtSurface surface, SportsFacility sportsFacility) {
+    public Court addCourtParam(String param) {
+        Long id = sportsFacilityRepository.getMaxFacilityId(param);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
+        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
         Court court = new Court(surface, sportsFacility);
         courtRepository.save(court);
         return court;
@@ -76,7 +84,9 @@ public class SportsFacilityService {
         return court;
     }
 
-    public Gym addGymParam(String param, SportsFacility sportsFacility) {
+    public Gym addGymParam(String param) {
+        Long id = sportsFacilityRepository.getMaxFacilityId(param);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         Gym gym = new Gym(param, sportsFacility);
         gymRepository.save(gym);
         return gym;
@@ -95,7 +105,9 @@ public class SportsFacilityService {
         return gym;
     }
 
-    public Stadium addStadiumParam(String param, SportsFacility sportsFacility) {
+    public Stadium addStadiumParam(String param) {
+        Long id = sportsFacilityRepository.getMaxFacilityId(param);
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
         Stadium stadium = new Stadium(param, sportsFacility);
         stadiumRepository.save(stadium);
         return stadium;

@@ -23,5 +23,4 @@ public class Sport {
     public Sport(String value) {
         this.value = value;
     }
-
 }

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 @Service
@@ -25,8 +24,14 @@ public class CompetitionService {
     private final SportsFacilityRepository sportsFacilityRepository;
     private final SponsorRepository sponsorRepository;
 
-    public Competition addCompetition(String title, Date period, Sponsor sponsor, Sport sport, SportsFacility sportsFacility) {
-        Competition competition = new Competition(title, period, sponsor, sport, sportsFacility);
+    public Competition addCompetition(String title, String period, Long sponsorId, Long sportId, Long sportsfacilityId) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Sponsor sponsor = sponsorRepository.findById(sponsorId).orElseThrow();
+        Sport sport = sportRepository.findById(sportId).orElseThrow();
+        SportsFacility sportsFacility = sportsFacilityRepository.findById(sportsfacilityId).orElseThrow();
+
+        Competition competition = new Competition(title, dateFormat.parse(period), sponsor, sport, sportsFacility);
         competitionRepository.save(competition);
         return competition;
     }

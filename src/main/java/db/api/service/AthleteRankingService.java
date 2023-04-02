@@ -7,6 +7,8 @@ import db.entities.Sport;
 import db.entities.models.keys.AthleteKey;
 import db.repository.AthleteRankRepository;
 import db.repository.AthleteRankingRepository;
+import db.repository.AthleteRepository;
+import db.repository.SportRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,14 @@ import org.springframework.stereotype.Service;
 public class AthleteRankingService {
     private final AthleteRankingRepository athleteRankingRepository;
     private final AthleteRankRepository athleteRankRepository;
+    private final AthleteRepository athleteRepository;
+    private final SportRepository sportRepository;
 
-    public AthleteRanking addAthleteRanking(Athlete athlete, Sport sport, AthleteRank athleteRank) {
+    public AthleteRanking addAthleteRanking(Long athleteId, String rank, String value) {
+        Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
+        Sport sport = sportRepository.findByValue(value);
+        AthleteRank athleteRank = athleteRankRepository.findByValue(rank);
+
         AthleteRanking athleteRanking = new AthleteRanking(new AthleteKey(athlete, sport), athleteRank);
         athleteRankingRepository.save(athleteRanking);
         return athleteRanking;

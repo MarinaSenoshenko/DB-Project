@@ -1,8 +1,7 @@
 package db.api.rest_controllers;
 
-import db.entities.*;
-import db.repository.SportClubRepository;
 import db.api.service.AthleteService;
+import db.entities.Athlete;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +10,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/athlete")
 public class EditAthleteController {
     private final AthleteService athleteService;
-    private final SportClubRepository sportClubRepository;
 
     @PostMapping("")
     public Athlete addAthlete(@RequestParam("firstName") String firstName, @RequestParam("patronymic") String patronymic,
                               @RequestParam("lastName") String lastName, @RequestParam("club") String title) {
-        SportClub club = sportClubRepository.getSportClubByTitle(title);
-        return athleteService.addAthlete(firstName, patronymic, lastName, club);
+        return athleteService.addAthlete(firstName, patronymic, lastName, title);
     }
 
     @PutMapping("")
     public Athlete updateAthlete(@RequestParam("id") Long id, @RequestParam("firstName") String firstName,
                                  @RequestParam("patronymic") String patronymic, @RequestParam("lastName") String lastName,
                                  @RequestParam("club") String title) {
-        SportClub club = sportClubRepository.getSportClubByTitle(title);
-        return athleteService.updateAthlete(id, firstName, patronymic, lastName, club);
+        return athleteService.updateAthlete(id, firstName, patronymic, lastName, title);
     }
 
     @DeleteMapping("")

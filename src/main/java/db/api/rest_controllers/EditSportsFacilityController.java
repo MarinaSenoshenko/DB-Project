@@ -1,12 +1,7 @@
 package db.api.rest_controllers;
 
 import db.api.service.SportsFacilityService;
-import db.entities.CourtSurface;
-import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
-import db.repository.CourtSurfaceRepository;
-import db.repository.SportsFacilityTypeRepository;
-import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,15 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sportsfacility")
 public class EditSportsFacilityController {
     private final SportsFacilityService sportsFacilityService;
-    private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
-    private final SportsFacilityRepository sportsFacilityRepository;
-    private final CourtSurfaceRepository courtSurfaceRepository;
 
     @PostMapping("")
     public SportsFacility addSportsFacility(@RequestParam("address") String address,
                                             @RequestParam("type") String value) {
-        SportsFacilityType type = sportsFacilityTypeRepository.getSportsFacilityByValue(value);
-        return sportsFacilityService.addSportsFacility(address, type);
+        return sportsFacilityService.addSportsFacility(address, value);
     }
 
     @PutMapping("")
@@ -38,9 +29,7 @@ public class EditSportsFacilityController {
 
     @PostMapping("/arena")
     public Arena addArena(@RequestParam("param") String param) {
-        Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        return sportsFacilityService.addArenaParam(param, sportsFacility);
+        return sportsFacilityService.addArenaParam(param);
     }
 
     @PutMapping("/arena")
@@ -55,10 +44,7 @@ public class EditSportsFacilityController {
 
     @PostMapping("/court")
     public Court addCourt(@RequestParam("param") String param) {
-        Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
-        return sportsFacilityService.addCourtParam(surface, sportsFacility);
+        return sportsFacilityService.addCourtParam(param);
     }
 
     @PutMapping("/court")
@@ -73,9 +59,7 @@ public class EditSportsFacilityController {
 
     @PostMapping("/gym")
     public Gym addGym(@RequestParam("param") String param) {
-        Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        return sportsFacilityService.addGymParam(param, sportsFacility);
+        return sportsFacilityService.addGymParam(param);
     }
 
     @PutMapping("/gym")
@@ -90,9 +74,7 @@ public class EditSportsFacilityController {
 
     @PostMapping("/stadium")
     public Stadium addStadium(@RequestParam("param") String param) {
-        Long id = sportsFacilityRepository.getMaxFacilityId(param);
-        SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        return sportsFacilityService.addStadiumParam(param, sportsFacility);
+        return sportsFacilityService.addStadiumParam(param);
     }
 
     @PutMapping("/stadium")

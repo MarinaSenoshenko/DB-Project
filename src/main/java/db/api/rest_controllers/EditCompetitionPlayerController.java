@@ -1,11 +1,7 @@
 package db.api.rest_controllers;
 
 import db.api.service.CompetitionPlayerService;
-import db.entities.Athlete;
-import db.entities.Competition;
 import db.entities.CompetitionPlayer;
-import db.repository.AthleteRepository;
-import db.repository.CompetitionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/competitionplayer")
 public class EditCompetitionPlayerController {
-    private final AthleteRepository athleteRepository;
-    private final CompetitionRepository competitionRepository;
     private final CompetitionPlayerService competitionPlayerService;
 
     @PostMapping("")
@@ -22,9 +16,7 @@ public class EditCompetitionPlayerController {
                                                   @RequestParam("competition") Long competitionId,
                                                   @RequestParam("wasawarding") boolean wasawarding,
                                                   @RequestParam("result") Long result) {
-        Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
-        Competition competition = competitionRepository.findById(competitionId).orElseThrow();
-        return competitionPlayerService.addCompetitionPlayer(athlete, competition, wasawarding, result);
+        return competitionPlayerService.addCompetitionPlayer(athleteId, competitionId, wasawarding, result);
     }
 
     @PutMapping("")

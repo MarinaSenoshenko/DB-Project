@@ -4,9 +4,13 @@ import db.repository.SportClubRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/main/sportclub")
@@ -40,7 +44,7 @@ public class SportClubController {
     //TODO вернуть count athletes, придумать как это нормально показывать
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getSportClubsAndCountAthletes(@PathVariable("startdate") String startDate,
-                                                     @PathVariable("enddate") String endDate, Model model) throws ParseException {
+                                                @PathVariable("enddate") String endDate, Model model) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         model.addAttribute("allsportclubs", sportClubRepository.getSportClubsAndCountAthletes(
                 dateFormat.parse(startDate), dateFormat.parse(endDate)));
