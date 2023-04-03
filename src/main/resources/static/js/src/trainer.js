@@ -1,8 +1,13 @@
 function showBySport() {
     const sport = document.getElementById('sport').value;
-
     location.href='/main/trainer/bysport/' + sport;
 }
+
+function showByAthleteId() {
+    const id = document.getElementById('id').value;
+    location.href='/main/trainer/byathlete/' + id;
+}
+
 
 function addTrainer() {
     const req = new XMLHttpRequest();

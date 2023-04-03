@@ -8,12 +8,12 @@
     <link rel='stylesheet' href='/css/form.css'>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 <main class="main-holder">
     <script type="text/javascript" src="/js/src/competition.js"></script>
     <div style="height: 540px" class="form">
         <div class="title">Добавить участника</div>
-        <div class="subtitle">Выберите атлета и соревнования из списка</div>
+        <div class="subtitle">Выберите атлета и соревнования, был ли награжден (true, false)</div>
         <div class="input-container ic2">
             <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
             <option th:each="athlete: ${athletes}"
@@ -29,8 +29,10 @@
         </select><br/><br/>
         </div>
         <div class="input-container ic2">
-            <input id="wasawarding" class="input" type="text" placeholder=" " />
-            <label for="wasawarding" class="placeholder">Был награжден?(true, false)</label>
+            <label for="wasawarding" class="placeholder"></label><select class="input" id="wasawarding">
+            <option>true</option>
+            <option>false</option>
+        </select><br/><br/>
         </div>
         <div class="input-container ic2">
             <input id="result" class="input" type="text" placeholder=" " />

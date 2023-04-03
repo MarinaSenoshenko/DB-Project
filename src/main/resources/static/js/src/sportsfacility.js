@@ -167,9 +167,10 @@ function updateFacility() {
     const req = new XMLHttpRequest();
     const id = document.getElementById('id').value;
     const address = document.getElementById('address').value;
+    const type = document.getElementById('type').value;
 
     const params = new URLSearchParams({
-        id: id, address : address,
+        id: id, address : address, type : type,
     });
 
     req.open('PUT', '/sportsfacility?' + params.toString());

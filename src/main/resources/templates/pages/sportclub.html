@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -14,10 +14,10 @@
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <script type="text/javascript" src="/js/src/sportclub.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons"onclick="location.href='/main/sportclub'">Cброс</a>
-  <a class="buttons" onclick="location.href='/main/sportclub/add'">Добавить</a>
-  <a class="buttons"onclick="location.href='/main/sportclub/delete'">Удалить</a>
-  <a class="buttons"onclick="location.href='/main/sportclub/update'">Изменить</a>
+  <a class="buttons" onclick="location.href='/main/sportclub'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/update'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить спортивные клубы за период: </b></th>
     <th>Введите дату начала: </th>
@@ -33,21 +33,17 @@
     <button type="button" onclick="showSportClubByPeriod()">Применить</button>
   </form><br>
   <table border="1" width="600">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Название клуба</p></th>
-      <th><p style="font-size: 20px;">Количество спортсменов</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>Название клуба</p></th>
+      <th><p>Количество спортсменов</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="allsportclub, iter : ${allsportclubs}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${allsportclub.title}" style="text-align:center"></td>
-      <td th:text="${counts}" style="text-align:center"></td>
-      <td th:text="${allsportclub.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${allsportclub.title}"></td>
+      <td th:text="${counts}"></td>
+      <td th:text="${allsportclub.id}"></td>
     </tr>
   </table> <br/>
 </main>

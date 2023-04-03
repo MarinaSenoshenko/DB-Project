@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/trainer.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/trainer'">Cброс</a>
-  <a class="buttons" onclick="location.href='/main/trainer/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/trainer/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/trainer/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainer/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainer/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainer/update'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить тренера по номеру атлета: </b></th>
     <th>Выберите номер атлета: </th>
@@ -26,16 +26,8 @@
               th:text="${athlete.id}">
       </option>
     </select>
-    <button type="button" onclick="showById()">Применить</button>
-  </form>
-    <script>
-      function showById() {
-        var id = document.getElementById('id').value;
-
-        location.href='/main/trainer/byathlete/' + id;
-      }
-    </script><br>
-
+    <button type="button" onclick="showByAthleteId()">Применить</button>
+  </form><br>
     <form class="grades-form">
       <th><b>Получить тренера по виду спорта: </b></th>
       <th>Выберите вид спорта: </th>
@@ -47,23 +39,19 @@
       <button type="button" onclick="showBySport()">Применить</button>
     </form><br>
   <table border="1" width="800">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="trainer, iter : ${trainers}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${trainer.lastName}" style="text-align:center"></td>
-      <td th:text="${trainer.firstName}" style="text-align:center"></td>
-      <td th:text="${trainer.patronymic}" style="text-align:center"></td>
-      <td th:text="${trainer.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${trainer.lastName}"></td>
+      <td th:text="${trainer.firstName}"></td>
+      <td th:text="${trainer.patronymic}"></td>
+      <td th:text="${trainer.id}"></td>
     </tr>
   </table> <br/>
 </main>

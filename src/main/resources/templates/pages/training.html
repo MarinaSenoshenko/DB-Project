@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -13,38 +13,34 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/training/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/training/delete'">Удалить</a>
-  <table border="1" width="1400">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/training/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/training/delete'">Удалить</a>
+  <table border="1" width="1300">
     <tr>
-      <th rowspan="2" style="font-size: 20px;">№</th>
-      <th colspan="3" style="font-size: 20px;">Атлет</th>
-      <th rowspan="2" style="font-size: 20px;">Клуб</th>
-      <th colspan="3" style="font-size: 20px;">Тренер</th>
-      <th rowspan="2" style="font-size: 20px;">Вид спорта</th>
+      <th rowspan="2">№</th>
+      <th colspan="3">Атлет</th>
+      <th rowspan="2">Клуб</th>
+      <th colspan="3">Тренер</th>
+      <th rowspan="2">Вид спорта</th>
     </tr>
     <tr>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
     </tr>
     <tr th:each="training, iter : ${trainings}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.athlete.lastName}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.athlete.firstName}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.athlete.patronymic}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.athlete.club.title}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.lastName}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.firstName}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.patronymic}" style="text-align:center"></td>
-      <td th:text="${training.trainingKey.trainerLicense.licenseKey.sport.value}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${training.trainingKey.athlete.lastName}"></td>
+      <td th:text="${training.trainingKey.athlete.firstName}"></td>
+      <td th:text="${training.trainingKey.athlete.patronymic}"></td>
+      <td th:text="${training.trainingKey.athlete.club.title}"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.lastName}"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.firstName}"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.trainer.patronymic}"></td>
+      <td th:text="${training.trainingKey.trainerLicense.licenseKey.sport.value}"></td>
     </tr>
   </table> <br/>
 </main>

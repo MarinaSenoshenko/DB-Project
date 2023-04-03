@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -13,28 +13,24 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/trainerlicense/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/trainerlicense/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainerlicense/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainerlicense/delete'">Удалить</a>
   <table border="1" width="1000">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
-      <th><p style="font-size: 20px;">Вид спорта</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>Вид спорта</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="trainerlicense, iter : ${trainerlicenses}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${trainerlicense.licenseKey.trainer.lastName}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.licenseKey.trainer.firstName}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.licenseKey.trainer.patronymic}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.licenseKey.sport.value}" style="text-align:center"></td>
-      <td th:text="${trainerlicense.id}" style="text-align:center"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.lastName}"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.firstName}"></td>
+      <td th:text="${trainerlicense.licenseKey.trainer.patronymic}"></td>
+      <td th:text="${trainerlicense.licenseKey.sport.value}"></td>
+      <td th:text="${trainerlicense.id}"></td>
     </tr>
   </table> <br/>
 </main>

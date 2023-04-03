@@ -1,6 +1,7 @@
 package db.controllers;
 
 import db.repository.*;
+import db.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ public class AthleteController {
     private final CompetitionRepository competitionRepository;
     private final SportRepository sportRepository;
     private final SportClubRepository sportClubRepository;
+    private final UserRepository userRepository;
 
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("role", userRepository.toString());
         addAttributesToModel(model);
         return "/pages/athlete";
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/competition.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/competition'">Cброс</a>
-  <a class="buttons" onclick="location.href='/main/competition/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/competition/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/competition/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competition/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competition/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competition/update'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить список соревнований за период с определенным спонсором:</b></th>
     <th>Выберите номер спонсора: </th>
@@ -59,32 +59,32 @@
   <button type="button" onclick="showByFacilityAndSport()">Применить</button>
   </form><br><br>
 
-  <table border="1" width="1400">
-    <colgroup>
-      <col span="19" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
+  <table border="1" width="1300">
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Название соревнований</p></th>
-      <th><p style="font-size: 20px;">Период</p></th>
-      <th><p style="font-size: 20px;">Спонсор(имя)</p></th>
-      <th><p style="font-size: 20px;">Спонсор(название компании)</p></th>
-      <th><p style="font-size: 20px;">Вид спорта</p></th>
-      <th><p style="font-size: 20px;">Спортивный комплекс</p></th>
-      <th><p style="font-size: 20px;">Адрес</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th rowspan="2">№</th>
+      <th colspan="2">Соревнования</th>
+      <th colspan="2">Спонсор</th>
+      <th rowspan="2">Вид спорта</th>
+      <th rowspan="2"><p>Спортивный комплекс</p></th>
+      <th rowspan="2"><p>Адрес</p></th>
+      <th rowspan="2"><p>id</p></th>
+    </tr>
+    <tr>
+      <th><p>Название соревнований</p></th>
+      <th><p>Период</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Название компании</p></th>
     </tr>
     <tr th:each="competition, iter : ${competitions}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${competition.title}" style="text-align:center"></td>
-      <td th:text="${competition.period}" style="text-align:center"></td>
-      <td th:text="${competition.sponsor.name}" style="text-align:center"></td>
-      <td th:text="${competition.sponsor.company}" style="text-align:center"></td>
-      <td th:text="${competition.sport.value}" style="text-align:center"></td>
-      <td th:text="${competition.sportsFacility.type.value}" style="text-align:center"></td>
-      <td th:text="${competition.sportsFacility.address}" style="text-align:center"></td>
-      <td th:text="${competition.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${competition.title}"></td>
+      <td th:text="${competition.period}"></td>
+      <td th:text="${competition.sponsor.name}"></td>
+      <td th:text="${competition.sponsor.company}"></td>
+      <td th:text="${competition.sport.value}"></td>
+      <td th:text="${competition.sportsFacility.type.value}"></td>
+      <td th:text="${competition.sportsFacility.address}"></td>
+      <td th:text="${competition.id}"></td>
     </tr>
   </table> <br/>
 </main>

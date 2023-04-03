@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility'">Cброс</a>
-  <a class="buttons" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/sportsfacility/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/sportsfacility/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/update'">Изменить</a>
 
   <form class="grades-form">
     <th><b>Выберите любую спортивную площадку: </b></th>
@@ -43,21 +43,17 @@
   </form><br>
 
   <table border="1" width="800">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Адрес</p></th>
-      <th><p style="font-size: 20px;">Спортивное сооружение</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>Адрес</p></th>
+      <th><p>Спортивное сооружение</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="sportsfacility, iter : ${sportsfacilitys}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${sportsfacility.address}" style="text-align:center"></td>
-      <td th:text="${sportsfacility.type.value}" style="text-align:center"></td>
-      <td th:text="${sportsfacility.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${sportsfacility.address}"></td>
+      <td th:text="${sportsfacility.type.value}"></td>
+      <td th:text="${sportsfacility.id}"></td>
     </tr>
   </table> <br/>
 </main>

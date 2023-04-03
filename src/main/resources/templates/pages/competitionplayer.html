@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -13,41 +13,29 @@
     <link rel="stylesheet" href=/css/table.css>
     <link rel="stylesheet" href=/css/menu_buttons.css>
     <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-    <a class="buttons" onclick="location.href='/main/competitionplayer/add'">Добавить</a>
-    <a class="buttons" onclick="location.href='/main/competitionplayer/delete'">Удалить</a>
-    <a class="buttons" onclick="location.href='/main/competitionplayer/update'">Изменить</a>
+    <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competitionplayer/add'">Добавить</a>
+    <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competitionplayer/delete'">Удалить</a>
+    <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/competitionplayer/update'">Изменить</a>
     <table border="1" width="1200">
-        <colgroup>
-            <col span="15" style="background:blue">
-            <col style="background-color:blue">
-        </colgroup>
         <tr>
-            <th><p style="font-size: 20px;">№</p></th>
-            <th><p style="font-size: 20px;">Фамилия</p></th>
-            <th><p style="font-size: 20px;">Имя</p></th>
-            <th><p style="font-size: 20px;">Отчество</p></th>
-            <th><p style="font-size: 20px;">Hазвание клуба</p></th>
-            <th><p style="font-size: 20px;">Название соревнований</p></th>
-            <th><p style="font-size: 20px;">Период</p></th>
-            <th><p style="font-size: 20px;">Спонсор</p></th>
-            <th><p style="font-size: 20px;">Компания</p></th>
-            <th><p style="font-size: 20px;">Адрес</p></th>
-            <th><p style="font-size: 20px;">Награждался</p></th>
-            <th><p style="font-size: 20px;">Результат</p></th>
+            <th><p>№</p></th>
+            <th><p>Фамилия</p></th>
+            <th><p>Имя</p></th>
+            <th><p>Отчество</p></th>
+            <th><p>Hазвание клуба</p></th>
+            <th><p>Название соревнований</p></th>
+            <th><p>Награждался</p></th>
+            <th><p>Результат</p></th>
         </tr>
         <tr th:each="allcompetitionplayer, iter : ${allcompetitionplayers}">
-            <td th:text="${iter.index} + 1" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.athlete.lastName}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.athlete.firstName}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.athlete.patronymic}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.athlete.club.title}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.competition.title}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.competition.period}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.competition.sponsor.name}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.competition.sponsor.company}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.competitionKey.competition.sportsFacility.address}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.wasAwarding}" style="text-align:center"></td>
-            <td th:text="${allcompetitionplayer.result}" style="text-align:center"></td>
+            <td th:text="${iter.index} + 1"></td>
+            <td th:text="${allcompetitionplayer.competitionKey.athlete.lastName}"></td>
+            <td th:text="${allcompetitionplayer.competitionKey.athlete.firstName}"></td>
+            <td th:text="${allcompetitionplayer.competitionKey.athlete.patronymic}"></td>
+            <td th:text="${allcompetitionplayer.competitionKey.athlete.club.title}"></td>
+            <td th:text="${allcompetitionplayer.competitionKey.competition.title}"></td>
+            <td th:text="${allcompetitionplayer.wasAwarding}"></td>
+            <td th:text="${allcompetitionplayer.result}"></td>
         </tr>
     </table> <br/>
 </main>

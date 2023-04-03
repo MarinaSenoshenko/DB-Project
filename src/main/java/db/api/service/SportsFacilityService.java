@@ -9,6 +9,8 @@ import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @AllArgsConstructor
 public class SportsFacilityService {
@@ -27,9 +29,13 @@ public class SportsFacilityService {
         return sportsFacility;
     }
 
-    public SportsFacility updateSportsFacility(Long id, String address) {
+    public SportsFacility updateSportsFacility(Long id, String type, String address) {
         SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        sportsFacility.setAddress(address);
+        SportsFacilityType sportsFacilityType = sportsFacilityTypeRepository.getSportsFacilityByValue(type);
+        if (!Objects.equals(address, "")) {
+            sportsFacility.setAddress(address);
+        }
+        sportsFacility.setType(sportsFacilityType);
         sportsFacilityRepository.save(sportsFacility);
         return sportsFacility;
     }

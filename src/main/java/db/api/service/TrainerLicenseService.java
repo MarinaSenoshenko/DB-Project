@@ -17,6 +17,9 @@ public class TrainerLicenseService {
     private final TrainerRepository trainerRepository;
     private final SportRepository sportRepository;
 
+    //TODO разобраться: ОШИБКА: значение NULL в столбце "trainer_id" отношения "trainer_license"
+    // нарушает ограничение NOT NULL
+    // Подробности: Ошибочная строка содержит (14, null, null).
     public TrainerLicense addTrainerLicense(Long trainerId, String value) {
         Sport sport = sportRepository.getSportByValue(value);
         Trainer trainer = trainerRepository.findById(trainerId).orElseThrow();

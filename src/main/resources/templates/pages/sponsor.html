@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/sponsor.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sponsor'">Cброс</a>
-  <a class="buttons"  onclick="location.href='/main/sponsor/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/sponsor/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/sponsor/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/update'">Изменить</a>
 
   <form class="grades-form">
     <th><b>Получить спонсоров за период: </b></th>
@@ -35,21 +35,17 @@
   </form><br>
 
   <table border="1" width="600">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">ФИО</p></th>
-      <th><p style="font-size: 20px;">Название компании</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>ФИО</p></th>
+      <th><p>Название компании</p></th>
+      <th><p>id</p></th>
     </tr>
     <tr th:each="allsponsor, iter : ${allsponsors}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${allsponsor.name}" style="text-align:center"></td>
-      <td th:text="${allsponsor.company}" style="text-align:center"></td>
-      <td th:text="${allsponsor.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${allsponsor.name}"></td>
+      <td th:text="${allsponsor.company}"></td>
+      <td th:text="${allsponsor.id}"></td>
     </tr>
   </table> <br/>
 </main>

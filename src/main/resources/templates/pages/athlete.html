@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -13,11 +14,12 @@
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <link rel="stylesheet" href=/css/table.css>
   <script type="text/javascript" src="/js/src/athlete.js"></script>
+
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/athlete'">Cброс</a>
-  <a class="buttons" onclick="location.href='/main/athlete/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/athlete/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/athlete/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athlete/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athlete/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athlete/update'">Изменить</a>
 
   <form class="grades-form">
     <th><b>Получить список атлетов, которые занимаются не 1 видом спорта: </b></th>
@@ -87,10 +89,6 @@
   </form><br>
 
   <table border="1" width="800">
-    <colgroup>
-      <col span="6" style="background:blue">
-      <col style="background-color:darkcyan">
-    </colgroup>
     <tr>
       <th><p>№</p></th>
       <th><p>Фамилия</p></th>

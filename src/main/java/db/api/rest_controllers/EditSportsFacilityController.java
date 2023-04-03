@@ -18,8 +18,9 @@ public class EditSportsFacilityController {
     }
 
     @PutMapping("")
-    public SportsFacility updateSportsFacility(@RequestParam("id") Long id, @RequestParam("address") String address) {
-        return sportsFacilityService.updateSportsFacility(id, address);
+    public SportsFacility updateSportsFacility(@RequestParam("type") String type, @RequestParam("id") Long id,
+                                               @RequestParam("address") String address) {
+        return sportsFacilityService.updateSportsFacility(id, type, address);
     }
 
     @DeleteMapping("")

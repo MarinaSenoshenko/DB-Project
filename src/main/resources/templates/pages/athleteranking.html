@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -13,31 +13,27 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/athleteranking/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/athleteranking/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/update'">Изменить</a>
   <table border="1" width="1000">
-    <colgroup>
-      <col span="6" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Фамилия</p></th>
-      <th><p style="font-size: 20px;">Имя</p></th>
-      <th><p style="font-size: 20px;">Отчество</p></th>
-      <th><p style="font-size: 20px;">Hазвание клуба</p></th>
-      <th><p style="font-size: 20px;">Вид спорта</p></th>
-      <th><p style="font-size: 20px;">Разряд</p></th>
+      <th><p>№</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>Hазвание клуба</p></th>
+      <th><p>Вид спорта</p></th>
+      <th><p>Разряд</p></th>
     </tr>
     <tr th:each="athleteranking, iter : ${athleterankings}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${athleteranking.athleteKey.athlete.lastName}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athleteKey.athlete.firstName}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athleteKey.athlete.patronymic}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athleteKey.athlete.club.title}" style="text-align:center"></td>
-      <td th:text="${athleteranking.athleteKey.sport.value}" style="text-align:center"></td>
-      <td th:text="${athleteranking.rank.value}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.lastName}"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.firstName}"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.patronymic}"></td>
+      <td th:text="${athleteranking.athleteKey.athlete.club.title}"></td>
+      <td th:text="${athleteranking.athleteKey.sport.value}"></td>
+      <td th:text="${athleteranking.rank.value}"></td>
     </tr>
   </table> <br/>
 </main>

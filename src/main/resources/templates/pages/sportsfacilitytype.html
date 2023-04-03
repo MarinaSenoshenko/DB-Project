@@ -13,18 +13,14 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <table border="1" width="300">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
+  <table border="1" width="400">
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Спортивная площадка</p></th>
+      <th><p>№</p></th>
+      <th><p>Спортивная площадка</p></th>
     </tr>
     <tr th:each="sportsfacilitytype, iter : ${sportsfacilitytypes}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${sportsfacilitytype.value}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${sportsfacilitytype.value}"></td>
     </tr>
   </table> <br/>
 </main>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -13,24 +13,20 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/courtsurface/add'">Добавить</a>
-  <a class="buttons" onclick="location.href='/main/courtsurface/delete'">Удалить</a>
-  <a class="buttons" onclick="location.href='/main/courtsurface/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/update'">Изменить</a>
   <table border="1" width="300">
-    <colgroup>
-      <col span="15" style="background:blue">
-      <col style="background-color:blue">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Тип покрытия</p></th>
-      <th><p style="font-size: 20px;">id</p></th>
+      <th><p>№</p></th>
+      <th><p>Тип покрытия</p></th>
+      <th><p>id</p></th>
     </tr>
     </tr>
     <tr th:each="courtsurface, iter : ${courtsurfaces}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${courtsurface.value}" style="text-align:center"></td>
-      <td th:text="${courtsurface.id}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${courtsurface.value}"></td>
+      <td th:text="${courtsurface.id}"></td>
     </tr>
   </table> <br/>
 </main>

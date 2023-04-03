@@ -12,17 +12,13 @@
   <link rel="stylesheet" href=/css/table.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <table border="1" width="600">
-    <colgroup>
-      <col span="5" style="background:blue">
-      <col style="background-color:darkcyan">
-    </colgroup>
     <tr>
-      <th><p style="font-size: 20px;">№</p></th>
-      <th><p style="font-size: 20px;">Разряд</p></th>
+      <th><p>№</p></th>
+      <th><p>Разряд</p></th>
     </tr>
     <tr th:each="athleterank, iter : ${athleteranks}">
-      <td th:text="${iter.index} + 1" style="text-align:center"></td>
-      <td th:text="${athleterank.value}" style="text-align:center"></td>
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${athleterank.value}"></td>
     </tr>
   </table> <br/>
 </main>

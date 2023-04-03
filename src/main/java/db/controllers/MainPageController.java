@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("")
 @AllArgsConstructor
 public class MainPageController {
     @GetMapping("")
     public String getAll() {
+        return "/pages/main";
+    }
+
+    @GetMapping("/main")
+    public String toMainMenu() {
         return "/pages/main";
     }
 }
