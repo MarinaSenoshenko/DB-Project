@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility'">Cброс</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update'">Изменить</a>
 
   <form class="grades-form">
     <th><b>Выберите любую спортивную площадку: </b></th>
@@ -47,13 +47,13 @@
       <th><p>№</p></th>
       <th><p>Адрес</p></th>
       <th><p>Спортивное сооружение</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="sportsfacility, iter : ${sportsfacilitys}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${sportsfacility.address}"></td>
       <td th:text="${sportsfacility.type.value}"></td>
-      <td th:text="${sportsfacility.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${sportsfacility.id}"></td>
     </tr>
   </table> <br/>
 </main>

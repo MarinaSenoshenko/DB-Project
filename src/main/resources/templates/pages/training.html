@@ -13,8 +13,8 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/training/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/training/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/training/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/training/delete'">Удалить</a>
   <table border="1" width="1300">
     <tr>
       <th rowspan="2">№</th>

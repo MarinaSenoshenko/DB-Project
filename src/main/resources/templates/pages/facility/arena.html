@@ -16,8 +16,8 @@
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility'">Другие объекты</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility/arena'">Cброс</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_arena'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/update/update_arena'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_arena'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update/update_arena'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить арену по количеству дорожек: </b></th>
     <th>Выберите количество дорожек: </th>
@@ -35,14 +35,14 @@
       <th><p>Количество дорожек</p></th>
       <th><p>Адрес</p></th>
       <th><p>Тип покрытия</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="arena, iter : ${arenas}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${arena.trackNumber}"></td>
       <td th:text="${arena.sportsFacility.address}"></td>
       <td th:text="${arena.sportsFacility.type.value}"></td>
-      <td th:text="${arena.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${arena.id}"></td>
     </tr>
   </table> <br/>
 </main>

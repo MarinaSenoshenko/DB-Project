@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/sponsor.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sponsor'">Cброс</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sponsor/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sponsor/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sponsor/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sponsor/update'">Изменить</a>
 
   <form class="grades-form">
     <th><b>Получить спонсоров за период: </b></th>
@@ -39,13 +39,13 @@
       <th><p>№</p></th>
       <th><p>ФИО</p></th>
       <th><p>Название компании</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="allsponsor, iter : ${allsponsors}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${allsponsor.name}"></td>
       <td th:text="${allsponsor.company}"></td>
-      <td th:text="${allsponsor.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${allsponsor.id}"></td>
     </tr>
   </table> <br/>
 </main>

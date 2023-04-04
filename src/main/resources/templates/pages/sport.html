@@ -13,19 +13,19 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sport/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sport/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sport/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sport/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sport/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sport/update'">Изменить</a>
   <table border="1" width="600">
     <tr>
       <th><p>№</p></th>
       <th><p>Вид спорта</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="sport, iter : ${sports}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${sport.value}"></td>
-      <td th:text="${sport.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${sport.id}"></td>
     </tr>
   </table> <br/>
 </main>

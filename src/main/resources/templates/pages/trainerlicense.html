@@ -13,8 +13,8 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainerlicense/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/trainerlicense/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainerlicense/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainerlicense/delete'">Удалить</a>
   <table border="1" width="1000">
     <tr>
       <th><p>№</p></th>
@@ -22,7 +22,7 @@
       <th><p>Имя</p></th>
       <th><p>Отчество</p></th>
       <th><p>Вид спорта</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="trainerlicense, iter : ${trainerlicenses}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
@@ -30,7 +30,7 @@
       <td th:text="${trainerlicense.licenseKey.trainer.firstName}"></td>
       <td th:text="${trainerlicense.licenseKey.trainer.patronymic}"></td>
       <td th:text="${trainerlicense.licenseKey.sport.value}"></td>
-      <td th:text="${trainerlicense.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${trainerlicense.id}"></td>
     </tr>
   </table> <br/>
 </main>

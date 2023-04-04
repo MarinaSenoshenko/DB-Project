@@ -1,5 +1,7 @@
 package db.security;
 
+import db.api.service.user.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,42 +14,14 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    //TODO разобраться с авторизацией
+
+    private CustomUserDetailsService customUserDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("password").roles("ADMIN")
-                .and()
-                .withUser("user").password("123").roles("USER")
-                 .and()
-                .withUser("user1").password("123").roles("USER")
-                .and()
-                .withUser("user2").password("123").roles("USER")
-                .and()
-                .withUser("user3").password("123").roles("USER")
-                 .and()
-                .withUser("user4").password("123").roles("USER")
-                .and()
-                .withUser("user5").password("123").roles("USER")
-                .and()
-                .withUser("user6").password("123").roles("USER")
-                .and()
-                .withUser("user7").password("123").roles("USER")
-                .and()
-                .withUser("user8").password("123").roles("USER")
-                .and()
-                .withUser("user9").password("123").roles("USER")
-                .and()
-                .withUser("user10").password("123").roles("USER")
-                .and()
-                .withUser("user11").password("123").roles("USER")
-                .and()
-                .withUser("user12").password("123").roles("USER")
-                .and()
-                .withUser("user13").password("123").roles("USER")
-                .and()
-                .withUser("user14").password("123").roles("USER");;
+        auth.userDetailsService(customUserDetailsService);
     }
 
     @Bean
@@ -58,9 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/main/*/add").hasRole("ADMIN")
-                .antMatchers("/main/*/delete").hasRole("ADMIN")
-                .antMatchers("/main/*/update").hasRole("ADMIN")
+                .antMatchers("/main/*/add").hasAuthority("ADMIN")
+                .antMatchers("/main/*/delete").hasAuthority("ADMIN")
+                .antMatchers("/main/*/update").hasAuthority("ADMIN")
+                .antMatchers("/main/**").hasAnyAuthority("USER", "ADMIN")
                 .and().formLogin()
                 .and().csrf().disable();
     }

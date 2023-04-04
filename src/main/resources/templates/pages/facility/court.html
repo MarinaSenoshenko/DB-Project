@@ -16,8 +16,8 @@
     <a class="buttons" onclick="location.href='/main'">Главное меню</a>
     <a class="buttons" onclick="location.href='/main/sportsfacility'">Другие объекты</a>
     <a class="buttons" onclick="location.href='/main/sportsfacility/court'">Cброс</a>
-    <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_court'">Удалить</a>
-    <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/update/update_court'">Изменить</a>
+    <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_court'">Удалить</a>
+    <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update/update_court'">Изменить</a>
     <form class="grades-form">
         <th><b>Получить корд по покрытию: </b></th>
         <th>Выберите покрытие: </th>
@@ -35,14 +35,14 @@
             <th><p>Тип покрытия</p></th>
             <th><p>Адрес</p></th>
             <th><p>Тип покрытия</p></th>
-            <th><p>id</p></th>
+            <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
         </tr>
         <tr th:each="court, iter : ${courts}">
             <td th:text="${iter.index} + 1"></td>
             <td th:text="${court.surface.value}"></td>
             <td th:text="${court.sportsFacility.address}"></td>
             <td th:text="${court.sportsFacility.type.value}"></td>
-            <td th:text="${court.id}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${court.id}"></td>
         </tr>
     </table> <br/>
 </main>

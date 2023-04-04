@@ -13,9 +13,9 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/athleteranking/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/update'">Изменить</a>
   <table border="1" width="1000">
     <tr>
       <th><p>№</p></th>

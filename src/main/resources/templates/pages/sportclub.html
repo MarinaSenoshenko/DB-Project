@@ -15,9 +15,9 @@
   <script type="text/javascript" src="/js/src/sportclub.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sportclub'">Cброс</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportclub/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/update'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить спортивные клубы за период: </b></th>
     <th>Введите дату начала: </th>
@@ -37,13 +37,13 @@
       <th><p>№</p></th>
       <th><p>Название клуба</p></th>
       <th><p>Количество спортсменов</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="allsportclub, iter : ${allsportclubs}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${allsportclub.title}"></td>
       <td th:text="${counts}"></td>
-      <td th:text="${allsportclub.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${allsportclub.id}"></td>
     </tr>
   </table> <br/>
 </main>

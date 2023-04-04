@@ -13,20 +13,20 @@
   <link rel="stylesheet" href=/css/table.css>
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/add'">Добавить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/delete'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/courtsurface/update'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/courtsurface/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/courtsurface/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/courtsurface/update'">Изменить</a>
   <table border="1" width="300">
     <tr>
       <th><p>№</p></th>
       <th><p>Тип покрытия</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     </tr>
     <tr th:each="courtsurface, iter : ${courtsurfaces}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${courtsurface.value}"></td>
-      <td th:text="${courtsurface.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${courtsurface.id}"></td>
     </tr>
   </table> <br/>
 </main>

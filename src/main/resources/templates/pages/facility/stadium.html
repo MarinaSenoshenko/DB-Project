@@ -16,8 +16,8 @@
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility'">Другие объекты</a>
   <a class="buttons" onclick="location.href='/main/sportsfacility/stadium'">Cброс</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_stadium'">Удалить</a>
-  <a class="buttons" sec:authorize="hasAuthority('ROLE_ADMIN')" onclick="location.href='/main/sportsfacility/update/update_stadium'">Изменить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_stadium'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update/update_stadium'">Изменить</a>
   <form class="grades-form">
     <th><b>Получить стадион по вместимости: </b></th>
     <th>Выберите вместимость: </th>
@@ -35,14 +35,14 @@
       <th><p>Вместимость</p></th>
       <th><p>Адрес</p></th>
       <th><p>Тип покрытия</p></th>
-      <th><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="stadium, iter : ${stadiums}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${stadium.capacity}"></td>
       <td th:text="${stadium.sportsFacility.address}"></td>
       <td th:text="${stadium.sportsFacility.type.value}"></td>
-      <td th:text="${stadium.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${stadium.id}"></td>
     </tr>
   </table> <br/>
 </main>
