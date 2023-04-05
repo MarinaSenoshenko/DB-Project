@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>list_of_users</title>
+    <link rel='stylesheet' href='/css/background.css'>
+</head>
+
+<body>
+<main id="main-holder">
+    <link rel="stylesheet" href=/css/menu_buttons.css>
+    <link rel="stylesheet" href=/css/table.css>
+    <script type="text/javascript" src="/js/src/delete_user.js"></script>
+    <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+    <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/users/delete'">Удалить</a>
+    <table border="1" width="600">
+        <tr>
+            <th><p>№</p></th>
+            <th><p>Имя пользователя</p></th>
+            <th><p>Роль</p></th>
+            <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
+        </tr>
+        <tr th:each="user, iter : ${users}">
+            <td th:text="${iter.index} + 1"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.roles[0].name.toLowerCase()}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${user.id}"></td>
+        </tr>
+    </table> <br/>
+</main>
+</body>
+</html>

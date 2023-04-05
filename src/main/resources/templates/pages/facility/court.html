@@ -15,10 +15,10 @@
     <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
     <a class="buttons" onclick="location.href='/main'">Главное меню</a>
     <a class="buttons" onclick="location.href='/main/sportsfacility'">Другие объекты</a>
-    <a class="buttons" onclick="location.href='/main/sportsfacility/court'">Cброс</a>
+    <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/sportsfacility/court'">Cброс</a>
     <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete/delete_court'">Удалить</a>
     <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update/update_court'">Изменить</a>
-    <form class="grades-form">
+    <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
         <th><b>Получить корд по покрытию: </b></th>
         <th>Выберите покрытие: </th>
         <label for="surface"></label><select class="selathlete" id="surface">

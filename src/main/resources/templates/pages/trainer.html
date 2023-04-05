@@ -14,11 +14,11 @@
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <script type="text/javascript" src="/js/src/trainer.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/trainer'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/trainer'">Cброс</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/update'">Изменить</a>
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить тренера по номеру атлета: </b></th>
     <th>Выберите номер атлета: </th>
     <select class="selathlete" id="id">
@@ -28,7 +28,7 @@
     </select>
     <button type="button" onclick="showByAthleteId()">Применить</button>
   </form><br>
-    <form class="grades-form">
+    <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
       <th><b>Получить тренера по виду спорта: </b></th>
       <th>Выберите вид спорта: </th>
       <select class="selathlete" id="sport">

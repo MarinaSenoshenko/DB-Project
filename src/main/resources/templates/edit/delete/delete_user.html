@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete_user</title>
+    <link rel='stylesheet' href='/css/form.css'>
+</head>
+
+<body style="overflow: hidden;">
+<main class="main-holder">
+    <script type="text/javascript" src="/js/src/delete_user.js"></script>
+    <div style="height: 400px" class="form">
+        <div class="title">Удалить пользователя</div>
+        <div class="subtitle">Выберите id пользователя</div>
+        <div class="input-container ic2">
+            <label for="user" class="placeholder"></label><select class="input" id="user">
+            <option th:each="user: ${users}"
+                    th:text="${user.id}">
+            </option>
+        </select><br/><br/>
+        </div>
+        <button type="button" class="submit" onclick="deleteUser()">Удалить</button>
+        <button type="button" class="submit" onclick="location.href='/main/users'">Отменить</button>
+    </div>
+    </form>
+</main>
+</body>
+</html>

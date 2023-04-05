@@ -14,7 +14,7 @@
   <link rel="stylesheet" href=/css/table.css>
   <script type="text/javascript" src="/js/src/sportsfacility.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/sportsfacility'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/sportsfacility'">Cброс</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportsfacility/update'">Изменить</a>
@@ -27,7 +27,7 @@
     <button type="button" onclick="location.href='/main/sportsfacility/arena';">Манеж</button>
   </form><br>
 
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить сооружения за период: </b></th>
     <th>Введите дату начала: </th>
     <label for="start_date"></label><input type="date" name="day"

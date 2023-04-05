@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 @AllArgsConstructor
 public class MainPageController {
+    //TODO перебрасываться изначально на страницу регистрации, из нее авторизации, а из нее main
     @GetMapping("")
-    public String getAll() {
+    public String getMainPage() {
         return "/pages/main";
     }
 

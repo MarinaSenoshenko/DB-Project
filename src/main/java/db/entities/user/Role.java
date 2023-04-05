@@ -1,5 +1,6 @@
 package db.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +25,8 @@ public class Role implements GrantedAuthority {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "roles", cascade = {CascadeType.ALL})
     private Set<User> users;
     @Override
     public String getAuthority() {

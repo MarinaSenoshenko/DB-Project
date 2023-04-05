@@ -16,7 +16,6 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 @EnableWebSecurity
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     private CustomUserDetailsService customUserDetailsService;
 
     @Override
@@ -35,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/main/*/add").hasAuthority("ADMIN")
                 .antMatchers("/main/*/delete").hasAuthority("ADMIN")
                 .antMatchers("/main/*/update").hasAuthority("ADMIN")
-                .antMatchers("/main/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/main/users").hasAnyAuthority("ADMIN", "ATHLETE", "TRAINER")
+                .antMatchers("/main/**").hasAnyAuthority("USER", "ADMIN", "ATHLETE", "TRAINER")
                 .and().formLogin()
                 .and().csrf().disable();
     }

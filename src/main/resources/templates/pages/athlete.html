@@ -14,19 +14,18 @@
   <link rel="stylesheet" href=/css/menu_buttons.css>
   <link rel="stylesheet" href=/css/table.css>
   <script type="text/javascript" src="/js/src/athlete.js"></script>
-
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/athlete'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/athlete'">Cброс</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athlete/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athlete/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athlete/update'">Изменить</a>
 
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов, которые занимаются не 1 видом спорта: </b></th>
     <button type="button" onclick="showById()">Применить</button>
   </form><br>
 
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов, выигравших соревнования: </b></th>
     <th>Выберите номер соревнований: </th>
     <label for="id"></label><select class="selathlete" id="id">
@@ -37,7 +36,7 @@
     <button type="button" onclick="showById()">Применить</button>
   </form><br>
 
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов определенного разряда и вида спорта: </b></th>
   <th>Выберите разряд: </th>
     <label for="rank1"></label><select class="selathlete" id="rank1">
@@ -55,7 +54,7 @@
   <button type="button" onclick="showByRankAndSport()">Применить</button>
   </form><br>
 
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов определенного разряда и лицензии тренера: </b></th>
     <th>Выберите разряд: </th>
     <label for="rank2"></label><select class="selathlete" id="rank2">
@@ -72,7 +71,7 @@
     </select>
     <button type="button" onclick="showByTrainerLicenseAndRank()">Применить</button>
   </form><br>
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов, которые не участвовали в соревнованиях в определенный период: </b></th>
     <th>Введите дату начала: </th>
     <label for="start_date"></label><input type="date" name="day"

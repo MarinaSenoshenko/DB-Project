@@ -19,7 +19,7 @@ function add() {
         user: user,
     });
 
-    req.open('POST', '/password/' + user + '?' + params.toString());
+    req.open('POST', '/user/' + user + '?' + params.toString());
     req.setRequestHeader("Content-Type", "application/json");
     changeState(req, params, '/main')
 }

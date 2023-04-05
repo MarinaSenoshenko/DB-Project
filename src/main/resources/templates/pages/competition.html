@@ -14,11 +14,11 @@
   <link rel="stylesheet" href=/css/table.css>
   <script type="text/javascript" src="/js/src/competition.js"></script>
   <a class="buttons" onclick="location.href='/main'">Главное меню</a>
-  <a class="buttons" onclick="location.href='/main/competition'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/competition'">Cброс</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/update'">Изменить</a>
-  <form class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список соревнований за период с определенным спонсором:</b></th>
     <th>Выберите номер спонсора: </th>
     <select class="selathlete" id="id">
@@ -40,12 +40,13 @@
     <button type="button" onclick="showByDateAndSponsor()">Применить</button>
   </form><br>
 
-  <th><b>Получить список соревнований на определенном объекте по конкретному виду спорта:</b></th>
-  <th>Выберите номер объекта: </th>
-  <select class="selathlete" id="facilityid">
-    <option th:each="allcompetition: ${allcompetitions}"
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+   <th><b>Получить список соревнований на определенном объекте по конкретному виду спорта:</b></th>
+   <th>Выберите номер объекта: </th>
+   <select class="selathlete" id="facilityid">
+     <option th:each="allcompetition: ${allcompetitions}"
             th:text="${allcompetition.sportsFacility.id}">
-    </option>
+     </option>
   </select>
 
   <th>Выберите вид спорта: </th>

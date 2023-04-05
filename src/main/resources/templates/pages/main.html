@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -8,7 +9,7 @@
   <link rel='stylesheet' href='/css/background.css'>
 </head>
 
-<body style="overflow: hidden;">
+<body>
 <main id="main-holder">
   <link rel="stylesheet" href=/css/menu.css>
   <a class="logout" th:href="@{/logout}">Выйти</a>
@@ -26,6 +27,7 @@
   <a class="buttons" th:href="@{/main/trainer}"><th>Информация о тренерах</th></a>
   <a class="buttons" th:href="@{/main/trainerlicense}"><th>Список лицензий по тренерам</th></a>
   <a class="buttons" th:href="@{/main/training}"><th>Информация о тренировках</th></a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" th:href="@{/main/users}"><th>Авторизованные пользователи</th></a>
 </main>
 </body>
 </html>
