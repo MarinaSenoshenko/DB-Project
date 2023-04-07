@@ -1,6 +1,6 @@
 a.buttons {
     width: 700px;
-    height: 38px;
+    height: 40px;
     text-decoration: none;
     padding-top: 3px;
     color:cyan;
@@ -10,7 +10,6 @@ a.buttons {
     margin: 10px auto;
     font: normal 30px arial;
 }
-
 a.logout {
     position: absolute;
     top: 10px;

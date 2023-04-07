@@ -1,5 +1,7 @@
 package db.controllers;
 
+import db.entities.SportClub;
+import db.entities.SportClubWithAthletes;
 import db.repository.SportClubRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/main/sportclub")
@@ -41,13 +47,22 @@ public class SportClubController {
         return "/edit/delete/delete_sport_club";
     }
 
-    //TODO вернуть count athletes, придумать как это нормально показывать
+    public static <T> Collection<T> iterableToCollection(Iterable<T> iterable) {
+        Collection<T> collection = new ArrayList<>();
+        for (T element: iterable) {
+            collection.add(element);
+        }
+        return collection;
+    }
+
+    // TODO вернуть count athletes, придумать как это нормально показывать
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getSportClubsAndCountAthletes(@PathVariable("startdate") String startDate,
                                                 @PathVariable("enddate") String endDate, Model model) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         model.addAttribute("allsportclubs", sportClubRepository.getSportClubsAndCountAthletes(
                 dateFormat.parse(startDate), dateFormat.parse(endDate)));
-        return "/pages/sportclub";
+        return "/pages/sportclub2";
     }
 }

@@ -15,12 +15,11 @@ public class UserController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("users", userRepository.findAll());
         return "/pages/list_of_users";
     }
 
     @GetMapping("/delete")
-    public String deleteTraining(Model model) {
+    public String deleteUser(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "/edit/delete/delete_user";
     }

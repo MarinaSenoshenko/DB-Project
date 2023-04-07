@@ -3,7 +3,6 @@ package db.api.service;
 import db.entities.Sport;
 import db.entities.Trainer;
 import db.entities.TrainerLicense;
-import db.entities.models.keys.LicenseKey;
 import db.repository.SportRepository;
 import db.repository.TrainerLicenseRepository;
 import db.repository.TrainerRepository;
@@ -17,14 +16,10 @@ public class TrainerLicenseService {
     private final TrainerRepository trainerRepository;
     private final SportRepository sportRepository;
 
-    //TODO разобраться: ОШИБКА: значение NULL в столбце "trainer_id" отношения "trainer_license"
-    // нарушает ограничение NOT NULL
-    // Подробности: Ошибочная строка содержит (14, null, null).
     public TrainerLicense addTrainerLicense(Long trainerId, String value) {
         Sport sport = sportRepository.getSportByValue(value);
         Trainer trainer = trainerRepository.findById(trainerId).orElseThrow();
-        TrainerLicense trainerLicense = new TrainerLicense(new LicenseKey(trainer, sport));
-
+        TrainerLicense trainerLicense = new TrainerLicense(trainer, sport);
         trainerLicenseRepository.save(trainerLicense);
         return trainerLicense;
     }

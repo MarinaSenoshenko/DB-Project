@@ -11,6 +11,7 @@ a.buttons {
     font: normal 28px arial;
 }
 
+
 a.buttons:not(.active) {
     box-shadow: inset 0 1px 1px rgba(11, 55, 125, 0.8);
     border: 1px solid blue;

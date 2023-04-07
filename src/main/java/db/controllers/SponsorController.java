@@ -37,7 +37,7 @@ public class SponsorController {
         return "/edit/delete/delete_sponsor";
     }
 
-    //TODO вернуть count sponsor, придумать как это нормально показывать
+    // TODO вернуть count sponsor, придумать как это нормально показывать
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getAndCountSponsorByPeriod(@PathVariable("startdate") String startDate,
                                                   @PathVariable("enddate") String endDate, Model model) throws ParseException {

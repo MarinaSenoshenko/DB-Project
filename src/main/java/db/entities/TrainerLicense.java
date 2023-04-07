@@ -3,6 +3,7 @@ package db.entities;
 import db.entities.models.keys.LicenseKey;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public class TrainerLicense implements Serializable {
     @Embedded
     private LicenseKey licenseKey;
 
-    public TrainerLicense(LicenseKey licenseKey) {
-        this.licenseKey = licenseKey;
+    public TrainerLicense(Trainer trainer, Sport sport) {
+        this.licenseKey = new LicenseKey(trainer, sport);
     }
 }

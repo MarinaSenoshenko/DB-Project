@@ -6,6 +6,7 @@ import db.repository.*;
 import db.repository.user.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,8 +20,11 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     private final RoleRepository roleRepository;
 
     @Override
-    public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public CustomUserDetails loadUserByUsername(String username)  {
         User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Can't load user");
+        }
         return new CustomUserDetails(user.getUsername(), user.getPassword(), user.getRoles());
     }
 
@@ -34,7 +38,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
         Role role = roleRepository.findById(1L).orElseThrow();
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-        User user = new User(name, password, roles);
+        User user = new User(name, BCrypt.hashpw(password, BCrypt.gensalt()), roles);
         userRepository.save(user);
         return user;
     }
@@ -63,7 +67,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
                 Objects.equals(firstName, firstNameReal) &&
                 Objects.equals(lastName, lastNameReal) &&
                 id.equals(idReal)) {
-            User user = new User(name, password, roles);
+            User user = new User(name, BCrypt.hashpw(password, BCrypt.gensalt()), roles);
             userRepository.save(user);
             return user;
         }
