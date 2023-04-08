@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>athlete</title>
+  <link rel='stylesheet' href='/css/background.css'>
+</head>
+
+<body>
+<main id="main-holder">
+  <link rel="stylesheet" href=/css/menu_buttons.css>
+  <link rel="stylesheet" href=/css/table.css>
+  <script type="text/javascript" src="/js/src/athlete.js"></script>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')"
+     onclick="location.href='/main/athlete'">Назад</a>
+
+  <table border="1" width="900">
+    <tr>
+      <th><p>№</p></th>
+      <th><p>Фамилия</p></th>
+      <th><p>Имя</p></th>
+      <th><p>Отчество</p></th>
+      <th><p>Hазвание клуба</p></th>
+      <th><p>Вид спорта</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
+    </tr>
+    <tr th:each="athlete, iter : ${athletes}">
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${athlete.lastName}"></td>
+      <td th:text="${athlete.firstName}"></td>
+      <td th:text="${athlete.patronymic}"></td>
+      <td th:text="${athlete.title}"></td>
+      <td th:text="${athlete.value}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${athlete.id}"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>

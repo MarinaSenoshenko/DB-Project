@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>sportclub2</title>
+  <link rel='stylesheet' href='/css/background.css'>
+</head>
+
+<body>
+<main id="main-holder">
+  <link rel="stylesheet" href=/css/table.css>
+  <link rel="stylesheet" href=/css/menu_buttons.css>
+  <script type="text/javascript" src="/js/src/sportclub.js"></script>
+  <a class="buttons" onclick="location.href='/main'">Главное меню</a>
+  <a class="buttons" sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" onclick="location.href='/main/sportclub'">Cброс</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/add'">Добавить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/delete'">Удалить</a>
+  <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/update'">Изменить</a>
+  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+    <th><b>Получить количество спортсменов за период: </b></th>
+    <th>Введите дату начала: </th>
+    <label for="start_date"></label><input type="date" name="day"
+                                           id="start_date" size="60"
+                                           class="login-form-field"
+                                           placeholder="day of week">
+    <th>Введите дату конца: </th>
+    <label for="end_date"></label><input type="date" name="day"
+                                         id="end_date" size="60"
+                                         class="login-form-field"
+                                         placeholder="day of week">
+    <button type="button" onclick="showSportClubByPeriod()">Применить</button>
+  </form><br>
+  <table border="1" width="800">
+    <tr>
+      <th><p>№</p></th>
+      <th><p>Название клуба</p></th>
+      <th><p>Количество спортсменов</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
+    </tr>
+    <tr th:each="allsportclub, iter : ${allsportclubs}">
+      <td th:text="${iter.index} + 1"></td>
+      <td th:text="${allsportclub.title}"></td>
+      <td th:text="${allsportclub.athletesCount}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${allsportclub.id}"></td>
+    </tr>
+  </table> <br/>
+</main>
+</body>
+</html>
