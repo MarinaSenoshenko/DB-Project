@@ -1,12 +1,20 @@
 package db.controllers;
 
+import db.entities.outer.AthleteWithSports;
 import db.repository.*;
 import db.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import java.text.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/main/athlete")
@@ -68,11 +76,27 @@ public class AthleteController {
         return "/pages/athlete";
     }
 
-    //TODO изменить запрос, добавить виды спорта
     @GetMapping("/morethanone")
     public String getAthletesWhoMoreThanOneSport(Model model) {
-        model.addAttribute("athletes", athleteRepository.getAthletesWhoMoreThanOneSport());
-        return "/pages/athlete";
+        Iterable<?> results = athleteRepository.getAthletesWhoMoreThanOneSport();
+
+        List<AthleteWithSports> athletes = new ArrayList<>();
+
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+
+            AthleteWithSports athlete = new AthleteWithSports();
+            athlete.setId((Integer) row[0]);
+            athlete.setFirstName((String) row[1]);
+            athlete.setPatronymic((String) row[2]);
+            athlete.setLastName((String) row[3]);
+            athlete.setTitle((String) row[4]);
+            athlete.setValue((String) row[5]);
+            athletes.add(athlete);
+        }
+        model.addAttribute("athletes", athletes);
+
+        return "pages/outer/athletewithsports";
     }
 
     @GetMapping("/bycompetition/{competitionid}")

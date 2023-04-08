@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface SponsorRepository extends CrudRepository<Sponsor, Long> {
     @Query(name = "getAndCountSponsorByPeriod", nativeQuery = true)
-    Iterable<Sponsor> getAndCountSponsorByPeriod(Date startDate, Date endDate);
+    Iterable<?> getAndCountSponsorByPeriod(Date startDate, Date endDate);
     @Query(name = "getNotUsedInOtherTablesSponsorsId", nativeQuery = true)
     Iterable<Long> getNotUsedInOtherTablesSponsorsId();
 }

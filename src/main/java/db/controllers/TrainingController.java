@@ -1,6 +1,7 @@
 package db.controllers;
 
 import db.repository.AthleteRepository;
+import db.repository.TrainerLicenseRepository;
 import db.repository.TrainerRepository;
 import db.repository.TrainingRepository;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class TrainingController {
     private TrainingRepository trainingRepository;
+    private TrainerLicenseRepository trainerLicenseRepository;
     private TrainerRepository trainerRepository;
     private AthleteRepository athleteRepository;
 
@@ -24,7 +26,7 @@ public class TrainingController {
 
     @GetMapping("/add")
     public String addTraining(Model model) {
-        model.addAttribute("trainings", trainingRepository.findAll());
+        model.addAttribute("licenses", trainerLicenseRepository.findAll());
         model.addAttribute("trainers", trainerRepository.findAll());
         model.addAttribute("athletes", athleteRepository.findAll());
         return "/edit/post/add_training";

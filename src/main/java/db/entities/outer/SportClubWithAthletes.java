@@ -1,6 +1,5 @@
-package db.entities;
+package db.entities.outer;
 
-import db.repository.SportClubRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +8,7 @@ import java.math.BigInteger;
 @Setter
 @Getter
 public class SportClubWithAthletes {
-    Integer id;
-    String title;
-    BigInteger athletesCount;
-
+    private Integer id;
+    private String title;
+    private BigInteger athletesCount;
 }

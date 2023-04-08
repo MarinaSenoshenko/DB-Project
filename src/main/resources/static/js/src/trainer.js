@@ -63,11 +63,11 @@ function deleteTrainer() {
 
 function addTraining() {
     const req = new XMLHttpRequest();
-    const trainer = document.getElementById('trainer').value;
+    const id = document.getElementById('id').value;
     const athlete = document.getElementById('athlete').value;
 
     const params = new URLSearchParams({
-        trainer: trainer, athlete: athlete,
+        id: id, athlete: athlete,
     });
 
     req.open('POST', '/training?' + params.toString());

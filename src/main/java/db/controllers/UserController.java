@@ -12,6 +12,7 @@ import db.repository.user.UserRepository;
 @AllArgsConstructor
 public class UserController {
     private UserRepository userRepository;
+
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("users", userRepository.findAll());

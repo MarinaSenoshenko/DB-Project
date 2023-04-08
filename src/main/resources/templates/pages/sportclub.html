@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -19,7 +20,7 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sportclub/update'">Изменить</a>
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
-    <th><b>Получить спортивные клубы за период: </b></th>
+    <th><b>Получить количество спортсменов за период: </b></th>
     <th>Введите дату начала: </th>
     <label for="start_date"></label><input type="date" name="day"
                                            id="start_date" size="60"
@@ -36,13 +37,11 @@
     <tr>
       <th><p>№</p></th>
       <th><p>Название клуба</p></th>
-      <th><p>Количество спортсменов</p></th>
       <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="allsportclub, iter : ${allsportclubs}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${allsportclub.title}"></td>
-      <td th:text="${counts}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${allsportclub.id}"></td>
     </tr>
   </table> <br/>

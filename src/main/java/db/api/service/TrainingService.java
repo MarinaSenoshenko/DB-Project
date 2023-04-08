@@ -14,9 +14,8 @@ public class TrainingService {
     private final TrainerLicenseRepository trainerLicenseRepository;
     private final AthleteRepository athleteRepository;
 
-    // TODO Кого ты там находишь по одному id?
-    public Training addTraining(Long trainerId, Long athleteId) {
-        TrainerLicense trainerLicense = trainerLicenseRepository.getTrainerLicenseById(trainerId);
+    public Training addTraining(Long id, Long athleteId) {
+        TrainerLicense trainerLicense = trainerLicenseRepository.getTrainerLicenseById(id);
         Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
         Training training = new Training(new TrainingKey(athlete, trainerLicense));
         trainingRepository.save(training);

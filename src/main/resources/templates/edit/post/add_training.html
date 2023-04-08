@@ -24,9 +24,9 @@
     </div>
 
     <div class="input-container ic2">
-      <label for="trainer" class="placeholder"></label><select class="input" id="trainer">
-      <option th:each="trainer: ${trainers}"
-              th:text="${trainer.id}">
+      <label for="id" class="placeholder"></label><select class="input" id="id">
+      <option th:each="license: ${licenses}"
+              th:text="${license.id}">
       </option>
     </select><br/><br/>
     </div>

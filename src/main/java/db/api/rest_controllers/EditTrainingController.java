@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class EditTrainingController {
     private final TrainingService trainingService;
     @PostMapping("")
-    public Training addTraining(@RequestParam("trainer") Long trainerId, @RequestParam("athlete") Long athleteId) {
-        return trainingService.addTraining(trainerId, athleteId);
+    public Training addTraining(@RequestParam("id") Long id, @RequestParam("athlete") Long athleteId) {
+        return trainingService.addTraining(id, athleteId);
     }
 
     @DeleteMapping("")

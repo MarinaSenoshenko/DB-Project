@@ -21,8 +21,8 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athlete/update'">Изменить</a>
 
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
-    <th><b>Получить список атлетов, которые занимаются не 1 видом спорта: </b></th>
-    <button type="button" onclick="showById()">Применить</button>
+    <th><b>Получить список атлетов, которые занимаются более чем 1 видом спорта: </b></th>
+    <button type="button" onclick="showMoreThanOne()">Применить</button>
   </form><br>
 
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
@@ -87,7 +87,7 @@
     <button type="button" onclick="showNotInCompetition()">Применить</button>
   </form><br>
 
-  <table border="1" width="800">
+  <table border="1" width="900">
     <tr>
       <th><p>№</p></th>
       <th><p>Фамилия</p></th>

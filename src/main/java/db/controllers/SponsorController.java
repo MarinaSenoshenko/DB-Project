@@ -1,12 +1,16 @@
 package db.controllers;
 
+import db.entities.outer.SponsorWithCount;
 import db.repository.SponsorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.text.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/main/sponsor")
@@ -37,13 +41,33 @@ public class SponsorController {
         return "/edit/delete/delete_sponsor";
     }
 
-    // TODO вернуть count sponsor, придумать как это нормально показывать
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getAndCountSponsorByPeriod(@PathVariable("startdate") String startDate,
                                                   @PathVariable("enddate") String endDate, Model model) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        model.addAttribute("allsponsors", sponsorRepository.getAndCountSponsorByPeriod(
-                dateFormat.parse(startDate), dateFormat.parse(endDate)));
-        return "/pages/sponsor";
+
+        Iterable<?> results = sponsorRepository.getAndCountSponsorByPeriod(dateFormat.parse(startDate),
+                dateFormat.parse(endDate));
+
+        List<SponsorWithCount> sponsors = new ArrayList<>();
+
+        for (Object result : results) {
+            Object[] row = (Object[]) result;
+
+            SponsorWithCount sponsor = new SponsorWithCount();
+            sponsor.setId((Integer) row[0]);
+            sponsor.setName((String) row[1]);
+            sponsor.setCompany((String) row[2]);
+            if (row[3] == null) {
+                sponsor.setSponsorsCount(BigInteger.valueOf(0));
+            }
+            else {
+                sponsor.setSponsorsCount((BigInteger) row[3]);
+            }
+            sponsors.add(sponsor);
+        }
+
+        model.addAttribute("allsponsors", sponsors);
+        return "pages/outer/sponsorwithcount";
     }
 }

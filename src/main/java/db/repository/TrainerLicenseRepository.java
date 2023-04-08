@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TrainerLicenseRepository extends CrudRepository<TrainerLicense, LicenseKey> {
     @Query(name = "getTrainerLicenseById", nativeQuery = true)
-    TrainerLicense getTrainerLicenseById(Long id);
+    TrainerLicense getTrainerLicenseById(Long trainerId);
 }

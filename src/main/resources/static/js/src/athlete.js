@@ -7,8 +7,11 @@ function showNotInCompetition() {
 
 function showById() {
     const id = document.getElementById('id').value;
-
     location.href='/main/athlete/bycompetition/' + id;
+}
+
+function showMoreThanOne() {
+    location.href='/main/athlete/morethanone/';
 }
 
 function showByRankAndSport() {
