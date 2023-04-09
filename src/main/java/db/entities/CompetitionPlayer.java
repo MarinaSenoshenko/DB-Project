@@ -3,6 +3,7 @@ package db.entities;
 import db.entities.models.keys.CompetitionKey;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

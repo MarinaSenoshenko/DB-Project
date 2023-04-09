@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -60,7 +61,7 @@
   <button type="button" onclick="showByFacilityAndSport()">Применить</button>
   </form><br><br>
 
-  <table border="1" width="1300">
+  <table border="1" width="1200">
     <tr>
       <th rowspan="2">№</th>
       <th colspan="2">Соревнования</th>
@@ -68,7 +69,10 @@
       <th rowspan="2">Вид спорта</th>
       <th rowspan="2"><p>Спортивный комплекс</p></th>
       <th rowspan="2"><p>Адрес</p></th>
-      <th sec:authorize="hasAuthority('ADMIN')" rowspan="2"><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')" rowspan="2"><p>id соревнований</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')" rowspan="2"><p>id спонсора</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')" rowspan="2"><p>id спорта</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')" rowspan="2"><p>id площадки</p></th>
     </tr>
     <tr>
       <th><p>Название</p></th>
@@ -86,8 +90,11 @@
       <td th:text="${competition.sportsFacility.type.value}"></td>
       <td th:text="${competition.sportsFacility.address}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${competition.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${competition.sponsor.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${competition.sport.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${competition.sportsFacility.id}"></td>
     </tr>
-  </table> <br/>
+  </table><br/>
 </main>
 </body>
 </html>

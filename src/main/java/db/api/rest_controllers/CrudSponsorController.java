@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/sponsor")
-public class EditSponsorController {
+public class CrudSponsorController {
     private final SponsorService sponsorService;
 
     @PostMapping("")

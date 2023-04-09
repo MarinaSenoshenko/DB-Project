@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -12,11 +13,34 @@
 <main id="main-holder">
     <link rel="stylesheet" href=/css/table.css>
     <link rel="stylesheet" href=/css/menu_buttons.css>
+    <script type="text/javascript" src="/js/src/competition.js"></script>
     <a class="buttons" onclick="location.href='/main'">Главное меню</a>
     <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competitionplayer/add'">Добавить</a>
     <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competitionplayer/delete'">Удалить</a>
     <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competitionplayer/update'">Изменить</a>
-    <table border="1" width="1200">
+
+    <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+        <div class="input-container ic2">
+            <th><b>Сортировать по </b></th>
+            <label for="token" class="placeholder"></label><select class="input" id="token">
+            <option>имя</option>
+            <option>фамилия</option>
+            <option>отчество</option>
+            <option>название клуба</option>
+            <option>название соревнований</option>
+            <option>награждался</option>
+            <option>результат</option>
+        </select>
+            <th><b>в порядке </b></th>
+            <label for="order" class="placeholder"></label><select class="input" id="order">
+            <option>возрастания</option>
+            <option>убывания</option>
+        </select>
+            <button type="button" onclick="orderBy()">Применить</button>
+        </div>
+    </form><br>
+
+    <table border="1" width="1300">
         <tr>
             <th><p>№</p></th>
             <th><p>Фамилия</p></th>
@@ -26,6 +50,8 @@
             <th><p>Название соревнований</p></th>
             <th><p>Награждался</p></th>
             <th><p>Результат</p></th>
+            <th sec:authorize="hasAuthority('ADMIN')"><p>id атлета</p></th>
+            <th sec:authorize="hasAuthority('ADMIN')"><p>id соревнования</p></th>
         </tr>
         <tr th:each="allcompetitionplayer, iter : ${allcompetitionplayers}">
             <td th:text="${iter.index} + 1"></td>
@@ -36,6 +62,8 @@
             <td th:text="${allcompetitionplayer.competitionKey.competition.title}"></td>
             <td th:text="${allcompetitionplayer.wasAwarding}"></td>
             <td th:text="${allcompetitionplayer.result}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${allcompetitionplayer.competitionKey.athlete.id}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${allcompetitionplayer.competitionKey.competition.id}"></td>
         </tr>
     </table> <br/>
 </main>

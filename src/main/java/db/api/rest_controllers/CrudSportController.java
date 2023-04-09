@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/sport")
-public class EditSportController {
+public class CrudSportController {
     private final SportService sportService;
 
     @PostMapping("")

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
-public class EditUserController {
+public class CrudUserController {
     private final CustomUserDetailsServiceImpl customUserDetailsService;
 
     @DeleteMapping("")

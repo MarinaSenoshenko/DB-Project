@@ -1,3 +1,38 @@
+function orderBy() {
+    let token = document.getElementById('token').value;
+    let order = document.getElementById('order').value;
+    if (token === 'имя') {
+        token = 'firstName'
+    }
+    if (token === 'фамилия') {
+        token = 'lastName'
+    }
+    if (token === 'отчество') {
+        token = 'patronymic'
+    }
+    if (token === 'название клуба') {
+        token = 'clubtitle'
+    }
+    if (token === 'название соревнований') {
+        token = 'competitiontitle'
+    }
+    if (token === 'награждался') {
+        token = 'wasawarding'
+    }
+    if (token === 'результат') {
+        token = 'result'
+    }
+    if (order === 'возрастания') {
+        order = 'ascending'
+    }
+    if (order === 'убывания') {
+        order = 'descending'
+    }
+
+    location.href='/main/competitionplayer/' + token + '/' + order;
+}
+
+
 function showByDateAndSponsor() {
     let id = document.getElementById('id').value;
     if (id === 'all') {

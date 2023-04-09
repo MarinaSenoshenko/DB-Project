@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/courtsurface")
-public class EditCourtSurfaceController {
+public class CrudCourtSurfaceController {
     private final CourtSurfaceService courtSurfaceService;
 
     @DeleteMapping("")

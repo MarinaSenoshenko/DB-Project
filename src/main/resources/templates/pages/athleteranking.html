@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -16,7 +17,7 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/athleteranking/update'">Изменить</a>
-  <table border="1" width="1000">
+  <table border="1" width="1200">
     <tr>
       <th><p>№</p></th>
       <th><p>Фамилия</p></th>
@@ -25,6 +26,8 @@
       <th><p>Hазвание клуба</p></th>
       <th><p>Вид спорта</p></th>
       <th><p>Разряд</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id атлета</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id спорта</p></th>
     </tr>
     <tr th:each="athleteranking, iter : ${athleterankings}">
       <td th:text="${iter.index} + 1"></td>
@@ -34,6 +37,8 @@
       <td th:text="${athleteranking.athleteKey.athlete.club.title}"></td>
       <td th:text="${athleteranking.athleteKey.sport.value}"></td>
       <td th:text="${athleteranking.rank.value}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${athleteranking.athleteKey.athlete.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${athleteranking.athleteKey.sport.id}"></td>
     </tr>
   </table> <br/>
 </main>

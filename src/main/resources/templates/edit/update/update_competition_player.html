@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,7 @@
   <script type="text/javascript" src="/js/src/competition.js"></script>
   <div style="height: 550px" class="form">
     <div class="title">Изменить участника</div>
-    <div class="subtitle">Выберите атлета и соревнования, был ли награжден (true, false)</div>
+    <div class="subtitle">Выберите id атлета и соревнования, был ли награжден (true, false)</div>
     <div class="input-container ic2">
       <label for="athlete" class="placeholder"></label><select class="input" id="athlete">
       <option th:each="athlete: ${athletes}"

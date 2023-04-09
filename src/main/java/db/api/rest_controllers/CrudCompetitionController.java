@@ -2,9 +2,6 @@ package db.api.rest_controllers;
 
 import db.api.service.CompetitionService;
 import db.entities.Competition;
-import db.repository.SponsorRepository;
-import db.repository.SportRepository;
-import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +10,7 @@ import java.text.ParseException;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/competition")
-public class EditCompetitionController {
+public class CrudCompetitionController {
     private final CompetitionService competitionService;
 
     @PostMapping("")
