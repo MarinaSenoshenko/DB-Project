@@ -18,7 +18,9 @@ public class TrainerController {
     @GetMapping("")
     public String getAll(Model model) {
         model.addAttribute("trainers", trainerRepository.findAll());
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("sports", sportRepository.findAll());
         return "/pages/trainer";
     }

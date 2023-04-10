@@ -27,7 +27,9 @@ public class CompetitionController {
 
     @GetMapping("")
     public String getAll(Model model) {
-        model.addAttribute("competitions", competitionRepository.findAll());
+        model.addAttribute("competitions", competitionRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         addAttributesToModel(model);
         return "/pages/competition";
     }
@@ -75,9 +77,15 @@ public class CompetitionController {
     }
 
     private void addAttributesToModel(Model model) {
-        model.addAttribute("sponsors", sponsorRepository.findAll());
-        model.addAttribute("sports", sportRepository.findAll());
-        model.addAttribute("facilitys", sportsFacilityTypeRepository.findAll());
+        model.addAttribute("sponsors", sponsorRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("sports", sportRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("facilitys", sportsFacilityTypeRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("allcompetitions", competitionRepository.findAll(
                 Sort.by(Sort.Direction.ASC, "id")
         ));

@@ -122,7 +122,11 @@ public class AthleteController {
     private void addAttributesToModel(Model model) {
         model.addAttribute("sports", sportRepository.findAll());
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
-        model.addAttribute("trainerlicenses", trainerLicenseRepository.findAll());
-        model.addAttribute("competitions", competitionRepository.findAll());
+        model.addAttribute("trainerlicenses", trainerLicenseRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("competitions", competitionRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
     }
 }
