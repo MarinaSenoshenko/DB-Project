@@ -4,6 +4,7 @@ import db.entities.outer.AthleteWithSports;
 import db.repository.*;
 import db.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +47,9 @@ public class AthleteController {
     @GetMapping("/update")
     public String updateAthlete(Model model) {
         addAttributesToModel(model);
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("sportclubs", sportClubRepository.findAll());
         return "/edit/update/update_athlete";
     }

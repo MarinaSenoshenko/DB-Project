@@ -2,6 +2,7 @@ package db.controllers;
 
 import db.repository.SportRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,9 @@ public class SportController {
 
     @GetMapping("/update")
     public String updateSportClub(Model model) {
-        model.addAttribute("sports", sportRepository.findAll());
+        model.addAttribute("sports", sportRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/update_sport";
     }
 }

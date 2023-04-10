@@ -2,6 +2,7 @@ package db.controllers;
 
 import db.repository.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,9 @@ public class TrainerController {
 
     @GetMapping("/update")
     public String updateTrainer(Model model) {
-        model.addAttribute("trainers", trainerRepository.findAll());
+        model.addAttribute("trainers", trainerRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("athletes", athleteRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
         return "/edit/update/update_trainer";

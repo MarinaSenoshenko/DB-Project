@@ -1,12 +1,13 @@
 package db.repository;
 
 import db.entities.Athlete;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Date;
 
-public interface AthleteRepository extends CrudRepository<Athlete, Long> {
+public interface AthleteRepository extends JpaRepository<Athlete, Long> {
     @Query(name = "getAthletesByRanking", nativeQuery = true)
     Iterable<Athlete> getAthletesByRanking(String sport, Long athleteRankId);
     @Query(name = "getAthletesByTrainerAndRank", nativeQuery = true)

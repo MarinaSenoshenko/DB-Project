@@ -10,6 +10,7 @@
   <script type="text/javascript" src="/js/src/registration.js"></script>
   <div class="title">Регистрация</div>
   <div class="subtitle">Создайте аккаунт</div>
+  <div th:if="${param.error}">Логин занят</div>
   <div class="input-container ic1">
     <input id="firstName" class="input" type="text" placeholder=" " />
     <label for="firstName" class="placeholder">Ввведите имя (для "user" не обязательно)</label>

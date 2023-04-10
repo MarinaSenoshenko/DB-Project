@@ -3,6 +3,7 @@ package db.controllers;
 import db.entities.outer.SponsorWithCount;
 import db.repository.SponsorRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,9 @@ public class SponsorController {
 
     @GetMapping("/update")
     public String updateSponsor(Model model) {
-        model.addAttribute("sponsors", sponsorRepository.findAll());
+        model.addAttribute("sponsors", sponsorRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/update_sponsor";
     }
 

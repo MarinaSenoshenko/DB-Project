@@ -24,6 +24,38 @@ public class CompetitionPlayerController {
         return "/pages/competitionplayer";
     }
 
+    @GetMapping("/add")
+    public String addCompetitionPlayer(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("competitions", competitionRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        return "/edit/post/add_competition_player";
+    }
+
+    @GetMapping("/update")
+    public String updateCompetitionPlayer(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("competitions", competitionRepository.findAll(Sort.by(Sort.Direction.ASC, "id")
+        ));
+        return "/edit/update/update_competition_player";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCompetitionPlayer(Model model) {
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("competitions", competitionRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        return "/edit/delete/delete_competition_player";
+    }
+
     @GetMapping("/result/ascending")
     public String orderByResultAscending(Model model) {
         model.addAttribute("competitionplayers", competitionPlayerRepository.findAll());
@@ -128,26 +160,5 @@ public class CompetitionPlayerController {
         model.addAttribute("competitionplayers", competitionPlayerRepository.findAll());
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByClubOrderByDescending());
         return "/pages/competitionplayer";
-    }
-
-    @GetMapping("/add")
-    public String addCompetitionPlayer(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
-        model.addAttribute("competitions", competitionRepository.findAll());
-        return "/edit/post/add_competition_player";
-    }
-
-    @GetMapping("/update")
-    public String updateCompetitionPlayer(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
-        model.addAttribute("competitions", competitionRepository.findAll());
-        return "/edit/update/update_competition_player";
-    }
-
-    @GetMapping("/delete")
-    public String deleteCompetitionPlayer(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
-        model.addAttribute("competitions", competitionRepository.findAll());
-        return "/edit/delete/delete_competition_player";
     }
 }

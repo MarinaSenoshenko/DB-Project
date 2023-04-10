@@ -3,6 +3,7 @@ package db.controllers;
 import db.entities.outer.SportClubWithAthletes;
 import db.repository.SportClubRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,9 @@ public class SportClubController {
 
     @GetMapping("/update")
     public String updateSportClub(Model model) {
-        model.addAttribute("sportclubs", sportClubRepository.findAll());
+        model.addAttribute("sportclubs", sportClubRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/update_sport_club";
     }
 

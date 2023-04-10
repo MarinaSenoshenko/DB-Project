@@ -5,6 +5,7 @@ import db.repository.AthleteRankingRepository;
 import db.repository.AthleteRepository;
 import db.repository.SportRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,9 @@ public class AthleteRankingController {
 
     @GetMapping("/add")
     public String getAthleteRanking(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("athleterankings", athleteRankingRepository.findAll());
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
@@ -35,7 +38,9 @@ public class AthleteRankingController {
 
     @GetMapping("/update")
     public String updateAthleteRanking(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         model.addAttribute("athleterankings", athleteRankingRepository.findAll());
         model.addAttribute("athleteranks", athleteRankRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
@@ -44,8 +49,12 @@ public class AthleteRankingController {
 
     @GetMapping("/delete")
     public String deleteAthleteRanking(Model model) {
-        model.addAttribute("athletes", athleteRepository.findAll());
-        model.addAttribute("sports", sportRepository.findAll());
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("sports", sportRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/delete_ranking";
     }
 }

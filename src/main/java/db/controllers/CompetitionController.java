@@ -7,6 +7,7 @@ import db.repository.SportRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,19 +34,13 @@ public class CompetitionController {
 
     @GetMapping("/add")
     public String addCompetition(Model model) {
-        addAttributesToModel(model);
-        model.addAttribute("sponsors", sponsorRepository.findAll());
-        model.addAttribute("sports", sportRepository.findAll());
-        model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
+        addSortedAttributes(model);
         return "/edit/post/add_competition";
     }
 
     @GetMapping("/update")
     public String updateCompetition(Model model) {
-        addAttributesToModel(model);
-        model.addAttribute("sponsors", sponsorRepository.findAll());
-        model.addAttribute("sports", sportRepository.findAll());
-        model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll());
+        addSortedAttributes(model);
         return "/edit/update/update_competition";
     }
 
@@ -83,6 +78,21 @@ public class CompetitionController {
         model.addAttribute("sponsors", sponsorRepository.findAll());
         model.addAttribute("sports", sportRepository.findAll());
         model.addAttribute("facilitys", sportsFacilityTypeRepository.findAll());
-        model.addAttribute("allcompetitions", competitionRepository.findAll());
+        model.addAttribute("allcompetitions", competitionRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+    }
+
+    private void addSortedAttributes(Model model) {
+        addAttributesToModel(model);
+        model.addAttribute("sponsors", sponsorRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("sports", sportRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("sports_facilitys", sportsFacilityRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
     }
 }

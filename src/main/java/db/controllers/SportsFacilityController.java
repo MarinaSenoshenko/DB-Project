@@ -4,6 +4,7 @@ import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,20 @@ public class SportsFacilityController {
 
     @GetMapping("/add")
     public String addFacility(Model model) {
-        model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
+        model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/post/facility/add_sports_facility";
     }
 
     @GetMapping("/update")
     public String updateFacility(Model model) {
-        model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll());
-        model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll());
+        model.addAttribute("sportsfacilitys", sportsFacilityRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("sportsfacilitytypes", sportsFacilityTypeRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/facility/update_sports_facility";
     }
 
@@ -54,32 +61,44 @@ public class SportsFacilityController {
 
     @GetMapping("/update/update_arena")
     public String updateArenaParam(Model model) {
-        model.addAttribute("arenas", arenaRepository.findAll());
+        model.addAttribute("arenas", arenaRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/facility/update_arena";
     }
 
     @GetMapping("/delete/delete_arena")
     public String deleteArenaParam(Model model) {
-        model.addAttribute("arenas", arenaRepository.findAll());
+        model.addAttribute("arenas", arenaRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/facility/delete_arena";
     }
 
     @GetMapping("/add/add_court")
     public String addCourtParam(Model model) {
-        model.addAttribute("surfaces", courtSurfaceRepository.findAll());
+        model.addAttribute("surfaces", courtSurfaceRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/post/facility/add_court";
     }
 
     @GetMapping("/update/update_court")
     public String updateCourtParam(Model model) {
-        model.addAttribute("courts", courtRepository.findAll());
-        model.addAttribute("surfaces", courtSurfaceRepository.findAll());
+        model.addAttribute("courts", courtRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("surfaces", courtSurfaceRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/facility/update_court";
     }
 
     @GetMapping("/delete/delete_court")
     public String deleteCourtParam(Model model) {
-        model.addAttribute("courts", courtRepository.findAll());
+        model.addAttribute("courts", courtRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/facility/delete_court";
     }
 
@@ -90,13 +109,17 @@ public class SportsFacilityController {
 
     @GetMapping("/update/update_gym")
     public String updateGymParam(Model model) {
-        model.addAttribute("gyms", gymRepository.findAll());
+        model.addAttribute("gyms", gymRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/facility/update_gym";
     }
 
     @GetMapping("/delete/delete_gym")
     public String deleteGymParam(Model model) {
-        model.addAttribute("gyms", gymRepository.findAll());
+        model.addAttribute("gyms", gymRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/facility/delete_gym";
     }
 
@@ -107,13 +130,17 @@ public class SportsFacilityController {
 
     @GetMapping("/update/update_stadium")
     public String updateStadiumParam(Model model) {
-        model.addAttribute("stadiums", stadiumRepository.findAll());
+        model.addAttribute("stadiums", stadiumRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/update/facility/update_stadium";
     }
 
     @GetMapping("/delete/delete_stadium")
     public String deleteStadiumParam(Model model) {
-        model.addAttribute("stadiums", stadiumRepository.findAll());
+        model.addAttribute("stadiums", stadiumRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/facility/delete_stadium";
     }
 

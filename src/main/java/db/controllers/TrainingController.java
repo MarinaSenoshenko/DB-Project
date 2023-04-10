@@ -5,6 +5,7 @@ import db.repository.TrainerLicenseRepository;
 import db.repository.TrainerRepository;
 import db.repository.TrainingRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,17 +27,27 @@ public class TrainingController {
 
     @GetMapping("/add")
     public String addTraining(Model model) {
-        model.addAttribute("licenses", trainerLicenseRepository.findAll());
-        model.addAttribute("trainers", trainerRepository.findAll());
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("licenses", trainerLicenseRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("trainers", trainerRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/post/add_training";
     }
 
     @GetMapping("/delete")
     public String deleteTraining(Model model) {
         model.addAttribute("trainings", trainingRepository.findAll());
-        model.addAttribute("trainers", trainerRepository.findAll());
-        model.addAttribute("athletes", athleteRepository.findAll());
+        model.addAttribute("trainers", trainerRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
+        model.addAttribute("athletes", athleteRepository.findAll(
+                Sort.by(Sort.Direction.ASC, "id")
+        ));
         return "/edit/delete/delete_training";
     }
 }

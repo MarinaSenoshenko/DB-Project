@@ -1,12 +1,13 @@
 package db.repository.sports;
 
 import db.entities.models.surface.SportsFacility;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Date;
 
-public interface SportsFacilityRepository extends CrudRepository<SportsFacility, Long> {
+public interface SportsFacilityRepository extends JpaRepository<SportsFacility, Long> {
     @Query(name = "getSportsFacilityByCompetitionPeriod", nativeQuery = true)
     Iterable<SportsFacility> getSportsFacilityByCompetitionPeriod(Date startDate, Date endDate);
     @Query(name = "getNotUsedInArenaSportsFacilityId", nativeQuery = true)
