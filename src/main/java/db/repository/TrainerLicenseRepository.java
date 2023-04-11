@@ -4,7 +4,6 @@ import db.entities.TrainerLicense;
 import db.entities.models.keys.LicenseKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 public interface TrainerLicenseRepository extends JpaRepository<TrainerLicense, LicenseKey> {
     @Query(name = "getTrainerLicenseById", nativeQuery = true)

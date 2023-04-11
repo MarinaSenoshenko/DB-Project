@@ -3,7 +3,6 @@ package db.repository;
 import db.entities.Sport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 public interface SportRepository extends JpaRepository<Sport, Long> {
     @Query(name = "getNotUsedInOtherTablesSports", nativeQuery = true)

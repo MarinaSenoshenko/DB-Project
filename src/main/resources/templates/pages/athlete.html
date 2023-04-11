@@ -25,16 +25,16 @@
     <button type="button" onclick="showMoreThanOne()">Применить</button>
   </form><br>
 
-  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN')" class="grades-form">
     <th><b>Получить список атлетов, выигравших соревнования: </b></th>
-    <th>Выберите номер соревнований: </th>
+    <th>Выберите id соревнований: </th>
     <label for="id"></label><select class="selathlete" id="id">
       <option th:each="competition: ${competitions}"
               th:text="${competition.id}">
       </option>
     </select>
     <button type="button" onclick="showById()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN')">
 
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов определенного разряда и вида спорта: </b></th>
@@ -52,9 +52,9 @@
     </option>
   </select>
   <button type="button" onclick="showByRankAndSport()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
 
-  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN')" class="grades-form">
     <th><b>Получить список атлетов определенного разряда и лицензии тренера: </b></th>
     <th>Выберите разряд: </th>
     <label for="rank2"></label><select class="selathlete" id="rank2">
@@ -63,14 +63,15 @@
       </option>
     </select>
 
-    <th>Выберите лицензию тренера: </th>
+    <th>Выберите id лицензии тренера: </th>
     <label for="trainerlicenseid"></label><select class="selathlete" id="trainerlicenseid">
       <option th:each="trainerlicense: ${trainerlicenses}"
               th:text="${trainerlicense.id}">
       </option>
     </select>
     <button type="button" onclick="showByTrainerLicenseAndRank()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN')">
+
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
     <th><b>Получить список атлетов, которые не участвовали в соревнованиях в определенный период: </b></th>
     <th>Введите дату начала: </th>
@@ -85,7 +86,7 @@
                                           class="login-form-field"
                                           placeholder="day of week">
     <button type="button" onclick="showNotInCompetition()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
 
   <table border="1" width="900">
     <tr>

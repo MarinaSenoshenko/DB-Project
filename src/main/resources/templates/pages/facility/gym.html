@@ -27,7 +27,7 @@
     </option>
   </select>
     <button type="button" onclick="showByFloor()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
 
   <table border="1" width="600">
     <tr>

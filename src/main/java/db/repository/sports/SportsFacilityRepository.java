@@ -3,7 +3,6 @@ package db.repository.sports;
 import db.entities.models.surface.SportsFacility;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Date;
 

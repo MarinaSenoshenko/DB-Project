@@ -19,8 +19,8 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/trainer/update'">Изменить</a>
-  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
-    <th><b>Получить тренера по номеру атлета: </b></th>
+  <form sec:authorize="hasAnyAuthority('ADMIN')" class="grades-form">
+    <th><b>Получить тренера по id атлета: </b></th>
     <th>Выберите номер атлета: </th>
     <select class="selathlete" id="id">
       <option th:each="athlete: ${athletes}"
@@ -28,7 +28,7 @@
       </option>
     </select>
     <button type="button" onclick="showByAthleteId()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN')">
     <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
       <th><b>Получить тренера по виду спорта: </b></th>
       <th>Выберите вид спорта: </th>
@@ -38,7 +38,7 @@
         </option>
       </select>
       <button type="button" onclick="showBySport()">Применить</button>
-    </form><br>
+    </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
   <table border="1" width="800">
     <tr>
       <th><p>№</p></th>

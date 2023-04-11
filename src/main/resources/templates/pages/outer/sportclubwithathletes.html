@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
-  <title>sportclub2</title>
+  <title>sportclub</title>
   <link rel='stylesheet' href='/css/background.css'>
 </head>
 
@@ -32,7 +32,7 @@
                                          class="login-form-field"
                                          placeholder="day of week">
     <button type="button" onclick="showSportClubByPeriod()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
   <table border="1" width="800">
     <tr>
       <th><p>№</p></th>

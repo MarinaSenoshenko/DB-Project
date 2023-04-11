@@ -9,9 +9,11 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import java.util.Map;
 
 public class TestInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-	private static final PostgreSQLContainer<?> pgContainer = new PostgreSQLContainer<>("postgres:15-alpine")
-			.withExposedPorts(5432);
-//			.withInitScript("data.sql");
+	private static final PostgreSQLContainer<?> pgContainer = new PostgreSQLContainer<>("postgres:latest")
+			.withExposedPorts(5432)
+			.withInitScript("data.sql")
+			.withPassword("qwerty")
+			.withUsername("postgres");
 	static {
 		pgContainer.start();
 	}

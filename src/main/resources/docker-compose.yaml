@@ -2,11 +2,11 @@ version: "3.5"
 
 services:
   dbSport:
-    container_name: dbSport
+    container_name: dbSport_copy
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=qwerty
-      - POSTGRES_USER=postgres
-    image: postgres:15-alpine
+        POSTGRES_PASSWORD: qwerty
+        POSTGRES_USER: postgres
+    image: postgres:latest
 

@@ -19,9 +19,9 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/add'">Добавить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/delete'">Удалить</a>
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/competition/update'">Изменить</a>
-  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN')" class="grades-form">
     <th><b>Получить список соревнований за период с определенным спонсором:</b></th>
-    <th>Выберите номер спонсора: </th>
+    <th>Выберите id спонсора: </th>
     <select class="selathlete" id="id">
       <option>all</option>
       <option th:each="sponsor: ${sponsors}"
@@ -39,11 +39,11 @@
                                          class="login-form-field"
                                          placeholder="day of week">
     <button type="button" onclick="showByDateAndSponsor()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN')">
 
-  <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
+  <form sec:authorize="hasAnyAuthority('ADMIN')" class="grades-form">
    <th><b>Получить список соревнований на определенном объекте по конкретному виду спорта:</b></th>
-   <th>Выберите номер объекта: </th>
+   <th>Выберите id объекта: </th>
    <select class="selathlete" id="facilityid">
      <option th:each="allcompetition: ${allcompetitions}"
             th:text="${allcompetition.sportsFacility.id}">
@@ -59,7 +59,7 @@
   </select>
 
   <button type="button" onclick="showByFacilityAndSport()">Применить</button>
-  </form><br><br>
+  </form><br><br sec:authorize="hasAnyAuthority('ADMIN')">
 
   <table border="1" width="1200">
     <tr>

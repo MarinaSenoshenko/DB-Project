@@ -40,7 +40,7 @@
                                          class="login-form-field"
                                          placeholder="day of week">
     <button type="button" onclick="showByPeriod()">Применить</button>
-  </form><br>
+  </form><br sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')">
 
   <table border="1" width="800">
     <tr>
