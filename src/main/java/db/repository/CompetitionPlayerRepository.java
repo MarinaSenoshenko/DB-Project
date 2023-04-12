@@ -1,9 +1,11 @@
 package db.repository;
 
 import db.entities.CompetitionPlayer;
+import db.entities.SportClub;
 import db.entities.models.keys.CompetitionKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPlayer, CompetitionKey> {
     @Query(name = "getCompetitionPlayerByAthleteAndCompetition", nativeQuery = true)
@@ -28,4 +30,12 @@ public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPl
     Iterable<CompetitionPlayer> getByClubOrderByAscending();
     @Query(name = "getByClubOrderByDescending", nativeQuery = true)
     Iterable<CompetitionPlayer> getByClubOrderByDescending();
+    Iterable<CompetitionPlayer> findByResult(Long result);
+    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteClubTitle(String club);
+    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteFirstName(String firstName);
+    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteLastName(String firstName);
+    Iterable<CompetitionPlayer> findByCompetitionKeyAthletePatronymic(String firstName);
+    Iterable<CompetitionPlayer> findByCompetitionKeyCompetitionTitle(String title);
+    Iterable<CompetitionPlayer> findCompetitionPlayerByWasAwardingTrue();
+    Iterable<CompetitionPlayer> findCompetitionPlayerByWasAwardingFalse();
 }

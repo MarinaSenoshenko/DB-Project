@@ -34,3 +34,43 @@ INSERT INTO athlete_ranking(athlete_id, sport, rank) VALUES
 (2, 2, 8),
 (3, 2, 7)
 ON CONFLICT DO NOTHING;
+
+INSERT INTO sponsor(id, name, company) VALUES
+(1, 'Marina Senoshenko', 'OOO Marina'),
+(2, null, 'Лукойл')
+ON CONFLICT DO NOTHING;
+
+insert into sports_facility_type(id, value)
+values (1, 'court')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO sports_facility(id, address, type) VALUES
+(1, 'Novosibirsk, Demakova street, 14', 1)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO competition(id, title, period, main_sponsor, sport, location) VALUES
+(1, 'The Russian hockey championship', '2023-01-12', 1, 2, 1),
+(2, 'The students hockey championship', '2023-11-01', 2, 2, 1)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO competition_player(athlete_id, competition_id, was_awarding, result) VALUES
+(1, 1, true, 1),
+(2, 2, true, 2),
+(3, 1, true, 3)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO trainer(id, first_name, patronymic, last_name) VALUES
+(1, 'Igor', 'Igorevich', 'Igorov'),
+(2, 'Pavel', 'Pavlovich', 'Pavlov')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO trainer_license(id, trainer_id, sport) VALUES
+(1, 1, 1),
+(2, 2, 2)
+ON CONFLICT DO NOTHING;
+
+INSERT INTO training(athlete_id, trainer_license_id) VALUES
+(1, 1),
+(2, 2),
+(3, 1)
+ON CONFLICT DO NOTHING;

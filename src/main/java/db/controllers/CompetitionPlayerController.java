@@ -1,5 +1,6 @@
 package db.controllers;
 
+import db.entities.CompetitionPlayer;
 import db.repository.AthleteRepository;
 import db.repository.CompetitionPlayerRepository;
 import db.repository.CompetitionRepository;
@@ -7,7 +8,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/main/competitionplayer")
@@ -21,7 +26,78 @@ public class CompetitionPlayerController {
     public String getAll(Model model) {
         model.addAttribute("competitionplayers", competitionPlayerRepository.findAll());
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll());
+
+        List<CompetitionPlayer> allcompetitionplayers = competitionPlayerRepository.findAll();
+        HashSet<String> uniqueLastNames = new HashSet<>();
+        HashSet<String> uniqueFirstNames = new HashSet<>();
+        HashSet<String> uniquePatronymics = new HashSet<>();
+        HashSet<String> uniqueClubs = new HashSet<>();
+        HashSet<String> uniqueCompetitions = new HashSet<>();
+        HashSet<Integer> uniqueResults = new HashSet<>();
+
+        for (CompetitionPlayer player : allcompetitionplayers) {
+            uniqueLastNames.add(player.getCompetitionKey().getAthlete().getLastName());
+            uniqueFirstNames.add(player.getCompetitionKey().getAthlete().getFirstName());
+            uniquePatronymics.add(player.getCompetitionKey().getAthlete().getPatronymic());
+            uniqueClubs.add(player.getCompetitionKey().getAthlete().getClub().getTitle());
+            uniqueCompetitions.add(player.getCompetitionKey().getCompetition().getTitle());
+            uniqueResults.add(Math.toIntExact(player.getResult()));
+        }
+        List<String> sortedUniqueLastNames = new ArrayList<>(uniqueLastNames);
+        List<String> sortedUniqueFirstNames = new ArrayList<>(uniqueFirstNames);
+        List<String> sortedUniquePatronymics = new ArrayList<>(uniquePatronymics);
+        List<String> sortedUniqueClubs = new ArrayList<>(uniqueClubs);
+        List<String> sortedUniqueCompetitions = new ArrayList<>(uniqueCompetitions);
+        List<Integer> sortedUniqueResults = new ArrayList<>(uniqueResults);
+
+        Collections.sort(sortedUniqueLastNames);
+        Collections.sort(sortedUniqueFirstNames);
+        Collections.sort(sortedUniquePatronymics);
+        Collections.sort(sortedUniqueClubs);
+        Collections.sort(sortedUniqueCompetitions);
+        Collections.sort(sortedUniqueResults);
+
+        model.addAttribute("uniqueLastNames", sortedUniqueLastNames);
+        model.addAttribute("uniqueFirstNames", sortedUniqueFirstNames);
+        model.addAttribute("uniquePatronymics", sortedUniquePatronymics);
+        model.addAttribute("uniqueClubs", sortedUniqueClubs);
+        model.addAttribute("uniqueCompetitions", sortedUniqueCompetitions);
+        model.addAttribute("uniqueResults", sortedUniqueResults);
         return "/pages/competitionplayer";
+    }
+
+    @GetMapping(value = {"/filterby/{firstName}/{lastName}/{patronymic}/{club}/{title}/{wasawarding}/{result}"})
+    public String filter(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @PathVariable("patronymic") String patronymic,
+                         @PathVariable("club") String club, @PathVariable("title") String title, @PathVariable("wasawarding") String wasawarding,
+                         @PathVariable("result") String result, Model model) {
+        if (!Objects.equals(result, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByResult(Long.valueOf(result)));
+        }
+        else if (!Objects.equals(club, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByCompetitionKeyAthleteClubTitle(club));
+        }
+        else if (!Objects.equals(firstName, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByCompetitionKeyAthleteFirstName(firstName));
+        }
+        else if (!Objects.equals(lastName, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByCompetitionKeyAthleteLastName(lastName));
+        }
+        else if (!Objects.equals(patronymic, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByCompetitionKeyAthletePatronymic(patronymic));
+        }
+        else if (!Objects.equals(title, "null")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findByCompetitionKeyCompetitionTitle(title));
+        }
+        else if (!Objects.equals(result, "true")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findCompetitionPlayerByWasAwardingTrue());
+        }
+        else if (!Objects.equals(result, "false")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findCompetitionPlayerByWasAwardingFalse());
+        }
+        else {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll());
+        }
+        return "/pages/competitionplayerfiltered";
     }
 
     @GetMapping("/add")

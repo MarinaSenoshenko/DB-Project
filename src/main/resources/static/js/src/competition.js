@@ -32,6 +32,19 @@ function orderBy() {
     location.href='/main/competitionplayer/' + token + '/' + order;
 }
 
+function filterBy() {
+    let firstName = document.getElementById('firstName').value;
+    let lastName = document.getElementById('lastName').value;
+    let patronymic = document.getElementById('patronymic').value;
+    let club = document.getElementById('club').value;
+    let title = document.getElementById('title').value;
+    let wasawarding = document.getElementById('wasawarding').value;
+    let result = document.getElementById('result').value;
+
+    location.href='/main/competitionplayer/filterby/' + firstName + '/' + lastName +
+        '/' + patronymic + '/' + club + '/' + title + '/' + wasawarding + '/' + result;
+}
+
 
 function showByDateAndSponsor() {
     let id = document.getElementById('id').value;
