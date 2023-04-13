@@ -105,7 +105,7 @@ public class CrudAthleteControllerTests {
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     public void testDeleteAthleteShouldDeleteRightValue() {
         SportClub sportClub = new SportClub("Dynamo");
         sportClubRepository.save(sportClub);

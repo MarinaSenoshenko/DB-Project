@@ -1,11 +1,10 @@
 package db.repository;
 
 import db.entities.CompetitionPlayer;
-import db.entities.SportClub;
 import db.entities.models.keys.CompetitionKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.data.repository.query.Param;
 
 public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPlayer, CompetitionKey> {
     @Query(name = "getCompetitionPlayerByAthleteAndCompetition", nativeQuery = true)
@@ -30,12 +29,18 @@ public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPl
     Iterable<CompetitionPlayer> getByClubOrderByAscending();
     @Query(name = "getByClubOrderByDescending", nativeQuery = true)
     Iterable<CompetitionPlayer> getByClubOrderByDescending();
-    Iterable<CompetitionPlayer> findByResult(Long result);
-    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteClubTitle(String club);
-    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteFirstName(String firstName);
-    Iterable<CompetitionPlayer> findByCompetitionKeyAthleteLastName(String firstName);
-    Iterable<CompetitionPlayer> findByCompetitionKeyAthletePatronymic(String firstName);
-    Iterable<CompetitionPlayer> findByCompetitionKeyCompetitionTitle(String title);
-    Iterable<CompetitionPlayer> findCompetitionPlayerByWasAwardingTrue();
-    Iterable<CompetitionPlayer> findCompetitionPlayerByWasAwardingFalse();
+
+    // TODO дочинить и в проперти
+    @Query("SELECT cp FROM CompetitionPlayer cp WHERE (:result = -1L OR cp.result = :result) " +
+            "AND (:club IS NULL OR cp.competitionKey.athlete.club.title = :club)" +
+            "AND (:firstName IS NULL OR cp.competitionKey.athlete.firstName = :firstName)" +
+            "AND (:lastName IS NULL OR cp.competitionKey.athlete.lastName = :lastName)" +
+            "AND (:patronymic IS NULL OR cp.competitionKey.athlete.patronymic = :patronymic)" +
+            "AND (:title IS NULL OR cp.competitionKey.competition.title = :title)" +
+            "AND (:wasAwarding IS false OR cp.wasAwarding = :wasAwarding)")
+    Iterable<CompetitionPlayer> getFiltered(@Param("result") Long result, @Param("club") String club,
+                                            @Param("firstName") String firstName, @Param("lastName") String lastName,
+                                            @Param("patronymic") String patronymic, @Param("title") String title,
+                                            @Param("wasAwarding") Boolean wasAwarding);
+
 }
