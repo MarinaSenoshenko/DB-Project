@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CrudSportRepositoryTests {
+public class CrudSportControllerTests {
     @Autowired
     private SportRepository sportRepository;
     @Autowired
