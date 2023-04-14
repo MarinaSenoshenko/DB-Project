@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   dbSport:
-    container_name: dbSport_copy
+    container_name: dbSport
     ports:
       - "5432:5432"
     environment:

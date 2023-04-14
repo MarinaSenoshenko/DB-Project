@@ -11,6 +11,9 @@ public class SportService {
     private final SportRepository sportRepository;
 
     public Sport addSport(String value) {
+        if (sportRepository.findByValue(value) != null) {
+            return null;
+        }
         Sport sport = new Sport(value);
         sportRepository.save(sport);
         return sport;
@@ -23,6 +26,9 @@ public class SportService {
     }
 
     public Sport updateSport(Long id, String value) {
+        if (sportRepository.findByValue(value) != null) {
+            return null;
+        }
         Sport sport = sportRepository.findById(id).orElseThrow();
         sport.setValue(value);
         sportRepository.save(sport);

@@ -30,26 +30,16 @@ public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPl
     @Query(name = "getByClubOrderByDescending", nativeQuery = true)
     Iterable<CompetitionPlayer> getByClubOrderByDescending();
 
-    // TODO дочинить и в проперти
     @Query("SELECT cp FROM CompetitionPlayer cp WHERE (:result = -1L OR cp.result = :result) " +
             "AND (:club='all' OR cp.competitionKey.athlete.club.title = :club)" +
             "AND (:firstName='all' OR cp.competitionKey.athlete.firstName = :firstName)" +
             "AND (:lastName='all' OR cp.competitionKey.athlete.lastName = :lastName)" +
             "AND (:patronymic='all' OR cp.competitionKey.athlete.patronymic = :patronymic)" +
             "AND (:title='all' OR cp.competitionKey.competition.title = :title)" +
-            "AND cp.wasAwarding = :wasAwarding")
+            "AND (:isWasAwarding='all' OR cp.wasAwarding = :wasAwarding)")
     Iterable<CompetitionPlayer> getFiltered(@Param("result") Long result, @Param("club") String club,
                                             @Param("firstName") String firstName, @Param("lastName") String lastName,
                                             @Param("patronymic") String patronymic, @Param("title") String title,
-                                            @Param("wasAwarding") boolean wasAwarding);
-
-    @Query("SELECT cp FROM CompetitionPlayer cp WHERE (:result = -1L OR cp.result = :result) " +
-            "AND (:club='all' OR cp.competitionKey.athlete.club.title = :club)" +
-            "AND (:firstName='all' OR cp.competitionKey.athlete.firstName = :firstName)" +
-            "AND (:lastName='all' OR cp.competitionKey.athlete.lastName = :lastName)" +
-            "AND (:patronymic='all' OR cp.competitionKey.athlete.patronymic = :patronymic)" +
-            "AND (:title='all' OR cp.competitionKey.competition.title = :title)")
-    Iterable<CompetitionPlayer> getFilteredWithout(@Param("result") Long result, @Param("club") String club,
-                                            @Param("firstName") String firstName, @Param("lastName") String lastName,
-                                                   @Param("patronymic") String patronymic, @Param("title") String title);
+                                            @Param("wasAwarding") boolean wasAwarding, @Param("isWasAwarding")
+                                            String isWasAwarding);
 }

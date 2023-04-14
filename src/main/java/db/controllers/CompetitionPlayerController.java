@@ -62,18 +62,13 @@ public class CompetitionPlayerController {
     @GetMapping(value = {"/filterby/{firstName}/{lastName}/{patronymic}/{club}/{title}/{wasawarding}/{result}"})
     public String filter(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName,
                          @PathVariable("patronymic") String patronymic, @PathVariable("club") String club,
-                         @PathVariable("title") String title, @PathVariable("wasawarding") String wasawarding,
+                         @PathVariable("title") String title, @PathVariable("wasawarding") String isWasAwarding,
                          @PathVariable("result") String result, Model model) {
         long res = (Objects.equals(result, "all")) ? -1L : Long.parseLong(result);
+        boolean wasAwarding = Objects.equals(isWasAwarding, "true");
 
-        if (Objects.equals(wasawarding, "all")) {
-            model.addAttribute("allcompetitionplayers", competitionPlayerRepository
-                    .getFilteredWithout(res, club, firstName, lastName, patronymic, title));
-        } else {
-            boolean wasAwarding = Objects.equals(wasawarding, "true");
-            model.addAttribute("allcompetitionplayers", competitionPlayerRepository
-                    .getFiltered(res, club, firstName, lastName, patronymic, title, wasAwarding));
-        }
+        model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getFiltered(res, club,
+                firstName, lastName, patronymic, title, wasAwarding, isWasAwarding));
         addAttributes(model);
         return "/pages/competitionplayer";
     }
@@ -224,6 +219,5 @@ public class CompetitionPlayerController {
         model.addAttribute("uniqueClubs", sortedUniqueClubs);
         model.addAttribute("uniqueCompetitions", sortedUniqueCompetitions);
         model.addAttribute("uniqueResults", sortedUniqueResults);
-
     }
 }
