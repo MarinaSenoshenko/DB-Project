@@ -1,6 +1,7 @@
 INSERT INTO sport(id, value) VALUES
 (1, 'Swimming'),
-(2, 'Hokey')
+(2, 'Hokey'),
+(3, 'Sky')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO athlete_rank(id, value) VALUES
@@ -17,7 +18,8 @@ ON CONFLICT DO NOTHING;
 
 INSERT INTO sport_club(id, title) VALUES
 (1, 'Siberia'),
-(2, 'Lokovjtiv')
+(2, 'Lokovjtiv'),
+(3, 'Vitayaz')
 ON CONFLICT DO NOTHING;
 
 
@@ -37,7 +39,8 @@ ON CONFLICT DO NOTHING;
 
 INSERT INTO sponsor(id, name, company) VALUES
 (1, 'Marina Senoshenko', 'OOO Marina'),
-(2, null, 'Лукойл')
+(2, null, 'Lukoil'),
+(3, null, 'Google')
 ON CONFLICT DO NOTHING;
 
 insert into sports_facility_type(id, value)
@@ -61,7 +64,8 @@ ON CONFLICT DO NOTHING;
 
 INSERT INTO trainer(id, first_name, patronymic, last_name) VALUES
 (1, 'Igor', 'Igorevich', 'Igorov'),
-(2, 'Pavel', 'Pavlovich', 'Pavlov')
+(2, 'Pavel', 'Pavlovich', 'Pavlov'),
+(3, 'Pavel', 'Ivanovich', 'Pavlov')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO trainer_license(id, trainer_id, sport) VALUES

@@ -7,8 +7,6 @@ function showByAthleteId() {
     const id = document.getElementById('id').value;
     location.href='/main/trainer/byathlete/' + id;
 }
-
-
 function addTrainer() {
     const req = new XMLHttpRequest();
 

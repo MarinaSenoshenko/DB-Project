@@ -46,43 +46,43 @@
         <div class="input-container ic2">
             <th><b>Фильтровать по </b></th>
             <label for="firstName" class="placeholder"></label><select class="input" id="firstName">
-            <option>null</option>
+            <option>all</option>
             <option th:each="uniqueFirstName: ${uniqueFirstNames}"
                     th:text="${uniqueFirstName}">
             </option>
         </select>
             <label for="lastName" class="placeholder"></label>
             <select class="input" id="lastName">
-                <option>null</option>
+                <option>all</option>
                 <option th:each="uniqueLastName: ${uniqueLastNames}"
                         th:text="${uniqueLastName}">
                 </option>
             </select>
             <label for="patronymic" class="placeholder"></label><select class="input" id="patronymic">
-            <option>null</option>
+            <option>all</option>
             <option th:each="uniquePatronymic: ${uniquePatronymics}"
                     th:text="${uniquePatronymic}">
             </option>
         </select>
             <label for="club" class="placeholder"></label><select class="input" id="club">
-            <option>null</option>
+            <option>all</option>
             <option th:each="uniqueClub: ${uniqueClubs}"
                     th:text="${uniqueClub}">
             </option>
         </select>
             <label for="title" class="placeholder"></label><select class="input" id="title">
-            <option>null</option>
+            <option>all</option>
             <option th:each="uniqueCompetition: ${uniqueCompetitions}"
                     th:text="${uniqueCompetition}">
             </option>
         </select>
             <label for="wasawarding" class="placeholder"></label><select class="input" id="wasawarding">
-            <option>null</option>
+            <option>all</option>
             <option>true</option>
             <option>false</option>
         </select>
             <label for="result" class="placeholder"></label><select class="input" id="result">
-            <option>null</option>
+            <option>all</option>
             <option th:each="uniqueResult: ${uniqueResults}"
                     th:text="${uniqueResult}">
             </option>

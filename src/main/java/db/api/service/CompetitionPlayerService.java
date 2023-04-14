@@ -20,6 +20,7 @@ public class CompetitionPlayerService {
     private final CompetitionRepository competitionRepository;
 
     public CompetitionPlayer addCompetitionPlayer(Long athleteId, Long competitionId, boolean wasawarding, Long result) {
+        result = (!wasawarding) ? 0L : result;
         Athlete athlete = athleteRepository.findById(athleteId).orElseThrow();
         Competition competition = competitionRepository.findById(competitionId).orElseThrow();
         CompetitionPlayer competitionPlayer = new CompetitionPlayer(new CompetitionKey(athlete, competition), wasawarding, result);
@@ -34,6 +35,7 @@ public class CompetitionPlayerService {
     }
 
     public CompetitionPlayer updateCompetitionPlayer(Long athleteId, Long competitionId, boolean wasawarding, Long result) {
+        result = (!wasawarding) ? 0L : result;
         CompetitionPlayer competitionPlayer = competitionPlayerRepository.getCompetitionPlayerByAthleteAndCompetition(athleteId, competitionId);
         if (wasawarding != competitionPlayer.isWasAwarding()) {
             competitionPlayer.setWasAwarding(wasawarding);

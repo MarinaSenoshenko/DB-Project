@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 
-// TODO мусорка какая-то. Надо нормально сделать. Вынести сравнение с null в js (как минимум) и
-//  null на all. Починить false в добавлении
 @Controller
 @RequestMapping("/main/competitionplayer")
 @AllArgsConstructor
@@ -66,18 +64,18 @@ public class CompetitionPlayerController {
                          @PathVariable("patronymic") String patronymic, @PathVariable("club") String club,
                          @PathVariable("title") String title, @PathVariable("wasawarding") String wasawarding,
                          @PathVariable("result") String result, Model model) {
-        long res = (Objects.equals(result, "null")) ? -1L : Long.parseLong(result);
+        long res = (Objects.equals(result, "all")) ? -1L : Long.parseLong(result);
 
-        club = (Objects.equals(club, "null")) ? null : club;
-        title = (Objects.equals(title, "null")) ? null : title;
-        firstName = (Objects.equals(firstName, "null")) ? null : firstName;
-        lastName = (Objects.equals(lastName, "null")) ? null : lastName;
-        patronymic = (Objects.equals(patronymic, "null")) ? null : patronymic;
-
-        model.addAttribute("allcompetitionplayers", competitionPlayerRepository
-                .getFiltered(res, club, firstName, lastName, patronymic, title, Boolean.valueOf(wasawarding)));
+        if (Objects.equals(wasawarding, "all")) {
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository
+                    .getFilteredWithout(res, club, firstName, lastName, patronymic, title));
+        } else {
+            boolean wasAwarding = Objects.equals(wasawarding, "true");
+            model.addAttribute("allcompetitionplayers", competitionPlayerRepository
+                    .getFiltered(res, club, firstName, lastName, patronymic, title, wasAwarding));
+        }
         addAttributes(model);
-        return "/pages/competitionplayerfiltered";
+        return "/pages/competitionplayer";
     }
 
     @GetMapping("/add")

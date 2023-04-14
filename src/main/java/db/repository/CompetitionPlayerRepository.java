@@ -32,15 +32,24 @@ public interface CompetitionPlayerRepository extends JpaRepository<CompetitionPl
 
     // TODO дочинить и в проперти
     @Query("SELECT cp FROM CompetitionPlayer cp WHERE (:result = -1L OR cp.result = :result) " +
-            "AND (:club IS NULL OR cp.competitionKey.athlete.club.title = :club)" +
-            "AND (:firstName IS NULL OR cp.competitionKey.athlete.firstName = :firstName)" +
-            "AND (:lastName IS NULL OR cp.competitionKey.athlete.lastName = :lastName)" +
-            "AND (:patronymic IS NULL OR cp.competitionKey.athlete.patronymic = :patronymic)" +
-            "AND (:title IS NULL OR cp.competitionKey.competition.title = :title)" +
-            "AND (:wasAwarding IS false OR cp.wasAwarding = :wasAwarding)")
+            "AND (:club='all' OR cp.competitionKey.athlete.club.title = :club)" +
+            "AND (:firstName='all' OR cp.competitionKey.athlete.firstName = :firstName)" +
+            "AND (:lastName='all' OR cp.competitionKey.athlete.lastName = :lastName)" +
+            "AND (:patronymic='all' OR cp.competitionKey.athlete.patronymic = :patronymic)" +
+            "AND (:title='all' OR cp.competitionKey.competition.title = :title)" +
+            "AND cp.wasAwarding = :wasAwarding")
     Iterable<CompetitionPlayer> getFiltered(@Param("result") Long result, @Param("club") String club,
                                             @Param("firstName") String firstName, @Param("lastName") String lastName,
                                             @Param("patronymic") String patronymic, @Param("title") String title,
-                                            @Param("wasAwarding") Boolean wasAwarding);
+                                            @Param("wasAwarding") boolean wasAwarding);
 
+    @Query("SELECT cp FROM CompetitionPlayer cp WHERE (:result = -1L OR cp.result = :result) " +
+            "AND (:club='all' OR cp.competitionKey.athlete.club.title = :club)" +
+            "AND (:firstName='all' OR cp.competitionKey.athlete.firstName = :firstName)" +
+            "AND (:lastName='all' OR cp.competitionKey.athlete.lastName = :lastName)" +
+            "AND (:patronymic='all' OR cp.competitionKey.athlete.patronymic = :patronymic)" +
+            "AND (:title='all' OR cp.competitionKey.competition.title = :title)")
+    Iterable<CompetitionPlayer> getFilteredWithout(@Param("result") Long result, @Param("club") String club,
+                                            @Param("firstName") String firstName, @Param("lastName") String lastName,
+                                                   @Param("patronymic") String patronymic, @Param("title") String title);
 }
