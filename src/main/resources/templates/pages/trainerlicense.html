@@ -23,7 +23,8 @@
       <th><p>Имя</p></th>
       <th><p>Отчество</p></th>
       <th><p>Вид спорта</p></th>
-      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id лицензии</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id тренера</p></th>
     </tr>
     <tr th:each="trainerlicense, iter : ${trainerlicenses}">
       <td th:text="${iter.index} + 1" style="text-align:center"></td>
@@ -32,6 +33,7 @@
       <td th:text="${trainerlicense.licenseKey.trainer.patronymic}"></td>
       <td th:text="${trainerlicense.licenseKey.sport.value}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${trainerlicense.id}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${trainerlicense.licenseKey.trainer.id}"></td>
     </tr>
   </table> <br/>
 </main>

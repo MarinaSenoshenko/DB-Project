@@ -78,7 +78,7 @@ public class UserRolesTests {
 
     @Test
     @Sql(scripts = {"classpath:add-users.sql"})
-    public void testIfNotAuthorized() throws Exception {
+    public void testIfNotAuthorizedShouldGetLoginPage() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -86,7 +86,7 @@ public class UserRolesTests {
 
     @Test
     @Sql(scripts = {"classpath:add-users.sql"})
-    public void testIfNotAuthorizedShould() throws Exception {
+    public void testIfNotAuthorizedShouldGetRegistrationPage() throws Exception {
         mockMvc.perform(get("/registration"))
                 .andExpect(status().isOk())
                 .andReturn();

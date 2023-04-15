@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -15,10 +18,12 @@
     <tr>
       <th><p>№</p></th>
       <th><p>Разряд</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="athleterank, iter : ${athleteranks}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${athleterank.value}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${athleterank.id}"></td>
     </tr>
   </table> <br/>
 </main>

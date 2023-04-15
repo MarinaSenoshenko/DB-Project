@@ -27,7 +27,6 @@
       <th><p>Вид спорта</p></th>
       <th><p>Разряд</p></th>
       <th sec:authorize="hasAuthority('ADMIN')"><p>id атлета</p></th>
-      <th sec:authorize="hasAuthority('ADMIN')"><p>id спорта</p></th>
     </tr>
     <tr th:each="athleteranking, iter : ${athleterankings}">
       <td th:text="${iter.index} + 1"></td>
@@ -38,7 +37,6 @@
       <td th:text="${athleteranking.athleteKey.sport.value}"></td>
       <td th:text="${athleteranking.rank.value}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${athleteranking.athleteKey.athlete.id}"></td>
-      <td sec:authorize="hasAuthority('ADMIN')" th:text="${athleteranking.athleteKey.sport.id}"></td>
     </tr>
   </table> <br/>
 </main>

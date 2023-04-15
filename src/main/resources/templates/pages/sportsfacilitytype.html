@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=2.0">
@@ -16,10 +18,12 @@
     <tr>
       <th><p>№</p></th>
       <th><p>Спортивная площадка</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="sportsfacilitytype, iter : ${sportsfacilitytypes}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${sportsfacilitytype.value}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${sportsfacilitytype.id}"></td>
     </tr>
   </table> <br/>
 </main>
