@@ -2,9 +2,9 @@ package db.repository.sports;
 
 import db.entities.models.surface.Stadium;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface StadiumRepository extends JpaRepository<Stadium, Long> {
-    @Query(name = "getStadiumByCapacity", nativeQuery = true)
-    Iterable<Stadium> getStadiumByCapacity(Long capacity);
+    Iterable<Stadium> findByCapacity(Long capacity);
 }

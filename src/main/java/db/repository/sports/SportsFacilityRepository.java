@@ -3,9 +3,11 @@ package db.repository.sports;
 import db.entities.models.surface.SportsFacility;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
+@Repository
 public interface SportsFacilityRepository extends JpaRepository<SportsFacility, Long> {
     @Query(name = "getSportsFacilityByCompetitionPeriod", nativeQuery = true)
     Iterable<SportsFacility> getSportsFacilityByCompetitionPeriod(Date startDate, Date endDate);

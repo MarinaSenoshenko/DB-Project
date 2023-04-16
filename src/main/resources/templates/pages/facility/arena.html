@@ -34,14 +34,12 @@
       <th><p>№</p></th>
       <th><p>Количество дорожек</p></th>
       <th><p>Адрес</p></th>
-      <th><p>Тип покрытия</p></th>
       <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="arena, iter : ${arenas}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${arena.trackNumber}"></td>
       <td th:text="${arena.sportsFacility.address}"></td>
-      <td th:text="${arena.sportsFacility.type.value}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${arena.id}"></td>
     </tr>
   </table> <br/>

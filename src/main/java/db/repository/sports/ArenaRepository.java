@@ -2,9 +2,9 @@ package db.repository.sports;
 
 import db.entities.models.surface.Arena;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ArenaRepository extends JpaRepository<Arena, Long> {
-    @Query(name = "getArenaByTrackNumber", nativeQuery = true)
-    Iterable<Arena> getArenaByTrackNumber(Long trackNumber);
+    Iterable<Arena> findArenaByTrackNumber(Long trackNumber);
 }

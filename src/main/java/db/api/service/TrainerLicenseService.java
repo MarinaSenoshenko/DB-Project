@@ -17,7 +17,10 @@ public class TrainerLicenseService {
     private final SportRepository sportRepository;
 
     public TrainerLicense addTrainerLicense(Long trainerId, String value) {
-        Sport sport = sportRepository.getSportByValue(value);
+        Sport sport = sportRepository.findByValue(value);
+        if (trainerLicenseRepository.getTrainerLicenseByTrainerAndSport(trainerId, sport.getId()) != null) {
+             return null;
+        }
         Trainer trainer = trainerRepository.findById(trainerId).orElseThrow();
         TrainerLicense trainerLicense = new TrainerLicense(trainer, sport);
         trainerLicenseRepository.save(trainerLicense);

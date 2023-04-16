@@ -162,7 +162,7 @@ public class SportsFacilityController {
 
     @GetMapping("/court/{surface}")
     public String getCourtsBySurface(@PathVariable("surface") String surface, Model model) {
-        model.addAttribute("courts", courtRepository.getCourtWithSurface(surface));
+        model.addAttribute("courts", courtRepository.findCourtBySurfaceValue(surface));
         model.addAttribute("allcourts", courtRepository.findAll());
         return "/pages/facility/court";
     }
@@ -176,7 +176,7 @@ public class SportsFacilityController {
 
     @GetMapping("/gym/{floorArea}")
     public String getGymByFloorArea(@PathVariable("floorArea") Double floorArea, Model model) {
-        model.addAttribute("gyms", gymRepository.getGymByFloorArea(floorArea));
+        model.addAttribute("gyms", gymRepository.findByFloorArea(floorArea));
         model.addAttribute("allgyms", gymRepository.findAll());
         return "/pages/facility/gym";
     }
@@ -190,7 +190,7 @@ public class SportsFacilityController {
 
     @GetMapping("/stadium/{capacity}")
     public String getStadiumByCapacity(@PathVariable("capacity") Long capacity, Model model) {
-        model.addAttribute("stadiums", stadiumRepository.getStadiumByCapacity(capacity));
+        model.addAttribute("stadiums", stadiumRepository.findByCapacity(capacity));
         model.addAttribute("allstadiums", stadiumRepository.findAll());
         return "/pages/facility/stadium";
     }
@@ -204,7 +204,7 @@ public class SportsFacilityController {
 
     @GetMapping("/arena/{trackNumber}")
     public String getArenaByTrackNumber(@PathVariable("trackNumber") Long trackNumber, Model model) {
-        model.addAttribute("arenas", arenaRepository.getArenaByTrackNumber(trackNumber));
+        model.addAttribute("arenas", arenaRepository.findArenaByTrackNumber(trackNumber));
         model.addAttribute("allarenas", arenaRepository.findAll());
         return "/pages/facility/arena";
     }

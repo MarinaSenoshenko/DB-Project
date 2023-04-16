@@ -23,7 +23,7 @@ public class SportsFacilityService {
     private final SportsFacilityTypeRepository sportsFacilityTypeRepository;
 
     public SportsFacility addSportsFacility(String address, String value) {
-        SportsFacilityType type = sportsFacilityTypeRepository.getSportsFacilityByValue(value);
+        SportsFacilityType type = sportsFacilityTypeRepository.findByValue(value);
         SportsFacility sportsFacility = new SportsFacility(address, type);
         sportsFacilityRepository.save(sportsFacility);
         return sportsFacility;
@@ -31,7 +31,7 @@ public class SportsFacilityService {
 
     public SportsFacility updateSportsFacility(Long id, String type, String address) {
         SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        SportsFacilityType sportsFacilityType = sportsFacilityTypeRepository.getSportsFacilityByValue(type);
+        SportsFacilityType sportsFacilityType = sportsFacilityTypeRepository.findByValue(type);
         if (!Objects.equals(address, "")) {
             sportsFacility.setAddress(address);
         }
@@ -70,7 +70,7 @@ public class SportsFacilityService {
     public Court addCourtParam(String param) {
         Long id = sportsFacilityRepository.getMaxFacilityId(param);
         SportsFacility sportsFacility = sportsFacilityRepository.findById(id).orElseThrow();
-        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
+        CourtSurface surface = courtSurfaceRepository.findByValue(param);
         Court court = new Court(surface, sportsFacility);
         courtRepository.save(court);
         return court;
@@ -78,7 +78,7 @@ public class SportsFacilityService {
 
     public Court updateCourtParam(Long id, String param) {
         Court court = courtRepository.findById(id).orElseThrow();
-        CourtSurface surface = courtSurfaceRepository.getCourtSurfaceByValue(param);
+        CourtSurface surface = courtSurfaceRepository.findByValue(param);
         court.setSurface(surface);
         courtRepository.save(court);
         return court;

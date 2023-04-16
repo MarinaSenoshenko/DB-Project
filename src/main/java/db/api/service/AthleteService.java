@@ -16,7 +16,7 @@ public class AthleteService {
     private final SportClubRepository sportClubRepository;
 
     public Athlete addAthlete(String firstName, String patronymic, String lastName, String title) {
-        SportClub club = sportClubRepository.getSportClubByTitle(title);
+        SportClub club = sportClubRepository.findByTitle(title);
         Athlete athlete = new Athlete(firstName, patronymic, lastName, club);
         athleteRepository.save(athlete);
         return athlete;
@@ -29,7 +29,7 @@ public class AthleteService {
     }
 
     public Athlete updateAthlete(Long id, String firstName, String patronymic, String lastName, String title) {
-        SportClub club = sportClubRepository.getSportClubByTitle(title);
+        SportClub club = sportClubRepository.findByTitle(title);
         Athlete athlete = athleteRepository.findById(id).orElseThrow();
         if (!Objects.equals(patronymic, "")) {
             athlete.setPatronymic(patronymic);

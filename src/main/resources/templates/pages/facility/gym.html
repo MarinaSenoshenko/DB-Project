@@ -34,14 +34,12 @@
       <th><p>№</p></th>
       <th><p>Общая площадь</p></th>
       <th><p>Адрес</p></th>
-      <th><p>Тип покрытия</p></th>
       <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="gym, iter : ${gyms}">
       <td th:text="${iter.index} + 1"></td>
       <td th:text="${gym.floorArea}"></td>
       <td th:text="${gym.sportsFacility.address}"></td>
-      <td th:text="${gym.sportsFacility.type.value}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${gym.id}"></td>
     </tr>
   </table> <br/>
