@@ -257,4 +257,3 @@ create table if not exists user_roles
 
 alter table user_roles
     owner to postgres;
-

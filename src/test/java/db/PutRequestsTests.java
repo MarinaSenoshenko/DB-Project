@@ -20,7 +20,7 @@ public class PutRequestsTests {
     private MockMvc mockMvc;
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowPuttingSportClubShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sportclub")
                 .param("id", "1")
@@ -30,7 +30,7 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowPuttingSportShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sport")
                 .param("id", "1")
@@ -40,7 +40,7 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowPuttingTrainerShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/trainer")
                 .param("id", "1")
@@ -52,7 +52,7 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowPuttingSponsorShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sponsor")
                 .param("id", "1")

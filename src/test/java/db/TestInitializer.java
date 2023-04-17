@@ -11,7 +11,7 @@ import java.util.Map;
 public class TestInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 	private static final PostgreSQLContainer<?> pgContainer = new PostgreSQLContainer<>("postgres:latest")
 			.withExposedPorts(5432)
-			.withInitScript("data.sql")
+			.withInitScript("sql/schema.sql")
 			.withPassword("qwerty")
 			.withUsername("postgres");
 	static {

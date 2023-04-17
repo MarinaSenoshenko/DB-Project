@@ -12,8 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(classes = DbSportApplication.class, initializers = TestInitializer.class)
@@ -24,7 +23,7 @@ public class UserRolesTests {
     private MockMvc mockMvc;
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
     public void shouldAllowDeletingUserShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/user")
                 .param("user", "1")
@@ -41,7 +40,7 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
     @WithUserDetails("test_admin")
     public void testGetPrivatePageWithAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
@@ -50,7 +49,7 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
     @WithUserDetails("test_athlete")
     public void testGetPrivatePageWithAthleteShouldReturnFail() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
@@ -59,7 +58,7 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
     @WithUserDetails("test_user")
     public void testGetPrivatePageWithUserShouldReturnFail() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
@@ -68,7 +67,7 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
     @WithUserDetails("test_user")
     public void testGetCommonPageWithUserShouldReturnSuccess() throws Exception {
         mockMvc.perform(get("/main/athlete"))
@@ -77,7 +76,7 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @WithAnonymousUser
     public void testIfNotAuthorizedShouldGetLoginPage() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
@@ -85,10 +84,25 @@ public class UserRolesTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:add-users.sql"})
+    @WithAnonymousUser
     public void testIfNotAuthorizedShouldGetRegistrationPage() throws Exception {
         mockMvc.perform(get("/registration"))
                 .andExpect(status().isOk())
                 .andReturn();
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    public void shouldAllowRegistrationUserShouldReturnSuccess() throws Exception {
+        mockMvc.perform(post("/user/user")
+                .param("id", "1")
+                .param("login", "user_login")
+                .param("firstName", "Ivan")
+                .param("lastName", "Ivanov")
+                .param("patronymic", "Ivanovich")
+                .param("password", "123")
+                .param("user", "user")
+                .with(csrf())
+        ).andExpect(status().isOk());
     }
 }

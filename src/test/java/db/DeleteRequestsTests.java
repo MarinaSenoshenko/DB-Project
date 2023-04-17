@@ -20,7 +20,7 @@ public class DeleteRequestsTests {
     private MockMvc mockMvc;
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSportClubShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sportclub")
                 .param("sport", "3")
@@ -29,7 +29,7 @@ public class DeleteRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSportShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sport")
                 .param("sport", "3")
@@ -38,7 +38,7 @@ public class DeleteRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingTrainerShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/trainer")
                 .param("trainer", "3")
@@ -47,7 +47,7 @@ public class DeleteRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:insert.sql"})
+    @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSponsorShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sponsor")
                 .param("sponsor", "3")
