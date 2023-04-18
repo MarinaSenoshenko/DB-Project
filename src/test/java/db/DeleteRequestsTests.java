@@ -23,7 +23,7 @@ public class DeleteRequestsTests {
     @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSportClubShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sportclub")
-                .param("sport", "3")
+                .param("sport", "40")
                 .with(csrf())
         ).andExpect(status().isOk());
     }
@@ -32,7 +32,7 @@ public class DeleteRequestsTests {
     @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSportShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sport")
-                .param("sport", "3")
+                .param("sport", "40")
                 .with(csrf())
         ).andExpect(status().isOk());
     }
@@ -41,7 +41,7 @@ public class DeleteRequestsTests {
     @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingTrainerShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/trainer")
-                .param("trainer", "3")
+                .param("trainer", "40")
                 .with(csrf())
         ).andExpect(status().isOk());
     }
@@ -50,7 +50,7 @@ public class DeleteRequestsTests {
     @Sql(scripts = {"classpath:sql/insert.sql"})
     public void shouldAllowDeletingSponsorShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sponsor")
-                .param("sponsor", "3")
+                .param("sponsor", "40")
                 .with(csrf())
         ).andExpect(status().isOk());
     }

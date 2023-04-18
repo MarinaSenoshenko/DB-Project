@@ -35,7 +35,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     public User addUser(String name, String password) {
-        Role role = roleRepository.findById(1L).orElseThrow();
+        Role role = roleRepository.findByName("USER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         if (userRepository.findByUsername(name) != null) {
@@ -49,7 +49,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     public User addAthlete(Long id, String name, String firstName, String lastName, String patronymic, String password) {
-        Role role = roleRepository.findById(4L).orElseThrow();
+        Role role = roleRepository.findByName("ATHLETE");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         Athlete athlete = athleteRepository.findById(id).orElseThrow();
@@ -64,7 +64,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     public User addTrainer(Long id, String name, String firstName, String lastName, String patronymic, String password) {
-        Role role = roleRepository.findById(3L).orElseThrow();
+        Role role = roleRepository.findByName("TRAINER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         Trainer trainer = trainerRepository.findById(id).orElseThrow();

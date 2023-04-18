@@ -1,7 +1,7 @@
 INSERT INTO users (id, username, password) VALUES
-(1, 'test_user', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q'),
-(2, 'test_admin', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q'),
-(3, 'test_athlete', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q')
+(10, 'test_user', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q'),
+(11, 'test_admin', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q'),
+(12, 'test_athlete', '$2a$12$GE0fwtXSe4A/LTCWx8UB0OTrWOWDArbbEGoDuXeOvDoDnwnEO357q')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO roles (id, name) VALUES
@@ -11,7 +11,7 @@ INSERT INTO roles (id, name) VALUES
 ON CONFLICT DO NOTHING;
 
 INSERT INTO user_roles (user_id, role_id) VALUES
-(1, 1),
-(2, 2),
-(3, 3)
+(10, 1),
+(11, 2),
+(12, 3)
 ON CONFLICT DO NOTHING;
