@@ -4,6 +4,7 @@ import db.api.service.user.CustomUserDetailsServiceImpl;
 import db.entities.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class CrudUserController {
     @DeleteMapping("")
     public User deleteUser(@RequestParam("user") Long userId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return customUserDetailsService.deleteUser(userId);
     }

@@ -11,7 +11,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -24,19 +23,29 @@ public class UserRolesTests {
 
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql"})
-    public void shouldAllowDeletingUserShouldReturnSuccess() throws Exception {
+    @WithUserDetails("test_admin")
+    public void shouldAllowDeletingUserByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/user")
                 .param("user", "1")
-                .with(user("test_admin").roles("ADMIN"))
                 .with(csrf())
         ).andExpect(status().isOk());
     }
 
     @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_athlete")
+    public void shouldCancelDeletingUserByAthleteShouldReturnFail() throws Exception {
+        mockMvc.perform(delete("/user")
+                .param("user", "1")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
     @WithAnonymousUser
-    void cannotGetCustomerIfNotAuthorized() throws Exception {
+    void testGetCustomerIfNotAuthorizedShouldReturnFail() throws Exception {
         mockMvc.perform(get("/main"))
-                .andExpect(status().is(302));
+                .andExpect(status().isFound());
     }
 
     @Test
@@ -44,8 +53,7 @@ public class UserRolesTests {
     @WithUserDetails("test_admin")
     public void testGetPrivatePageWithAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
-                .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -53,8 +61,7 @@ public class UserRolesTests {
     @WithUserDetails("test_athlete")
     public void testGetPrivatePageWithAthleteShouldReturnFail() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
-                .andExpect(status().is(403))
-                .andReturn();
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -62,8 +69,7 @@ public class UserRolesTests {
     @WithUserDetails("test_user")
     public void testGetPrivatePageWithUserShouldReturnFail() throws Exception {
         mockMvc.perform(get("/main/athlete/add"))
-                .andExpect(status().is(403))
-                .andReturn();
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -71,24 +77,21 @@ public class UserRolesTests {
     @WithUserDetails("test_user")
     public void testGetCommonPageWithUserShouldReturnSuccess() throws Exception {
         mockMvc.perform(get("/main/athlete"))
-                .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(status().isOk());
     }
 
     @Test
     @WithAnonymousUser
     public void testIfNotAuthorizedShouldGetLoginPage() throws Exception {
         mockMvc.perform(get("/login"))
-                .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(status().isOk());
     }
 
     @Test
     @WithAnonymousUser
     public void testIfNotAuthorizedShouldGetRegistrationPage() throws Exception {
         mockMvc.perform(get("/registration"))
-                .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(status().isOk());
     }
 
     @Test

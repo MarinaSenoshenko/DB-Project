@@ -3,6 +3,7 @@ package db.api.rest_controllers;
 import db.api.service.TrainerLicenseService;
 import db.entities.TrainerLicense;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class CrudTrainerLicenseController {
     public TrainerLicense addTrainerLicense(@RequestParam("trainer") Long trainerId, @RequestParam("sport") String value,
                                             Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return trainerLicenseService.addTrainerLicense(trainerId, value);
     }
@@ -25,7 +26,7 @@ public class CrudTrainerLicenseController {
     public TrainerLicense deleteTrainerLicense(@RequestParam("trainerlicense") Long trainerLicenseId,
                                                Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return trainerLicenseService.deleteTrainerLicense(trainerLicenseId);
     }

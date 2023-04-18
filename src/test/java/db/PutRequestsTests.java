@@ -23,7 +23,7 @@ public class PutRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowPuttingSportClubShouldReturnSuccess() throws Exception {
+    public void shouldAllowPuttingSportClubByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sportclub")
                 .param("id", "1")
                 .param("sport", "Dynamo")
@@ -34,7 +34,7 @@ public class PutRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowPuttingSportShouldReturnSuccess() throws Exception {
+    public void shouldAllowPuttingSportByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sport")
                 .param("id", "1")
                 .param("sport", "basketball")
@@ -45,7 +45,7 @@ public class PutRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowPuttingTrainerShouldReturnSuccess() throws Exception {
+    public void shouldAllowPuttingTrainerByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/trainer")
                 .param("id", "1")
                 .param("firstName", "Pavel")
@@ -58,12 +58,59 @@ public class PutRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowPuttingSponsorShouldReturnSuccess() throws Exception {
+    public void shouldAllowPuttingSponsorByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sponsor")
                 .param("id", "1")
                 .param("name", "Petrov")
                 .param("company", "")
                 .with(csrf())
         ).andExpect(status().isOk());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelPuttingSportClubByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(put("/sportclub")
+                .param("id", "1")
+                .param("sport", "Dynamo")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelPuttingSportByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(put("/sport")
+                .param("id", "1")
+                .param("sport", "basketball")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelPuttingTrainerByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(put("/trainer")
+                .param("id", "1")
+                .param("firstName", "Pavel")
+                .param("patronymic", "")
+                .param("lastName", "Ivanov")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelPuttingSponsorByUserShouldReturnSuccess() throws Exception {
+        mockMvc.perform(put("/sponsor")
+                .param("id", "1")
+                .param("name", "Petrov")
+                .param("company", "")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
     }
 }

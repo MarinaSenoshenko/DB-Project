@@ -23,7 +23,7 @@ public class DeleteRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowDeletingSportClubShouldReturnSuccess() throws Exception {
+    public void shouldAllowDeletingSportClubByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sportclub")
                 .param("sport", "40")
                 .with(csrf())
@@ -33,7 +33,7 @@ public class DeleteRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowDeletingSportShouldReturnSuccess() throws Exception {
+    public void shouldAllowDeletingSportByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sport")
                 .param("sport", "40")
                 .with(csrf())
@@ -43,7 +43,7 @@ public class DeleteRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowDeletingTrainerShouldReturnSuccess() throws Exception {
+    public void shouldAllowDeletingTrainerByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/trainer")
                 .param("trainer", "40")
                 .with(csrf())
@@ -53,10 +53,50 @@ public class DeleteRequestsTests {
     @Test
     @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
     @WithUserDetails("test_admin")
-    public void shouldAllowDeletingSponsorShouldReturnSuccess() throws Exception {
+    public void shouldAllowDeletingSponsorByAdminShouldReturnSuccess() throws Exception {
         mockMvc.perform(delete("/sponsor")
                 .param("sponsor", "40")
                 .with(csrf())
         ).andExpect(status().isOk());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelDeletingSportClubByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(delete("/sportclub")
+                .param("sport", "40")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelDeletingSportByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(delete("/sport")
+                .param("sport", "40")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelDeletingTrainerByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(delete("/trainer")
+                .param("trainer", "40")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_user")
+    public void shouldCancelDeletingSponsorByUserShouldReturnFail() throws Exception {
+        mockMvc.perform(delete("/sponsor")
+                .param("sponsor", "40")
+                .with(csrf())
+        ).andExpect(status().isForbidden());
     }
 }

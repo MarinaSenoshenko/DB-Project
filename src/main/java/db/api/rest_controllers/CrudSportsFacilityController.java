@@ -3,6 +3,7 @@ package db.api.rest_controllers;
 import db.api.service.SportsFacilityService;
 import db.entities.models.surface.*;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class CrudSportsFacilityController {
     public SportsFacility addSportsFacility(@RequestParam("address") String address,
                                             @RequestParam("type") String value, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.addSportsFacility(address, value);
     }
@@ -25,7 +26,7 @@ public class CrudSportsFacilityController {
     public SportsFacility updateSportsFacility(@RequestParam("type") String type, @RequestParam("id") Long id,
                                                @RequestParam("address") String address, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.updateSportsFacility(id, type, address);
     }
@@ -33,7 +34,7 @@ public class CrudSportsFacilityController {
     @DeleteMapping("")
     public SportsFacility deleteSportsFacility(@RequestParam("sportsfacility") Long facilityId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.deleteSportsFacility(facilityId);
     }
@@ -41,7 +42,7 @@ public class CrudSportsFacilityController {
     @PostMapping("/arena")
     public Arena addArena(@RequestParam("param") String param, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.addArenaParam(param);
     }
@@ -50,7 +51,7 @@ public class CrudSportsFacilityController {
     public Arena updateArena(@RequestParam("id") Long id, @RequestParam("param") String param,
                              Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.updateArenaParam(id, param);
     }
@@ -58,7 +59,7 @@ public class CrudSportsFacilityController {
     @DeleteMapping("/arena")
     public Arena deleteArena(@RequestParam("param") Long arenaId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.deleteArenaParam(arenaId);
     }
@@ -66,7 +67,7 @@ public class CrudSportsFacilityController {
     @PostMapping("/court")
     public Court addCourt(@RequestParam("param") String param, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.addCourtParam(param);
     }
@@ -75,7 +76,7 @@ public class CrudSportsFacilityController {
     public Court updateCourt(@RequestParam("id") Long id, @RequestParam("param") String param,
                              Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.updateCourtParam(id, param);
     }
@@ -83,7 +84,7 @@ public class CrudSportsFacilityController {
     @DeleteMapping("/court")
     public Court deleteCourt(@RequestParam("param") Long courtId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.deleteCourtParam(courtId);
     }
@@ -91,7 +92,7 @@ public class CrudSportsFacilityController {
     @PostMapping("/gym")
     public Gym addGym(@RequestParam("param") String param, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.addGymParam(param);
     }
@@ -100,7 +101,7 @@ public class CrudSportsFacilityController {
     public Gym updateGym(@RequestParam("id") Long id, @RequestParam("param") String param,
                          Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.updateGymParam(id, param);
     }
@@ -108,7 +109,7 @@ public class CrudSportsFacilityController {
     @DeleteMapping("/gym")
     public Gym deleteGym(@RequestParam("param") Long gymId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.deleteGymParam(gymId);
     }
@@ -116,7 +117,7 @@ public class CrudSportsFacilityController {
     @PostMapping("/stadium")
     public Stadium addStadium(@RequestParam("param") String param, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.addStadiumParam(param);
     }
@@ -125,7 +126,7 @@ public class CrudSportsFacilityController {
     public Stadium updateStadium(@RequestParam("id") Long id, @RequestParam("param") String param,
                                  Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.updateStadiumParam(id, param);
     }
@@ -133,7 +134,7 @@ public class CrudSportsFacilityController {
     @DeleteMapping("/stadium")
     public Stadium deleteStadium(@RequestParam("param") Long stadiumId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sportsFacilityService.deleteStadiumParam(stadiumId);
     }

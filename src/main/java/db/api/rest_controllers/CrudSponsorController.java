@@ -3,6 +3,7 @@ package db.api.rest_controllers;
 import db.api.service.SponsorService;
 import db.entities.Sponsor;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class CrudSponsorController {
     public Sponsor addSponsor(@RequestParam("name") String name,
                               @RequestParam("company") String company, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sponsorService.addSponsor(name, company);
     }
@@ -25,7 +26,7 @@ public class CrudSponsorController {
     public Sponsor updateSponsor(@RequestParam("id") Long id, @RequestParam("name") String name,
                                  @RequestParam("company") String company, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sponsorService.updateSponsor(id, name, company);
     }
@@ -33,7 +34,7 @@ public class CrudSponsorController {
     @DeleteMapping("")
     public Sponsor deleteSponsor(@RequestParam("sponsor") Long sponsorId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return sponsorService.deleteSponsor(sponsorId);
     }

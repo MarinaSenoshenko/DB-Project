@@ -3,6 +3,7 @@ package db.api.rest_controllers;
 import db.api.service.CompetitionService;
 import db.entities.Competition;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class CrudCompetitionController {
                               @RequestParam("sponsor") Long sponsorId, @RequestParam("sport") Long sportId,
                                       @RequestParam("sportsfacility") Long sportsfacilityId, Authentication authentication) throws ParseException {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return competitionService.addCompetition(title, period, sponsorId, sportId, sportsfacilityId);
     }
@@ -30,7 +31,7 @@ public class CrudCompetitionController {
                                          @RequestParam("sport") Long sportId, @RequestParam("sportsfacility")
                                              Long sportsfacilityId, Authentication authentication) throws ParseException {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return competitionService.updateCompetition(id, title, period, sponsorId, sportId, sportsfacilityId);
     }
@@ -38,7 +39,7 @@ public class CrudCompetitionController {
     @DeleteMapping("")
     public Competition deleteCompetition(@RequestParam("competition") Long competitionId, Authentication authentication) {
         if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            return null;
+            throw new AccessDeniedException("Access denied");
         }
         return competitionService.deleteCompetition(competitionId);
     }
