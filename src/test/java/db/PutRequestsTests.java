@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,7 +21,8 @@ public class PutRequestsTests {
     private MockMvc mockMvc;
 
     @Test
-    @Sql(scripts = {"classpath:sql/insert.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_admin")
     public void shouldAllowPuttingSportClubShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sportclub")
                 .param("id", "1")
@@ -30,7 +32,8 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:sql/insert.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_admin")
     public void shouldAllowPuttingSportShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sport")
                 .param("id", "1")
@@ -40,7 +43,8 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:sql/insert.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_admin")
     public void shouldAllowPuttingTrainerShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/trainer")
                 .param("id", "1")
@@ -52,7 +56,8 @@ public class PutRequestsTests {
     }
 
     @Test
-    @Sql(scripts = {"classpath:sql/insert.sql"})
+    @Sql(scripts = {"classpath:sql/add-users.sql", "classpath:sql/insert.sql"})
+    @WithUserDetails("test_admin")
     public void shouldAllowPuttingSponsorShouldReturnSuccess() throws Exception {
         mockMvc.perform(put("/sponsor")
                 .param("id", "1")

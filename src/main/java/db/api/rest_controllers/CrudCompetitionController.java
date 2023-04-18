@@ -3,6 +3,7 @@ package db.api.rest_controllers;
 import db.api.service.CompetitionService;
 import db.entities.Competition;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -16,20 +17,29 @@ public class CrudCompetitionController {
     @PostMapping("")
     public Competition addCompetition(@RequestParam("title") String title, @RequestParam("period") String period,
                               @RequestParam("sponsor") Long sponsorId, @RequestParam("sport") Long sportId,
-                                      @RequestParam("sportsfacility") Long sportsfacilityId) throws ParseException {
+                                      @RequestParam("sportsfacility") Long sportsfacilityId, Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return null;
+        }
         return competitionService.addCompetition(title, period, sponsorId, sportId, sportsfacilityId);
     }
 
     @PutMapping("")
     public Competition updateCompetition(@RequestParam("id") Long id, @RequestParam("title") String title,
                                          @RequestParam("period") String period, @RequestParam("sponsor") Long sponsorId,
-                                         @RequestParam("sport") Long sportId,
-                                         @RequestParam("sportsfacility") Long sportsfacilityId) throws ParseException {
+                                         @RequestParam("sport") Long sportId, @RequestParam("sportsfacility")
+                                             Long sportsfacilityId, Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return null;
+        }
         return competitionService.updateCompetition(id, title, period, sponsorId, sportId, sportsfacilityId);
     }
 
     @DeleteMapping("")
-    public Competition deleteCompetition(@RequestParam("competition") Long competitionId) {
+    public Competition deleteCompetition(@RequestParam("competition") Long competitionId, Authentication authentication) {
+        if (authentication.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return null;
+        }
         return competitionService.deleteCompetition(competitionId);
     }
 }
