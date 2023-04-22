@@ -2,7 +2,7 @@ package db.controllers;
 
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
-import db.repository.ArenaRepository;
+import db.repository.sports.ArenaRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;

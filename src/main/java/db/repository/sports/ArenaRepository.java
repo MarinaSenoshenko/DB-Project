@@ -1,4 +1,4 @@
-package db.repository;
+package db.repository.sports;
 
 import db.entities.models.surface.Arena;
 import org.springframework.data.jpa.repository.JpaRepository;

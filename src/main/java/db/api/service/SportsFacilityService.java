@@ -5,7 +5,7 @@ import db.entities.SportsFacilityType;
 import db.entities.models.surface.*;
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
-import db.repository.ArenaRepository;
+import db.repository.sports.ArenaRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
