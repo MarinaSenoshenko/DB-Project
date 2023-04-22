@@ -8,6 +8,7 @@ function add() {
     const patronymic = document.getElementById('patronymic').value;
     const password = document.getElementById('password').value;
     const user = document.getElementById('user').value;
+    const code = document.getElementById('code').value;
 
     const params = new URLSearchParams({
         id: id,
@@ -17,6 +18,7 @@ function add() {
         lastName: lastName,
         password: password,
         user: user,
+        code: code
     });
 
     req.open('POST', '/user/' + user + '?' + params.toString());

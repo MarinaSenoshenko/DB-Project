@@ -2,6 +2,7 @@ package db.controllers;
 
 import db.repository.CourtSurfaceRepository;
 import db.repository.SportsFacilityTypeRepository;
+import db.repository.ArenaRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -69,6 +70,7 @@ public class SportsFacilityController {
 
     @GetMapping("/delete/delete_arena")
     public String deleteArenaParam(Model model) {
+
         model.addAttribute("arenas", arenaRepository.findAll(
                 Sort.by(Sort.Direction.ASC, "id")
         ));

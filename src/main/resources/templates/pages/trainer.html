@@ -45,6 +45,7 @@
       <th><p>Фамилия</p></th>
       <th><p>Имя</p></th>
       <th><p>Отчество</p></th>
+      <th sec:authorize="hasAuthority('ADMIN')"><p>Код</p></th>
       <th sec:authorize="hasAuthority('ADMIN')"><p>id</p></th>
     </tr>
     <tr th:each="trainer, iter : ${trainers}">
@@ -52,6 +53,7 @@
       <td th:text="${trainer.lastName}"></td>
       <td th:text="${trainer.firstName}"></td>
       <td th:text="${trainer.patronymic}"></td>
+      <td sec:authorize="hasAuthority('ADMIN')" th:text="${trainer.code}"></td>
       <td sec:authorize="hasAuthority('ADMIN')" th:text="${trainer.id}"></td>
     </tr>
   </table> <br/>

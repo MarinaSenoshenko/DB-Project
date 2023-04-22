@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 @AllArgsConstructor
 public class MainPageController {
+
     @GetMapping("/login")
     public String getLoginPage() {
         return "/pages/login";

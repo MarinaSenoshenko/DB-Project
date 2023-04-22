@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Random;
 
 @Entity
 @Data
@@ -27,11 +28,14 @@ public class Athlete {
     @ManyToOne
     @JoinColumn(name = "club", referencedColumnName = "id")
     private SportClub club;
+    @NotNull
+    private int code;
 
     public Athlete(String firstName, String patronymic, String lastName, SportClub club) {
         this.patronymic = patronymic;
         this.firstName = firstName;
         this.lastName = lastName;
         this.club = club;
+        this.code = 10000000 + new Random().nextInt(90000000);
     }
 }

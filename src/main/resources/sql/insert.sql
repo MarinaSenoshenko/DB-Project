@@ -25,11 +25,11 @@ INSERT INTO sport_club(id, title) VALUES
 ON CONFLICT DO NOTHING;
 
 
-INSERT INTO athlete(id, first_name, patronymic, last_name, club) VALUES
-(1, 'Ivan', 'Ivanovich', 'Ivanov', 1),
-(1, 'Ivan', 'Ivanovich', 'Ivanov', 2),
-(2, 'Petr', 'Petrovich', 'Petrov', 1),
-(3, 'Aleksandr', 'Aleksandrovich', 'Aleksandrov', 1)
+INSERT INTO athlete(id, first_name, patronymic, last_name, club, code) VALUES
+(1, 'Ivan', 'Ivanovich', 'Ivanov', 1, 12434234),
+(1, 'Ivan', 'Ivanovich', 'Ivanov', 2, 24532443),
+(2, 'Petr', 'Petrovich', 'Petrov', 1, 59543543),
+(3, 'Aleksandr', 'Aleksandrovich', 'Aleksandrov', 1, 23424343)
 ON CONFLICT DO NOTHING;
 
 INSERT INTO athlete_ranking(athlete_id, sport, rank) VALUES
@@ -65,11 +65,11 @@ INSERT INTO competition_player(athlete_id, competition_id, was_awarding, result)
 (3, 1, true, 3)
 ON CONFLICT DO NOTHING;
 
-INSERT INTO trainer(id, first_name, patronymic, last_name) VALUES
-(1, 'Igor', 'Igorevich', 'Igorov'),
-(2, 'Pavel', 'Pavlovich', 'Pavlov'),
-(3, 'Pavel', 'Ivanovich', 'Pavlov'),
-(40, 'Pavel', 'Ivanovich', 'Pavlov')
+INSERT INTO trainer(id, first_name, patronymic, last_name, code) VALUES
+(1, 'Igor', 'Igorevich', 'Igorov', 43244343),
+(2, 'Pavel', 'Pavlovich', 'Pavlov', 53545344),
+(3, 'Pavel', 'Ivanovich', 'Pavlov', 44533432),
+(40, 'Pavel', 'Ivanovich', 'Pavlov', 78465466)
 ON CONFLICT DO NOTHING;
 
 INSERT INTO trainer_license(id, trainer_id, sport) VALUES

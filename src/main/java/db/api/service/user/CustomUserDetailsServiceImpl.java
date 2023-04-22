@@ -3,6 +3,7 @@ package db.api.service.user;
 import db.entities.*;
 import db.entities.user.*;
 import db.repository.*;
+import db.repository.user.RoleRepository;
 import db.repository.user.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,7 +49,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
         }
     }
 
-    public User addAthlete(Long id, String name, String firstName, String lastName, String patronymic, String password) {
+    public User addAthlete(Long id, String name, String firstName, String lastName,
+                           String patronymic, String password, int code) {
         Role role = roleRepository.findByName("ATHLETE");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
@@ -57,13 +59,14 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
             throw new UsernameNotFoundException("User already exists");
         }
         else {
-            return compareUserInfo(id, name, firstName, lastName, patronymic, password, roles,
-                    athlete.getPatronymic(), athlete.getFirstName(), athlete.getLastName(), athlete.getId());
+            return compareUserInfo(id, name, firstName, lastName, patronymic, password, roles, code,
+                    athlete.getPatronymic(), athlete.getFirstName(), athlete.getLastName(), athlete.getId(), athlete.getCode());
 
         }
     }
 
-    public User addTrainer(Long id, String name, String firstName, String lastName, String patronymic, String password) {
+    public User addTrainer(Long id, String name, String firstName, String lastName,
+                           String patronymic, String password, int code) {
         Role role = roleRepository.findByName("TRAINER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
@@ -72,17 +75,18 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
             throw new UsernameNotFoundException("User already exists");
         }
         else {
-            return compareUserInfo(id, name, firstName, lastName, patronymic, password, roles,
-                    trainer.getPatronymic(), trainer.getFirstName(), trainer.getLastName(), trainer.getId());
+            return compareUserInfo(id, name, firstName, lastName, patronymic, password, roles, code,
+                    trainer.getPatronymic(), trainer.getFirstName(), trainer.getLastName(), trainer.getId(), trainer.getCode());
         }
     }
 
-    private User compareUserInfo(Long id, String name, String firstName, String lastName, String patronymic, String password,
-                                 Set<Role> roles, String patronymicReal, String firstNameReal, String lastNameReal, Long idReal) {
+    private User compareUserInfo(Long id, String name, String firstName, String lastName, String patronymic,
+                                 String password, Set<Role> roles, int code, String patronymicReal, String firstNameReal,
+                                 String lastNameReal, Long idReal, int codeReal) {
         if (Objects.equals(patronymic, patronymicReal) &&
                 Objects.equals(firstName, firstNameReal) &&
                 Objects.equals(lastName, lastNameReal) &&
-                id.equals(idReal)) {
+                id.equals(idReal) && code == codeReal) {
             User user = new User(name, BCrypt.hashpw(password, BCrypt.gensalt()), roles);
             userRepository.save(user);
             return user;

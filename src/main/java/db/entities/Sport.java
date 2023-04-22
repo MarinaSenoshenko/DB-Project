@@ -2,6 +2,8 @@ package db.entities;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -9,6 +11,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance (strategy = InheritanceType.JOINED)
+@Component
 @Table(name = "sport")
 public class Sport {
     @Id

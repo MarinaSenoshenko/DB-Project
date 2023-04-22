@@ -30,14 +30,16 @@ public class CrudUserController {
     @PostMapping("/athlete")
     public User addAthlete(@RequestParam("id") Long id, @RequestParam("login") String login,
                         @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                        @RequestParam("patronymic") String patronymic, @RequestParam("password") String password) {
-        return customUserDetailsService.addAthlete(id, login, firstName, lastName, patronymic, password);
+                        @RequestParam("patronymic") String patronymic, @RequestParam("password") String password,
+                           @RequestParam("code") int code) {
+        return customUserDetailsService.addAthlete(id, login, firstName, lastName, patronymic, password, code);
     }
 
     @PostMapping("/trainer")
     public User addTrainer(@RequestParam("id") Long id, @RequestParam("login") String login,
                         @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                        @RequestParam("patronymic") String patronymic, @RequestParam("password") String password) {
-        return customUserDetailsService.addTrainer(id, login, firstName, lastName, patronymic, password);
+                        @RequestParam("patronymic") String patronymic, @RequestParam("password") String password,
+                           @RequestParam("code") int code) {
+        return customUserDetailsService.addTrainer(id, login, firstName, lastName, patronymic, password, code);
     }
 }

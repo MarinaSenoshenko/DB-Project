@@ -143,7 +143,8 @@ create table if not exists athlete
     patronymic varchar(50),
     last_name  varchar(50),
     club       integer
-        references sport_club
+        references sport_club,
+    code       integer
 );
 
 alter table athlete
@@ -169,7 +170,8 @@ create table if not exists trainer
         primary key,
     first_name varchar(50) not null,
     patronymic varchar(50),
-    last_name  varchar(50)
+    last_name  varchar(50),
+    code       integer
 );
 
 alter table trainer

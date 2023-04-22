@@ -5,11 +5,10 @@
   <title>registration</title>
   <link rel='stylesheet' href='/css/form.css'>
 </head>
-<body style="overflow: hidden;">
-<div class="form">
+<body>
+<div class="form" style="height: 730px">
   <script type="text/javascript" src="/js/src/registration.js"></script>
   <div class="title">Регистрация</div>
-  <div class="subtitle">Создайте аккаунт</div>
   <div th:if="${param.error}">Логин занят</div>
   <div class="input-container ic1">
     <input id="firstName" class="input" type="text" placeholder=" " />
@@ -26,6 +25,10 @@
   <div class="input-container ic2">
     <input id="id" class="input" type="text" placeholder=" " />
     <label for="id" class="placeholder">Введите выданный id (для "user" не обязательно)</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="code" class="input" type="text" placeholder=" " />
+    <label for="code" class="placeholder">Введите выданный код (для "user" не обязательно)</label>
   </div>
   <div class="input-container ic2">
     <input id="login" class="input" type="text" placeholder=" " />
