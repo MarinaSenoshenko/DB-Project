@@ -50,27 +50,36 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     public User addAthlete(Long id, String name, String firstName, String lastName,
-                           String patronymic, String password, int code) {
+                           String patronymic, String password, int code) throws UsernameNotFoundException {
+        Athlete athlete;
         Role role = roleRepository.findByName("ATHLETE");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-        Athlete athlete = athleteRepository.findById(id).orElseThrow();
+        try {
+            athlete = athleteRepository.findById(id).orElseThrow();
+        } catch (NoSuchElementException e) {
+            throw new UsernameNotFoundException("Incorrect data");
+        }
         if (userRepository.findByUsername(name) != null) {
             throw new UsernameNotFoundException("User already exists");
         }
         else {
             return compareUserInfo(id, name, firstName, lastName, patronymic, password, roles, code,
                     athlete.getPatronymic(), athlete.getFirstName(), athlete.getLastName(), athlete.getId(), athlete.getCode());
-
         }
     }
 
     public User addTrainer(Long id, String name, String firstName, String lastName,
-                           String patronymic, String password, int code) {
+                           String patronymic, String password, int code) throws UsernameNotFoundException {
+        Trainer trainer;
         Role role = roleRepository.findByName("TRAINER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-        Trainer trainer = trainerRepository.findById(id).orElseThrow();
+        try {
+            trainer = trainerRepository.findById(id).orElseThrow();
+        } catch (NoSuchElementException e) {
+            throw new UsernameNotFoundException("Incorrect data");
+        }
         if (userRepository.findByUsername(name) != null) {
             throw new UsernameNotFoundException("User already exists");
         }

@@ -6,6 +6,8 @@ import db.repository.sports.ArenaRepository;
 import db.repository.sports.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -70,7 +72,6 @@ public class SportsFacilityController {
 
     @GetMapping("/delete/delete_arena")
     public String deleteArenaParam(Model model) {
-
         model.addAttribute("arenas", arenaRepository.findAll(
                 Sort.by(Sort.Direction.ASC, "id")
         ));
@@ -148,7 +149,11 @@ public class SportsFacilityController {
 
     @GetMapping("/bycompetitionperiod/{startdate}/{enddate}")
     public String getSportsFacilityByCompetitionPeriod(@PathVariable("startdate") String startDate,
-                                                       @PathVariable("enddate") String endDate, Model model) throws ParseException {
+                                                       @PathVariable("enddate") String endDate,
+                                                       Model model, Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         model.addAttribute("sportsfacilitys", sportsFacilityRepository
                 .getSportsFacilityByCompetitionPeriod(dateFormat.parse(startDate), dateFormat.parse(endDate)));
@@ -163,7 +168,10 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/court/{surface}")
-    public String getCourtsBySurface(@PathVariable("surface") String surface, Model model) {
+    public String getCourtsBySurface(@PathVariable("surface") String surface, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("courts", courtRepository.findCourtBySurfaceValue(surface));
         model.addAttribute("allcourts", courtRepository.findAll());
         return "/pages/facility/court";
@@ -177,7 +185,10 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/gym/{floorArea}")
-    public String getGymByFloorArea(@PathVariable("floorArea") Double floorArea, Model model) {
+    public String getGymByFloorArea(@PathVariable("floorArea") Double floorArea, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("gyms", gymRepository.findByFloorArea(floorArea));
         model.addAttribute("allgyms", gymRepository.findAll());
         return "/pages/facility/gym";
@@ -191,7 +202,10 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/stadium/{capacity}")
-    public String getStadiumByCapacity(@PathVariable("capacity") Long capacity, Model model) {
+    public String getStadiumByCapacity(@PathVariable("capacity") Long capacity, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("stadiums", stadiumRepository.findByCapacity(capacity));
         model.addAttribute("allstadiums", stadiumRepository.findAll());
         return "/pages/facility/stadium";
@@ -205,7 +219,10 @@ public class SportsFacilityController {
     }
 
     @GetMapping("/arena/{trackNumber}")
-    public String getArenaByTrackNumber(@PathVariable("trackNumber") Long trackNumber, Model model) {
+    public String getArenaByTrackNumber(@PathVariable("trackNumber") Long trackNumber, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("arenas", arenaRepository.findArenaByTrackNumber(trackNumber));
         model.addAttribute("allarenas", arenaRepository.findAll());
         return "/pages/facility/arena";

@@ -8,6 +8,8 @@ import db.repository.SportsFacilityTypeRepository;
 import db.repository.sports.SportsFacilityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,27 +55,36 @@ public class CompetitionController {
     }
 
     @GetMapping(value = {"/byperiod/{startdate}/{enddate}/{sponsorid}", "/byperiod/{startdate}/{enddate}"})
-    public String getCompetitionByPeriod(@PathVariable("startdate") String startDate, @PathVariable("enddate")
-    String endDate, @PathVariable("sponsorid") Optional<Long> sponsorId, Model model) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public String getCompetitionByPeriod(@PathVariable("startdate") String startDate,
+                                         @PathVariable("enddate") String endDate,
+                                         @PathVariable("sponsorid") Optional<Long> sponsorId,
+                                         Model model, Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        List<Competition> competitionsRes = competitionRepository.getCompetitionByPeriod(dateFormat.parse(startDate), dateFormat.parse(endDate));
-        List<Competition> competitionsList = sponsorId.map(aLong -> competitionsRes.stream().filter(competition ->
-                        competition.getSponsor().getId().equals(aLong)).collect(Collectors.toList())).orElse(competitionsRes);
-        model.addAttribute("competitions", competitionsList);
-        addAttributesToModel(model);
-        return "/pages/competition";
+            List<Competition> competitionsRes = competitionRepository.getCompetitionByPeriod(dateFormat.parse(startDate), dateFormat.parse(endDate));
+            List<Competition> competitionsList = sponsorId.map(aLong -> competitionsRes.stream().filter(competition ->
+                    competition.getSponsor().getId().equals(aLong)).collect(Collectors.toList())).orElse(competitionsRes);
+            model.addAttribute("competitions", competitionsList);
+            addAttributesToModel(model);
+            return "/pages/competition";
+        }
+        throw new AccessDeniedException("Access denied");
     }
 
     @GetMapping(value = {"/byfacility/{facilityid}", "/byfacility/{facilityid}/{sport}"})
-    public String getCompetitionByFacility(@PathVariable("facilityid") Long sportsFacilityId, @PathVariable("sport")
-    Optional<String> sportValue, Model model) {
-        List<Competition> competitionsRes = competitionRepository.getCompetitionByFacility(sportsFacilityId);
-        List<Competition> competitionsList = sportValue.map(s -> competitionsRes.stream().filter(competition ->
-                        competition.getSport().getValue().equals(s)).collect(Collectors.toList())).orElse(competitionsRes);
-        model.addAttribute("competitions", competitionsList);
-        addAttributesToModel(model);
-        return "/pages/competition";
+    public String getCompetitionByFacility(@PathVariable("facilityid") Long sportsFacilityId,
+                                           @PathVariable("sport") Optional<String> sportValue,
+                                           Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            List<Competition> competitionsRes = competitionRepository.getCompetitionByFacility(sportsFacilityId);
+            List<Competition> competitionsList = sportValue.map(s -> competitionsRes.stream().filter(competition ->
+                    competition.getSport().getValue().equals(s)).collect(Collectors.toList())).orElse(competitionsRes);
+            model.addAttribute("competitions", competitionsList);
+            addAttributesToModel(model);
+            return "/pages/competition";
+        }
+        throw new AccessDeniedException("Access denied");
     }
 
     private void addAttributesToModel(Model model) {

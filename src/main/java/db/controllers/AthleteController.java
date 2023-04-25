@@ -5,6 +5,8 @@ import db.repository.*;
 import db.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +65,10 @@ public class AthleteController {
 
     @GetMapping("/bysport/{sport}/{athleterank}")
     public String getAthletesByRanking(@PathVariable("sport") String sport, @PathVariable("athleterank")
-    String athleteRankValue, Model model) {
+    String athleteRankValue, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.getAthletesByRanking(sport,
                   athleteRankRepository.findByValue(athleteRankValue).getId()));
@@ -72,15 +77,22 @@ public class AthleteController {
 
     @GetMapping("/bytrainerlicense/{trainerlicenseid}/{athleterank}")
     public String getAthletesByTrainerAndRank(@PathVariable("trainerlicenseid") Long trainerLicenseId,
-                                                         @PathVariable("athleterank") String athleteRankValue, Model model) {
-        addAttributesToModel(model);
-        model.addAttribute("athletes",athleteRepository.getAthletesByTrainerAndRank(trainerLicenseId,
-                athleteRankRepository.findByValue(athleteRankValue).getId()));
-        return "/pages/athlete";
+                                              @PathVariable("athleterank") String athleteRankValue,
+                                              Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            addAttributesToModel(model);
+            model.addAttribute("athletes", athleteRepository.getAthletesByTrainerAndRank(trainerLicenseId,
+                    athleteRankRepository.findByValue(athleteRankValue).getId()));
+            return "/pages/athlete";
+        }
+        throw new AccessDeniedException("Access denied");
     }
 
     @GetMapping("/morethanone")
-    public String getAthletesWhoMoreThanOneSport(Model model) {
+    public String getAthletesWhoMoreThanOneSport(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         Iterable<?> results = athleteRepository.getAthletesWhoMoreThanOneSport();
 
         List<AthleteWithSports> athletes = new ArrayList<>();
@@ -103,15 +115,23 @@ public class AthleteController {
     }
 
     @GetMapping("/bycompetition/{competitionid}")
-    public String getAthletesWhoWinnerByCompetition(@PathVariable("competitionid") Long competitionId, Model model) {
-        addAttributesToModel(model);
-        model.addAttribute("athletes", athleteRepository.getAthletesWhoWinnerByCompetition(competitionId));
-        return "/pages/athlete";
+    public String getAthletesWhoWinnerByCompetition(@PathVariable("competitionid") Long competitionId,
+                                                    Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            addAttributesToModel(model);
+            model.addAttribute("athletes", athleteRepository.getAthletesWhoWinnerByCompetition(competitionId));
+            return "/pages/athlete";
+        }
+        throw new AccessDeniedException("Access denied");
     }
 
     @GetMapping("/notincompetitionbyperiod/{startdate}/{enddate}")
-    public String getAthletesWhoNotInCompetitionByPeriod(@PathVariable("startdate") String startDate, @PathVariable("enddate")
-    String endDate, Model model) throws ParseException {
+    public String getAthletesWhoNotInCompetitionByPeriod(@PathVariable("startdate") String startDate,
+                                                         @PathVariable("enddate") String endDate, Model model,
+                                                         Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         addAttributesToModel(model);
         model.addAttribute("athletes", athleteRepository.getAthletesWhoNotInCompetitionByPeriod(

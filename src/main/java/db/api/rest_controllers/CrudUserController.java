@@ -3,9 +3,9 @@ package db.api.rest_controllers;
 import db.api.service.user.CustomUserDetailsServiceImpl;
 import db.entities.user.User;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,9 +29,9 @@ public class CrudUserController {
 
     @PostMapping("/athlete")
     public User addAthlete(@RequestParam("id") Long id, @RequestParam("login") String login,
-                        @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                        @RequestParam("patronymic") String patronymic, @RequestParam("password") String password,
-                           @RequestParam("code") int code) {
+                                   @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+                                   @RequestParam("patronymic") String patronymic, @RequestParam("password") String password,
+                                   @RequestParam("code") int code) throws UsernameNotFoundException{
         return customUserDetailsService.addAthlete(id, login, firstName, lastName, patronymic, password, code);
     }
 

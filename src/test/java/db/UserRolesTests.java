@@ -81,6 +81,46 @@ public class UserRolesTests {
     }
 
     @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_user")
+    public void testGetAuthorizedUsersWIthRoleUserShouldFail() throws Exception {
+        mockMvc.perform(get("/main/users"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_admin")
+    public void testGetAuthorizedUsersWIthRoleAdminShouldSuccess() throws Exception {
+        mockMvc.perform(get("/main/users"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_admin")
+    public void testGetDeleteUsersPageWIthRoleAdminShouldSuccess() throws Exception {
+        mockMvc.perform(get("/main/users/delete"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_user")
+    public void testGetDeleteUsersPageWIthRoleUserShouldFail() throws Exception {
+        mockMvc.perform(get("/main/users/delete"))
+                .andExpect(status().is(403));
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:sql/add-users.sql"})
+    @WithUserDetails("test_athlete")
+    public void testGetAuthorizedUsersWIthRoleAthleteShouldSuccess() throws Exception {
+        mockMvc.perform(get("/main/users/delete"))
+                .andExpect(status().is(403));
+    }
+
+    @Test
     @WithAnonymousUser
     public void testIfNotAuthorizedShouldGetLoginPage() throws Exception {
         mockMvc.perform(get("/login"))

@@ -6,6 +6,8 @@ import db.repository.CompetitionPlayerRepository;
 import db.repository.CompetitionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +65,10 @@ public class CompetitionPlayerController {
     public String filter(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName,
                          @PathVariable("patronymic") String patronymic, @PathVariable("club") String club,
                          @PathVariable("title") String title, @PathVariable("wasawarding") String isWasAwarding,
-                         @PathVariable("result") String result, Model model) {
+                         @PathVariable("result") String result, Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         long res = (Objects.equals(result, "all")) ? -1L : Long.parseLong(result);
         boolean wasAwarding = Objects.equals(isWasAwarding, "true");
 
@@ -106,7 +111,10 @@ public class CompetitionPlayerController {
     }
 
     @GetMapping("/result/ascending")
-    public String orderByResultAscending(Model model) {
+    public String orderByResultAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll(
                 Sort.by(Sort.Direction.ASC, "result")
         ));
@@ -115,7 +123,10 @@ public class CompetitionPlayerController {
     }
 
     @GetMapping("/result/descending")
-    public String orderByResultDescending(Model model) {
+    public String orderByResultDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll(
                 Sort.by(Sort.Direction.DESC, "result")
         ));
@@ -124,7 +135,10 @@ public class CompetitionPlayerController {
     }
 
     @GetMapping("/wasawarding/ascending")
-    public String orderByWasAwardingAscending(Model model) {
+    public String orderByWasAwardingAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll(
                 Sort.by(Sort.Direction.ASC, "wasAwarding")
         ));
@@ -133,7 +147,10 @@ public class CompetitionPlayerController {
     }
 
     @GetMapping("/wasawarding/descending")
-    public String orderByWasAwardingDescending(Model model) {
+    public String orderByWasAwardingDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.findAll(
                 Sort.by(Sort.Direction.DESC, "wasAwarding")
         ));
@@ -142,70 +159,100 @@ public class CompetitionPlayerController {
     }
 
     @GetMapping("/firstName/ascending")
-    public String orderByFirstNameAscending(Model model) {
+    public String orderByFirstNameAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByFirstNameOrderByAscending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/firstName/descending")
-    public String orderByFirstNameDescending(Model model) {
+    public String orderByFirstNameDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByFirstNameOrderByDescending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/lastName/ascending")
-    public String orderByLastNameAscending(Model model) {
+    public String orderByLastNameAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByLastNameOrderByAscending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/lastName/descending")
-    public String orderByLastNameDescending(Model model) {
+    public String orderByLastNameDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByLastNameOrderByDescending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/patronymic/ascending")
-    public String orderByPatronymicAscending(Model model) {
+    public String orderByPatronymicAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByPatronymicOrderByAscending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/patronymic/descending")
-    public String orderByPatronymicDescending(Model model) {
+    public String orderByPatronymicDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByPatronymicOrderByDescending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/competitiontitle/ascending")
-    public String orderByCompetitionAscending(Model model) {
+    public String orderByCompetitionAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByCompetitionOrderByAscending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/competitiontitle/descending")
-    public String orderByCompetitionDescending(Model model) {
+    public String orderByCompetitionDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByCompetitionOrderByDescending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/clubtitle/ascending")
-    public String orderByClubAscending(Model model) {
+    public String orderByClubAscending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByClubOrderByAscending());
         addAttributes(model);
         return "/pages/competitionplayer";
     }
 
     @GetMapping("/clubtitle/descending")
-    public String orderByClubDescending(Model model) {
+    public String orderByClubDescending(Model model, Authentication authentication) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("allcompetitionplayers", competitionPlayerRepository.getByClubOrderByDescending());
         addAttributes(model);
         return "/pages/competitionplayer";

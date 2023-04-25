@@ -4,6 +4,8 @@ import db.entities.outer.SponsorWithCount;
 import db.repository.SponsorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +48,11 @@ public class SponsorController {
 
     @GetMapping("/byperiod/{startdate}/{enddate}")
     public String getAndCountSponsorByPeriod(@PathVariable("startdate") String startDate,
-                                                  @PathVariable("enddate") String endDate, Model model) throws ParseException {
+                                             @PathVariable("enddate") String endDate,
+                                             Model model, Authentication authentication) throws ParseException {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            throw new AccessDeniedException("Access denied");
+        }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Iterable<?> results = sponsorRepository.getAndCountSponsorByPeriod(dateFormat.parse(startDate),
