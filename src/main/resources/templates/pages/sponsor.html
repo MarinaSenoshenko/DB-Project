@@ -21,7 +21,7 @@
   <a class="buttons" sec:authorize="hasAuthority('ADMIN')" onclick="location.href='/main/sponsor/update'">Изменить</a>
 
   <form sec:authorize="hasAnyAuthority('ADMIN', 'ATHLETE', 'TRAINER')" class="grades-form">
-    <th><b>Получить спонсоров за период: </b></th>
+    <th><b>Получить спонсоров с количеством проспонсированных ими соревнований за период: </b></th>
     <th>Введите дату начала: </th>
     <label for="start_date"></label><input type="date" name="day"
                                            id="start_date" size="60"
